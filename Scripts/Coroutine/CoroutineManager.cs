@@ -6,20 +6,20 @@ using UnityEngine;
 public class CoroutineManager : Singleton<CoroutineManager> {
     
     //코루틴 딜레이 설정
-	private WaitForSeconds _delay = new WaitForSeconds(0.02f);
-	public WaitForSeconds Delay {  get { return _delay; } }
+	private static WaitForSeconds _delay = new WaitForSeconds(0.02f);
+	public static WaitForSeconds Delay {  get { return _delay; } }
 
-    private WaitForSeconds _longDelay = new WaitForSeconds(0.08f);
-	public WaitForSeconds LongDelay { get { return _longDelay; } }
+    private static WaitForSeconds _longDelay = new WaitForSeconds(0.08f);
+	public static WaitForSeconds LongDelay { get { return _longDelay; } }
 
-	private WaitForSeconds _shortDelay = new WaitForSeconds(0.005f);
-	public WaitForSeconds ShortDelay { get { return _shortDelay; } }
+	private static WaitForSeconds _shortDelay = new WaitForSeconds(0.005f);
+	public static WaitForSeconds ShortDelay { get { return _shortDelay; } }
 
-	private WaitForFixedUpdate _fiexdUpdate = new WaitForFixedUpdate();
-	public WaitForFixedUpdate FiexdUpdate { get { return _fiexdUpdate; } }
+    private static WaitForFixedUpdate _fiexdUpdate = new WaitForFixedUpdate();
+	public static WaitForFixedUpdate FiexdUpdate { get { return _fiexdUpdate; } }
 
-	private WaitForEndOfFrame _endOfFrame = new WaitForEndOfFrame();
-	public WaitForEndOfFrame EndOfFrame { get { return _endOfFrame; } }
+	private static WaitForEndOfFrame _endOfFrame = new WaitForEndOfFrame();
+	public static WaitForEndOfFrame EndOfFrame { get { return _endOfFrame; } }
     
     //코루틴이 종료가 될 때까지...(실제로 코루틴 부분)
     IEnumerator Preform(IEnumerator coroutine)

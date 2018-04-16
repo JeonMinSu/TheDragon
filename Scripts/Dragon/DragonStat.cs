@@ -29,8 +29,8 @@ public class DragonStat : MonoBehaviour {
     public float AccRushSpeed { set { _accRushSpeed = value; } get { return _accRushSpeed; } }
 
     [SerializeField]
-    private float _curTakeOffSpeed;
-    public float CurTakeOffSpeed { set { _curTakeOffSpeed = value; } get { return _curTakeOffSpeed; } }
+    private float _curTakeOffDir;
+    public float CurTakeOffDir { set { _curTakeOffDir = value; } get { return _curTakeOffDir; } }
 
     [SerializeField]
     private float _maxTakeOffSpeed;
@@ -69,7 +69,6 @@ public class DragonStat : MonoBehaviour {
 
     private void Awake()
     {
-        _hp = _maxHP;
         _manager = GetComponent<DragonManager>();
     }
 

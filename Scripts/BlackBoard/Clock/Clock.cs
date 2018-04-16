@@ -54,6 +54,39 @@ public class Clock : MonoBehaviour
 
     }
 
+    [System.Serializable]
+    public class FlyingTimes
+    {
+        [SerializeField]
+        private float _hoveringTime;
+        public float HoveringTime { set { _hoveringTime = value; } get { return _hoveringTime; } }
+
+        [SerializeField]
+        private float _curHoveringTime;
+        public float CurHoveringTime { set { _curHoveringTime = value; } get { return _curHoveringTime; } }
+
+    }
+
+    [System.Serializable]
+    public class FlyingPatternTimes
+    {
+        [SerializeField]
+        private float _preBreathTime;
+        public float PreBreathTime { set { _preBreathTime = value; } get { return _preBreathTime; } }
+
+        [SerializeField]
+        private float _afterBreathTime;
+        public float AfterBreathTime { set { _afterBreathTime = value; } get { return _afterBreathTime; } }
+
+        [SerializeField]
+        private float _preMissileTime;
+        public float PreMissileTime { set { _preMissileTime = value; } get { return _preMissileTime; } }
+
+        [SerializeField]
+        private float _afterMissileTime;
+        public float AfterMissileTime { set { _afterMissileTime = value; }get { return _afterMissileTime; } }
+    }
+
     [SerializeField]
     private LandPatternTimes _patternTimes;
     public LandPatternTimes PatternTimes { get { return _patternTimes; } }
@@ -61,6 +94,14 @@ public class Clock : MonoBehaviour
     [SerializeField]
     private LandIdleTimes _idleTimes;
     public LandIdleTimes IdleTimes { get { return _idleTimes; } }
+
+    [SerializeField]
+    private FlyingTimes _flyingTime;
+    public FlyingTimes Flyingtime { get { return _flyingTime; } }
+
+    [SerializeField]
+    private FlyingPatternTimes _flyingPatternTime;
+    public FlyingPatternTimes FlyingPatternTime { get { return _flyingPatternTime; } }
 
     [SerializeField]
     private float _fallingTime;

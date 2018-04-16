@@ -13,8 +13,7 @@ public class DragonIdle : DragonAction
         if (Curtime < MaxTime)
         {
             BlackBoard.Instance.IdleTimes.CurIdleTime += Time.deltaTime;
-
-            Debug.Log("Idle");
+            BlackBoard.Instance.Manager.Ani.SetTrigger("Idle");
             return false;
         }
         return true;

@@ -6,9 +6,17 @@ public class DragonTakeOff : DragonAction {
 
     public override bool Run()
     {
-        if (!BlackBoard.Instance.IsFlying)
+
+        float curDir = BlackBoard.Instance.Stat.CurTakeOffDir;
+        float LimitDir = BlackBoard.Instance.TakeOffLimitDir;
+
+        if (!BlackBoard.Instance.IsStage && curDir < LimitDir)
         {
-            CoroutineManager.DoCoroutine(TakeOffStartCor());
+            if (!BlackBoard.Instance.IsTakeOffAct)
+            {
+                BlackBoard.Instance.IsTakeOffAct = true;
+                CoroutineManager.DoCoroutine(TakeOffStartCor());
+            }
             return false;
         }
         return true;
@@ -17,28 +25,23 @@ public class DragonTakeOff : DragonAction {
     IEnumerator TakeOffStartCor()
     {
         Transform Dragon = BlackBoard.Instance.Manager.transform;
-
-        float speed = BlackBoard.Instance.Stat.CurRushSpeed;
+        float speed = 0.0f;
         float MaxSpeed = BlackBoard.Instance.Stat.MaxTakeOffSpeed;
         float AccSpeed = BlackBoard.Instance.Stat.AccTakeOffeSpeed;
 
         float LimitDir = BlackBoard.Instance.TakeOffLimitDir;
         float curDir = speed * Time.deltaTime;
 
-        BlackBoard.Instance.IsFlying = true;
+        BlackBoard.Instance.IsTakeOffAct = true;
+
 
         while (curDir < LimitDir)
         {
-            BlackBoard.Instance.Stat.CurRushSpeed =
-                BlackBoard.Instance.Acceleration(
-                    speed, MaxSpeed, AccSpeed);
-
-            speed = BlackBoard.Instance.Stat.CurRushSpeed;
-
-            curDir = speed * Time.deltaTime;
-
-            Dragon.Translate(Vector3.up * speed * Time.deltaTime);
-            yield return CoroutineManager.Instance.EndOfFrame;
+            speed = BlackBoard.Instance.Acceleration(speed, MaxSpeed, AccSpeed);
+            curDir += speed;
+            BlackBoard.Instance.Stat.CurTakeOffDir = curDir;
+            Dragon.Translate(Vector3.up * speed);
+            yield return CoroutineManager.EndOfFrame;
         }
 
     }

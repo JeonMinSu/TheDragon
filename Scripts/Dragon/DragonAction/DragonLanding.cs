@@ -6,7 +6,11 @@ public class DragonLanding : DragonAction
 {
     public override bool Run()
     {
-        Debug.Log("Landing");
-        return false;
+        if (BlackBoard.Instance.IsLandingAct)
+        { 
+            Debug.Log("Landing");
+            return false;
+        }
+        return true;
     }
 }

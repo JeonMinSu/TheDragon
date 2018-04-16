@@ -40,6 +40,7 @@ public class DragonManager : MonoBehaviour {
 
         _stat = GetComponent<DragonStat>();
         _ani = GetComponentInChildren<Animator>();
+
     } 
 
     // Use this for initialization

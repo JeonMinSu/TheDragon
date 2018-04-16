@@ -62,7 +62,7 @@ public class DragonRush : DragonAction {
 
             CurTime += Time.deltaTime;
 
-            yield return CoroutineManager.Instance.EndOfFrame;
+            yield return CoroutineManager.EndOfFrame;
             
         }
 

@@ -19,6 +19,12 @@ public class BlackBoard : Singleton<BlackBoard>
     private Clock.LandPatternTimes _landPatternTime;
     public Clock.LandPatternTimes LandPatternTime { get { return _landPatternTime; } }
 
+    private Clock.FlyingTimes _flyingTime;
+    public Clock.FlyingTimes FlyingTime { get { return _flyingTime; } }
+
+    private Clock.FlyingPatternTimes _flyingPatternTime;
+    public Clock.FlyingPatternTimes FlyingPatternTime { get { return _flyingPatternTime; } }
+
     private DragonStat _stat;
     public DragonStat Stat { get { return _stat; } }
 
@@ -41,13 +47,18 @@ public class BlackBoard : Singleton<BlackBoard>
     private float _hpLand;
     public float HpLand { set { _hpLand = value; } get { return _hpLand; } }
 
-    [SerializeField]
     private bool _isStage;
     public bool IsStage { set { _isStage = value; } get { return _isStage; } }
 
-    [SerializeField]
     private bool _isFlying;
     public bool IsFlying { set { _isFlying = value; } get { return _isFlying; } }
+
+    /* 보스몹 이륙착륙 액션 확인 */
+    private bool _isLandingAct;
+    public bool IsLandingAct { set { _isLandingAct = value; } get { return _isLandingAct; } }
+
+    private bool _isTakeOffAct;
+    public bool IsTakeOffAct { set { _isTakeOffAct = value; } get { return _isTakeOffAct; } }
 
     /* 보스몹 페이즈 관련 변수 */
     [SerializeField]
@@ -80,9 +91,15 @@ public class BlackBoard : Singleton<BlackBoard>
     private Vector3 _fixTargetPos;
     public Vector3 FixTargetPos { set { _fixTargetPos = value; } get { return _fixTargetPos; } }
 
-    /* 날기 관련 변수 */
+    /* fly 관련 변수 */
+    [SerializeField]
     private float _takeOffLimitDir;
     public float TakeOffLimitDir { get { return _takeOffLimitDir; } }
+
+    /* fly 패턴 관련 변수 */
+    private bool _hoveringChk;
+    public bool HoveringChk { set { _hoveringChk = value; } get { return _hoveringChk; } }
+
     
     public void InitMamber()
     {
@@ -93,7 +110,9 @@ public class BlackBoard : Singleton<BlackBoard>
         _clocks = GetComponentInChildren<Clock>();
         _idleTimes = _clocks.IdleTimes;
         _landPatternTime = _clocks.PatternTimes;
-        
+        _flyingTime = _clocks.Flyingtime;
+        _flyingPatternTime = _clocks.FlyingPatternTime;
+
         /* 스텟 초기화 */
         _stat = _manager.Stat;
 
@@ -155,12 +174,12 @@ public class BlackBoard : Singleton<BlackBoard>
 
     public float Acceleration(float fCurSpeed, float fMaxSpeed, float fAccSpeed)
     {
-        if (fCurSpeed == fMaxSpeed)
+        if (fCurSpeed >= fMaxSpeed)
             return fMaxSpeed;
         else
         {
             float dir = Mathf.Sign(fMaxSpeed - fCurSpeed);
-            fCurSpeed += fAccSpeed * dir * Time.deltaTime;
+            fCurSpeed += fAccSpeed * dir * Time.fixedDeltaTime;
             return (dir == Mathf.Sign(fMaxSpeed - fCurSpeed)) ? fCurSpeed : fMaxSpeed;
         }
 

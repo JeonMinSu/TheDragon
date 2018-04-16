@@ -6,11 +6,17 @@ public class DragonHover : DragonAction {
 
     public override bool Run()
     {
-        return false;
-    }
+        float MaxTime = BlackBoard.Instance.FlyingTime.HoveringTime;
+        float CurTime = BlackBoard.Instance.FlyingTime.CurHoveringTime;
 
-    IEnumerator DragonHoveringCor()
-    {
-        yield return CoroutineManager.Instance.EndOfFrame;
+        if (CurTime < MaxTime && !BlackBoard.Instance.HoveringChk)
+        {
+            CurTime += Time.deltaTime;
+            BlackBoard.Instance.FlyingTime.CurHoveringTime = CurTime;
+            Debug.Log("Hovering");
+            return false;
+        }
+        BlackBoard.Instance.HoveringChk = true;
+        return true;
     }
 }
