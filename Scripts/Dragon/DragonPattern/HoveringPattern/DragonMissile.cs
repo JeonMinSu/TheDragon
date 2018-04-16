@@ -9,9 +9,9 @@ public class DragonMissile : DragonAction {
         if (BlackBoard.Instance.HoveringChk)
         {
             Debug.Log("Misslie");
-
+            return false;
         }
-        return false;
+        return true;
     }
 
     IEnumerator MissileStart(float preTime, float afterTime)

@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 89e37bf25cf9b7a4f923811d53e92cc0
 folderAsset: yes
 timeCreated: 1523890720
+=======
+guid: a052db1fe8ee75f4984c8f2fae09eb51
+folderAsset: yes
+timeCreated: 1523888804
+>>>>>>> origin/혹시모를백업파일
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

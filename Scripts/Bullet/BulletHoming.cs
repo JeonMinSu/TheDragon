@@ -9,6 +9,7 @@ public class BulletHoming : BulletBase
     private Transform _target;
     private Transform Target { get { return _target; } }
     private GameObject Player;
+    private BulletManager manager;
   
     protected override void UpdateBulletPos()
     {
@@ -19,11 +20,19 @@ public class BulletHoming : BulletBase
         this.transform.rotation = Quaternion.LookRotation(-_direction, Vector3.up);
     }
 
-    //protected override void BulletDestroy()
-    //{
-    //    //Player.GetComponent<PlayerCharacter.PlayerCharacterController>().StartCoroutine("CorCameraShake");
-    //    base.BulletDestroy();
-    //}
+    protected override void BulletDestroy()
+    {
+        //Player.GetComponent<PlayerCharacter.PlayerCharacterController>().StartCoroutine("CorCameraShake");
+        if(manager != null)
+        {
+            RaycastHit rayhit;
+            if (Physics.Raycast(this.transform.position + Vector3.up * 10.0f, Vector3.down, out rayhit, 100.0f))
+            {
+                manager.IceBlockSpawn(rayhit.point);
+            }
+        }
+        base.BulletDestroy();
+    }
 
     public virtual void SetBulletValue(Transform firePos, float moveSpeed, float homingPower, Transform target)
     {
@@ -39,5 +48,9 @@ public class BulletHoming : BulletBase
     public void SetPlayer(GameObject _player)
     {
         Player = _player;
+    }
+    public void SetBulletManager(BulletManager _manager)
+    {
+        manager = _manager;
     }
 }

@@ -85,14 +85,15 @@ public class BulletManager : MonoBehaviour
         //bullet.SetTarget(Player.transform);
         bullet.SetTag("Dragon");
         bullet.SetPlayer(Player);
+        bullet.SetBulletManager(this);
         //bullet.SetTag("Player");
     }
 
     public void IceBlockSpawn(Vector3 SpawnPos)
     {
-        //GameObject ice = Instantiate(IceBlockPrefab, SpawnPos, IceBlockPrefab.transform.rotation);
-        //ice.GetComponent<IceBlock>().Spawn();
-        StartCoroutine("CorIceBreath");
+        GameObject ice = Instantiate(IceBlockPrefab, SpawnPos, IceBlockPrefab.transform.rotation);
+        ice.GetComponent<IceBlock>().Spawn();
+        //StartCoroutine("CorIceBreath");
     }
 
     public void BreathOn(Transform _firePos)
