@@ -34,7 +34,7 @@ public class IceBlock : MonoBehaviour {
     // Update is called once per frame
     public void Spawn()
     {
-        StartCoroutine("CorSpawnEvent");
+        //StartCoroutine("CorSpawnEvent");
     }
 
     IEnumerator CorSpawnEvent()

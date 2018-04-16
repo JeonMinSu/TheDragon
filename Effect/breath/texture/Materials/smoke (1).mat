@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: smoke (1)
+  m_Shader: {fileID: 4800000, guid: 89206b548bec3944bb690b222378eaec, type: 3}
+  m_ShaderKeywords: _CUSTOMVERTEXST_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmitTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 73346e5bc0b57704890722de387fa973, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex02:
+        m_Texture: {fileID: 2800000, guid: e330bc0994b0a2543902cd8b4bcbc37e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Blink: 0
+    - _CustomVertexSt: 1
+    - _Cutoff: 0.5
+    - _DstBlend: 1
+    - _Hide: 1
+    - _InvFade: 3
+    - _Metallic: 0
+    - _NBar: 0.11
+    - _RimInverse: 0
+    - _Rimpower: 1
+    - _Smoothness: 0
+    - _SrcBlend: 1
+    - _Zwrite: 0
+    - _rot1: 0
+    - _rot2: 0
+    - _tex1U: 0
+    - _tex1V: 0
+    - _tex2U: 0
+    - _tex2V: 0
+    - _tex2pow: 0
+    - _tex3U: 0
+    - _tex3V: 0
+    - _tex3pow: 0
+    m_Colors:
+    - _AlphaColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.6358132, g: 0.8109415, b: 0.88235295, a: 0.203}
+    - _TintColor: {r: 0.36218646, g: 0.5019032, b: 0.6397059, a: 0.128}
