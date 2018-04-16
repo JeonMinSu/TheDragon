@@ -13,7 +13,6 @@ public class DragonHover : DragonAction {
         {
             CurTime += Time.deltaTime;
             BlackBoard.Instance.FlyingTime.CurHoveringTime = CurTime;
-            Debug.Log("Hovering");
             return false;
         }
         BlackBoard.Instance.HoveringChk = true;

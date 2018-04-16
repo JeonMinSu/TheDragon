@@ -6,6 +6,11 @@ public class DragonMissile : DragonAction {
 
     public override bool Run()
     {
+        if (BlackBoard.Instance.HoveringChk)
+        {
+            Debug.Log("Misslie");
+
+        }
         return false;
     }
 
@@ -13,9 +18,8 @@ public class DragonMissile : DragonAction {
     {
         yield return new WaitForSeconds(preTime);
 
-        while (true) { 
-            yield return CoroutineManager.FiexdUpdate;
-        }
+        yield return CoroutineManager.FiexdUpdate;
+
         yield return new WaitForSeconds(afterTime);
     }
 
