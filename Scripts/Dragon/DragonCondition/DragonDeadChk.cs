@@ -11,7 +11,6 @@ public class DragonDeadChk : DragonConTask
             return true;
         }
         Debug.Log("Alive");
-        
         return false;
     }
 
