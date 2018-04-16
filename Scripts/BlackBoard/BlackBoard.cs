@@ -43,7 +43,7 @@ public class BlackBoard : Singleton<BlackBoard>
 
     [SerializeField]
     private bool _isStage;
-    public bool IsStage { set { _isFlying = value; } get { return _isStage; } }
+    public bool IsStage { set { _isStage = value; } get { return _isStage; } }
 
     [SerializeField]
     private bool _isFlying;

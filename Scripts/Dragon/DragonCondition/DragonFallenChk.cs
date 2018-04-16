@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DragonFallenChk : DragonConTask
 {
-
     public override bool Run()
     {
         return false;
