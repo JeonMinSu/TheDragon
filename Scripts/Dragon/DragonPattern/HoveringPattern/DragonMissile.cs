@@ -15,21 +15,28 @@ public class DragonMissile : DragonAction {
 
         if (!PatternChk && PlayerHP > PlayerMaxHp * 0.5f)
         {
-            Debug.Log("Missile");
-            BlackBoard.Instance.HoveringPatternChk = true;
-            BlackBoard.Instance.IsFlying = true;
+            CoroutineManager.DoCoroutine(MissileStart(preTime, afterTime));
             return false;
         }
+        StopCoroutine(MissileStart(preTime, afterTime));
         return true;
     }
 
     IEnumerator MissileStart(float preTime, float afterTime)
     {
+        BlackBoard.Instance.HoveringPatternChk = true;
+        Transform Mouth = BlackBoard.Instance.DragonMouth;
         yield return new WaitForSeconds(preTime);
 
-        yield return CoroutineManager.FiexdUpdate;
+        for (int i = 0; i < 5; i++)
+        {
+            BlackBoard.Instance.BulletManager.HomingBulletFire(Mouth);
+            yield return new WaitForSeconds(3.0f);
+        }
+
 
         yield return new WaitForSeconds(afterTime);
+        BlackBoard.Instance.IsFlying = true;
     }
 
 }

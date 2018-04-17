@@ -10,6 +10,14 @@ public class BlackBoard : Singleton<BlackBoard>
     private MoveManager _patternManager;
     public MoveManager PatternManager { get { return _patternManager; } }
 
+    [SerializeField]
+    private BulletManager _bulletManager;
+    public BulletManager BulletManager { get { return _bulletManager; } }
+
+    [SerializeField]
+    private Transform _dragonMouth;
+    public Transform DragonMouth { get { return _dragonMouth; } }
+
     private Clock _clocks;
     public Clock Clocks { get { return _clocks; } }
 
@@ -119,6 +127,7 @@ public class BlackBoard : Singleton<BlackBoard>
     {
         _manager = GameObject.FindWithTag("Dragon").GetComponent<DragonManager>();
         _patternManager = GameObject.FindWithTag("Dragon").GetComponent<MoveManager>();
+
 
         /* 시간 클래스 초기화 */
         _clocks = GetComponentInChildren<Clock>();

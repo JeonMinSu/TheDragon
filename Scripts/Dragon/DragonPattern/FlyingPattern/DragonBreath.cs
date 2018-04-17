@@ -13,7 +13,7 @@ public class DragonBreath : DragonAction {
 
         if (!PatternChk && BlackBoard.Instance.BreathNum < 50)
         {
-            Debug.Log("breath");
+            CoroutineManager.DoCoroutine(MissileStart(preTime, afterTime));
             return false;
         }
         return true;
@@ -21,8 +21,11 @@ public class DragonBreath : DragonAction {
 
     IEnumerator MissileStart(float preTime, float afterTime)
     {
+        Transform Mouth = BlackBoard.Instance.DragonMouth;
+
         yield return new WaitForSeconds(preTime);
 
+        BlackBoard.Instance.BulletManager.BreathOn(Mouth);
         yield return CoroutineManager.FiexdUpdate;
 
         yield return new WaitForSeconds(afterTime);
