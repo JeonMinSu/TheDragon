@@ -22,7 +22,7 @@ public class DragonStat : MonoBehaviour {
 
     [SerializeField]
     private float _maxRushSpeed;
-    public float MaxRushSpeed{ set { _maxRushSpeed = value; } get { return _maxRushSpeed; } }
+    public float MaxRushSpeed { set { _maxRushSpeed = value; } get { return _maxRushSpeed; } }
 
     [SerializeField]
     private float _accRushSpeed;
@@ -39,6 +39,14 @@ public class DragonStat : MonoBehaviour {
     [SerializeField]
     private float _accTakeOffeSpeed;
     public float AccTakeOffeSpeed { set { _accTakeOffeSpeed = value; } get { return _accTakeOffeSpeed; } }
+
+    [SerializeField]
+    private float _curFlySpeed;
+    public float CurFlySpeed{ set { _curFlySpeed = value; } get { return _curFlySpeed; } }
+
+    [SerializeField]
+    private float _maxFlySpeed;
+    public float MaxFlySpeed { set { _maxFlySpeed = value; } get { return _maxFlySpeed; } }
 
     [SerializeField]
     private float _maxHP = 200.0f;

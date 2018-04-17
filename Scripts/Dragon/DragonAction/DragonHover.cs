@@ -9,13 +9,14 @@ public class DragonHover : DragonAction {
         float MaxTime = BlackBoard.Instance.FlyingTime.HoveringTime;
         float CurTime = BlackBoard.Instance.FlyingTime.CurHoveringTime;
 
-        if (CurTime < MaxTime && !BlackBoard.Instance.HoveringChk)
+        if (CurTime < MaxTime && !BlackBoard.Instance.IsHovering)
         {
+            BlackBoard.Instance.HoveringPatternChk = false;
             CurTime += Time.deltaTime;
             BlackBoard.Instance.FlyingTime.CurHoveringTime = CurTime;
             return false;
         }
-        BlackBoard.Instance.HoveringChk = true;
+        BlackBoard.Instance.IsHovering = true;
         return true;
     }
 }

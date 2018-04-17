@@ -50,8 +50,8 @@ public class BlackBoard : Singleton<BlackBoard>
     private bool _isStage;
     public bool IsStage { set { _isStage = value; } get { return _isStage; } }
 
-    private bool _isFlying;
-    public bool IsFlying { set { _isFlying = value; } get { return _isFlying; } }
+    private bool _isTakeOff;
+    public bool IsTakeOff { set { _isTakeOff = value; } get { return _isTakeOff; } }
 
     /* 보스몹 이륙착륙 액션 확인 */
     private bool _isLandingAct;
@@ -96,11 +96,25 @@ public class BlackBoard : Singleton<BlackBoard>
     private float _takeOffLimitDir;
     public float TakeOffLimitDir { get { return _takeOffLimitDir; } }
 
-    /* fly 패턴 관련 변수 */
-    private bool _hoveringChk;
-    public bool HoveringChk { set { _hoveringChk = value; } get { return _hoveringChk; } }
+    [SerializeField]
+    private float _dragonFlyingRadius;
+    public float DragonFlyingRadius { get { return _dragonFlyingRadius; } }
 
-    
+    /* fly 패턴 관련 변수 */
+    private bool _isHovering;
+    public bool IsHovering{ set { _isHovering = value; } get { return _isHovering; } }
+
+    private bool _isFlying;
+    public bool IsFlying { set { _isFlying = value; } get { return _isFlying; } }
+
+    private bool _hoveringPatternChk;
+    public bool HoveringPatternChk { set { _hoveringPatternChk = value; } get { return _hoveringPatternChk; } }
+
+    private bool _flyingPatternChk;
+    public bool FlyingPatternChk { set { _flyingPatternChk = value; } get { return _flyingPatternChk; } }
+
+    public int BreathNum = 49;
+
     public void InitMamber()
     {
         _manager = GameObject.FindWithTag("Dragon").GetComponent<DragonManager>();
@@ -167,7 +181,6 @@ public class BlackBoard : Singleton<BlackBoard>
         Vector3 forward = (Target - dragon.position).normalized;
 
         dragon.position = circlePos;
-
         dragon.rotation = Quaternion.LookRotation(forward);
 
     }
@@ -205,10 +218,6 @@ public class BlackBoard : Singleton<BlackBoard>
             return true;
 
         return false;
-    }
-
-    public void startPattern(IEnumerator cor) {
-        CoroutineManager.DoCoroutine(cor);
     }
 
 }

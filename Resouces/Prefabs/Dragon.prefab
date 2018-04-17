@@ -2424,11 +2424,13 @@ MonoBehaviour:
   _curRushSpeed: 0
   _maxRushSpeed: 0
   _accRushSpeed: 100
-  _curTakeOffSpeed: 0
+  _curTakeOffDir: 0
   _maxTakeOffSpeed: 10
-  _accTakeOffeSpeed: 0.2
+  _accTakeOffeSpeed: 1
+  _curFlySpeed: 0
+  _maxFlySpeed: 20
   _maxHP: 100
-  _hp: 100
+  _hp: 95
   _sight: 5
   _chaseSight: 10
   _damege: 10

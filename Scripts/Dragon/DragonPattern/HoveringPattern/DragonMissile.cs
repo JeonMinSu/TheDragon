@@ -6,9 +6,18 @@ public class DragonMissile : DragonAction {
 
     public override bool Run()
     {
-        if (BlackBoard.Instance.HoveringChk)
+        float PlayerHP = 70.0f;
+        float PlayerMaxHp = 100.0f;
+        bool PatternChk = BlackBoard.Instance.HoveringPatternChk;
+
+        float preTime = BlackBoard.Instance.FlyingPatternTime.PreMissileTime;
+        float afterTime = BlackBoard.Instance.FlyingPatternTime.AfterMissileTime;
+
+        if (!PatternChk && PlayerHP > PlayerMaxHp * 0.5f)
         {
-            Debug.Log("Misslie");
+            Debug.Log("Missile");
+            BlackBoard.Instance.HoveringPatternChk = true;
+            BlackBoard.Instance.IsFlying = true;
             return false;
         }
         return true;

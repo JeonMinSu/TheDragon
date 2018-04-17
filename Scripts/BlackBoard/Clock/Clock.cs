@@ -65,6 +65,14 @@ public class Clock : MonoBehaviour
         private float _curHoveringTime;
         public float CurHoveringTime { set { _curHoveringTime = value; } get { return _curHoveringTime; } }
 
+        [SerializeField]
+        private float _flyTime;
+        public float FlyTime { get { return _flyTime; } }
+
+        [SerializeField]
+        private float _curFlyTime;
+        public float CurFlyTime { set { _curFlyTime = value; } get { return _curFlyTime; } }
+
     }
 
     [System.Serializable]
@@ -85,6 +93,7 @@ public class Clock : MonoBehaviour
         [SerializeField]
         private float _afterMissileTime;
         public float AfterMissileTime { set { _afterMissileTime = value; }get { return _afterMissileTime; } }
+
     }
 
     [SerializeField]

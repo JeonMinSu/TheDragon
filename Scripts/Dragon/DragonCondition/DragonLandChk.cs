@@ -14,11 +14,11 @@ public class DragonLandChk : DragonConTask
         if ((CurHp % FlyPercentHP != 0) && BlackBoard.Instance.IsStage || 
             CurHp == MaxHP)
         {
-            BlackBoard.Instance.IsFlying = false;
+            BlackBoard.Instance.IsTakeOff = false;
             Debug.Log("땅땅치킨");
             return true;
         }
-        BlackBoard.Instance.IsFlying = true;
+        BlackBoard.Instance.IsTakeOff = true;
         return false;
     }
 }
