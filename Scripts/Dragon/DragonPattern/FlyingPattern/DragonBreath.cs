@@ -6,9 +6,6 @@ public class DragonBreath : DragonAction {
 
     public override bool Run()
     {
-        float PlayerHP = 70.0f;
-        float PlayerMaxHp = 100.0f;
-
         bool PatternChk = BlackBoard.Instance.FlyingPatternChk;
         
         float preTime = BlackBoard.Instance.FlyingPatternTime.PreBreathTime;
