@@ -9951,12 +9951,12 @@ Prefab:
     - target: {fileID: 114830681648848562, guid: 3360acf4e49b3be4fa53e91a96afd13b,
         type: 2}
       propertyPath: _accTakeOffeSpeed
-      value: 0.025
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 114830681648848562, guid: 3360acf4e49b3be4fa53e91a96afd13b,
         type: 2}
       propertyPath: _hp
-      value: 100
+      value: 95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3360acf4e49b3be4fa53e91a96afd13b, type: 2}
