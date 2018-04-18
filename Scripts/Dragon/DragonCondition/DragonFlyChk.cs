@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DragonFlyChk : DragonConTask
 {
+
     public override bool Run()
     {
-        bool isFlyingEnd = BlackBoard.Instance.IsFlying;
+        bool isFlying = BlackBoard.Instance.IsFlying;
 
-        if (isFlyingEnd)
+        if (isFlying)
         {
             BlackBoard.Instance.IsRadiusChk = false;
             return true;

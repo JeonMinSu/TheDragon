@@ -16,7 +16,6 @@ public class BehaviorTree : ScriptableObject {
     {
         if (_root.ChildNodes != null) { 
             if (_root.ChildNodes.Count == 0) { 
-                _root.hideFlags = HideFlags.None;
                 SerializeNodes(_root);
             }
         }

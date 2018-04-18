@@ -22,7 +22,7 @@ public class BulletHoming : BulletBase
 
     protected override void BulletDestroy()
     {
-        //Player.GetComponent<PlayerCharacter.PlayerCharacterController>().StartCoroutine("CorCameraShake");
+        Player.GetComponent<PlayerCharacter.PlayerCharacterController>().StartCoroutine("CorCameraShake");
         if(manager != null)
         {
             RaycastHit rayhit;

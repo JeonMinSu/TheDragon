@@ -8,12 +8,15 @@ public class DragonLandChk : DragonConTask
     {
         float MaxHP = BlackBoard.Instance.Stat.MaxHP;
         float CurHp = BlackBoard.Instance.Stat.HP;          //현재HP
-        float FlyPercentHP = BlackBoard.Instance.HpTakeOff; //날기 위한 HP퍼센트
-        float LandPercentHP = BlackBoard.Instance.HpLand;   //땅으로 가기 위한 HP
+        float TakeOffHP = BlackBoard.Instance.HpTakeOff; //날기 위한 HP퍼센트
 
-        if ((CurHp % FlyPercentHP != 0) && BlackBoard.Instance.IsStage || 
-            CurHp == MaxHP)
+        bool IsTakeOffAct = BlackBoard.Instance.IsTakeOffAct;
+        bool IsFlyingAct = BlackBoard.Instance.FlyingAct;
+        bool IsStage = BlackBoard.Instance.IsStage;
+
+        if (((CurHp % TakeOffHP != 0) && !IsFlyingAct) || CurHp == MaxHP)
         {
+            BlackBoard.Instance.IsStage = true;
             BlackBoard.Instance.IsTakeOff = false;
             Debug.Log("땅땅치킨");
             return true;

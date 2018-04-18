@@ -13,4 +13,10 @@ public class DragonLanding : DragonAction
         }
         return true;
     }
+
+    IEnumerator LandingCor()
+    {
+        yield return new WaitForSeconds(0.02f);
+    }
+
 }

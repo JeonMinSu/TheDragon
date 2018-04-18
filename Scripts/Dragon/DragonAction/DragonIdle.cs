@@ -9,8 +9,9 @@ public class DragonIdle : DragonAction
         float Curtime = BlackBoard.Instance.IdleTimes.CurIdleTime;
         float MaxTime = BlackBoard.Instance.IdleTimes.MaxIdleTime;
 
+        bool IsStage = BlackBoard.Instance.IsStage;
 
-        if (Curtime < MaxTime)
+        if (IsStage && Curtime < MaxTime)
         {
             BlackBoard.Instance.IdleTimes.CurIdleTime += Time.deltaTime;
             BlackBoard.Instance.Manager.Ani.SetTrigger("Idle");

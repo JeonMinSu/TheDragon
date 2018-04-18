@@ -7,14 +7,16 @@ public class DragonHoverChk : DragonConTask
     public override bool Run()
     {
         float CurHp = BlackBoard.Instance.Stat.HP;          //현재HP
-        float FlyPercentHP = BlackBoard.Instance.HpTakeOff; //날기 위한 HP퍼센트
         float LandPercentHP = BlackBoard.Instance.HpLand;   //땅으로 가기 위한 HP
 
-        if (BlackBoard.Instance.IsTakeOff &&
-            !BlackBoard.Instance.IsFlying &&
-            CurHp % LandPercentHP != 0)
+        bool IsTakeOff = BlackBoard.Instance.IsTakeOff;
+        bool IsTakeOffAct = BlackBoard.Instance.IsTakeOffAct;
+
+        bool isHovering = BlackBoard.Instance.IsHovering;
+
+        if (!IsTakeOff && isHovering && IsTakeOffAct)
         {
-            BlackBoard.Instance.Manager.Ani.ResetTrigger("Idle");
+            BlackBoard.Instance.Manager.Ani.ResetTrigger("TakeOff");
             BlackBoard.Instance.Manager.Ani.SetTrigger("Hovering");
             BlackBoard.Instance.IsStage = false;
             return true;

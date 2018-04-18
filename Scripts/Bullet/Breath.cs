@@ -8,15 +8,24 @@ public class Breath : MonoBehaviour {
     public GameObject _breathParticle;
     private bool isFire = false;
     private ParticleSystem[] _breatParticles;
+
+    private void Start()
+    {
+        _breatParticles = _breathParticle.GetComponentsInChildren<ParticleSystem>();
+        for (int i = 0; i < _breatParticles.Length; i++)
+        {
+            _breatParticles[i].Stop();
+        }
+    }
+
     public void OnBreath(Transform pos)
     {
         _firePos = pos;
-        _breatParticles = _breathParticle.GetComponentsInChildren<ParticleSystem>();
         for(int i = 0; i<_breatParticles.Length; i++)
         {
             _breatParticles[i].Play();
         }
-        _breathParticle.GetComponent<Animator>().SetBool("IsFire", true);
+        //_breathParticle.GetComponent<Animator>().SetBool("IsFire", true);
         //_breathParticle.SetActive(true);       
         isFire = true;
     }
@@ -36,7 +45,7 @@ public class Breath : MonoBehaviour {
         {
             _breatParticles[i].Stop();
         }
-        _breathParticle.GetComponent<Animator>().SetBool("IsFire", false);
+        //_breathParticle.GetComponent<Animator>().SetBool("IsFire", false);
         // _breathParticle.SetActive(false);
         isFire = false;
     }

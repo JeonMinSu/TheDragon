@@ -6,22 +6,23 @@ public class DragonBreath : DragonAction {
 
     public override bool Run()
     {
-        bool PatternChk = BlackBoard.Instance.FlyingPatternChk;
+        bool PatternChk = BlackBoard.Instance.FlyingAct;
         
         float preTime = BlackBoard.Instance.FlyingPatternTime.PreBreathTime;
         float afterTime = BlackBoard.Instance.FlyingPatternTime.PreBreathTime;
-
-        if (!PatternChk && BlackBoard.Instance.BreathNum < 50)
+        
+        if (!PatternChk)
         {
-            CoroutineManager.DoCoroutine(MissileStart(preTime, afterTime));
+            CoroutineManager.DoCoroutine(BreathOn(preTime, afterTime));
             return false;
         }
         return true;
     }
 
-    IEnumerator MissileStart(float preTime, float afterTime)
+    IEnumerator BreathOn(float preTime, float afterTime)
     {
         Transform Mouth = BlackBoard.Instance.DragonMouth;
+        BlackBoard.Instance.FlyingAct = true;
 
         yield return new WaitForSeconds(preTime);
 
@@ -29,8 +30,7 @@ public class DragonBreath : DragonAction {
         yield return CoroutineManager.FiexdUpdate;
 
         yield return new WaitForSeconds(afterTime);
-        BlackBoard.Instance.BreathNum++;
+        BlackBoard.Instance.BulletManager.BreathOff();
         BlackBoard.Instance.IsFlying = false;
-        BlackBoard.Instance.FlyingPatternChk = true;
     }
 }

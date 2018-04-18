@@ -55,19 +55,6 @@ public class BlackBoard : Singleton<BlackBoard>
     private float _hpLand;
     public float HpLand { set { _hpLand = value; } get { return _hpLand; } }
 
-    private bool _isStage;
-    public bool IsStage { set { _isStage = value; } get { return _isStage; } }
-
-    private bool _isTakeOff;
-    public bool IsTakeOff { set { _isTakeOff = value; } get { return _isTakeOff; } }
-
-    /* 보스몹 이륙착륙 액션 확인 */
-    private bool _isLandingAct;
-    public bool IsLandingAct { set { _isLandingAct = value; } get { return _isLandingAct; } }
-
-    private bool _isTakeOffAct;
-    public bool IsTakeOffAct { set { _isTakeOffAct = value; } get { return _isTakeOffAct; } }
-
     /* 보스몹 페이즈 관련 변수 */
     [SerializeField]
     private float _hpPhaseSecond;
@@ -109,19 +96,31 @@ public class BlackBoard : Singleton<BlackBoard>
     public float DragonFlyingRadius { get { return _dragonFlyingRadius; } }
 
     /* fly 패턴 관련 변수 */
+    private bool _isStage;
+    public bool IsStage { set { _isStage = value; } get { return _isStage; } }
+
+    private bool _isTakeOff;
+    public bool IsTakeOff { set { _isTakeOff = value; } get { return _isTakeOff; } }
+
     private bool _isHovering;
     public bool IsHovering{ set { _isHovering = value; } get { return _isHovering; } }
 
     private bool _isFlying;
     public bool IsFlying { set { _isFlying = value; } get { return _isFlying; } }
 
-    private bool _hoveringPatternChk;
-    public bool HoveringPatternChk { set { _hoveringPatternChk = value; } get { return _hoveringPatternChk; } }
+    private bool _hoveringAct;
+    public bool HoveringAct { set { _hoveringAct = value; } get { return _hoveringAct; } }
 
-    private bool _flyingPatternChk;
-    public bool FlyingPatternChk { set { _flyingPatternChk = value; } get { return _flyingPatternChk; } }
+    private bool _flyingAct;
+    public bool FlyingAct { set { _flyingAct = value; } get { return _flyingAct; } }
 
-    public int BreathNum = 49;
+    /* 보스몹 이륙착륙 액션 확인 */
+    private bool _isLandingAct;
+    public bool IsLandingAct { set { _isLandingAct = value; } get { return _isLandingAct; } }
+
+    private bool _isTakeOffAct;
+    public bool IsTakeOffAct { set { _isTakeOffAct = value; } get { return _isTakeOffAct; } }
+
 
     public void InitMamber()
     {
@@ -228,5 +227,5 @@ public class BlackBoard : Singleton<BlackBoard>
 
         return false;
     }
-
+    
 }

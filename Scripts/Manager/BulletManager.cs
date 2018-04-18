@@ -81,7 +81,7 @@ public class BulletManager : MonoBehaviour
     {
 
         BulletHoming bullet = Instantiate(HomingBulletPrefab, _firePos.position, Quaternion.identity).GetComponent<BulletHoming>();
-        bullet.SetBulletValue(_firePos, 50, 1.5f,Player.transform);
+        bullet.SetBulletValue(_firePos, 100, 1.5f,Player.transform);
         //bullet.SetTarget(Player.transform);
         bullet.SetTag("Dragon");
         bullet.SetPlayer(Player);
@@ -105,7 +105,10 @@ public class BulletManager : MonoBehaviour
     {
         BreathPrefab.GetComponent<Breath>().OffBreath();
     }
-
+    public void CameraShake()
+    {
+        Player.GetComponent<PlayerCharacter.PlayerCharacterController>().SendMessage("CorCameraShake");
+    }
 
     IEnumerator CorIceBreath()
     {
