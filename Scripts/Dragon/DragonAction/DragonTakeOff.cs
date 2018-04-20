@@ -6,22 +6,29 @@ public class DragonTakeOff : DragonAction {
 
     public override bool Run()
     {
+
+        int MoveIndex = (int)MoveManagers.TakeOff;
+
         float curDir = BlackBoard.Instance.Stat.CurTakeOffDir;
         float LimitDir = BlackBoard.Instance.TakeOffLimitDir;
-        bool IsTakeOff = BlackBoard.Instance.IsTakeOff;
 
-        if (IsTakeOff && curDir < LimitDir)
+        bool IsTakeOff = BlackBoard.Instance.IsTakeOff;
+        bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
+        bool IsFlyingMoveEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;
+
+        if (IsTakeOff && !IsFlyingMoveEnd)
         {
+            if (!IsFlyingReady)
+                BlackBoard.Instance.FlyingMoveReady(MoveIndex);
             if (!BlackBoard.Instance.IsTakeOffAct)
-                CoroutineManager.DoCoroutine(TakeOffStartCor());
+                CoroutineManager.DoCoroutine(TakeOffStartCor(MoveIndex));
 
             return false;
         }
-        StopCoroutine(TakeOffStartCor());
         return true;
     }
 
-    IEnumerator TakeOffStartCor()
+    IEnumerator TakeOffStartCor(int Index)
     {
         Transform Dragon = BlackBoard.Instance.Manager.transform;
         float speed = 0.0f;
@@ -34,12 +41,14 @@ public class DragonTakeOff : DragonAction {
         BlackBoard.Instance.IsTakeOffAct = true;
 
 
-        while (curDir < LimitDir)
+        while (!BlackBoard.Instance.GetNodeManager(Index).IsMoveEnd)
         {
-            speed = BlackBoard.Instance.Acceleration(speed, MaxSpeed, AccSpeed);
-            curDir += speed;
-            BlackBoard.Instance.Stat.CurTakeOffDir = curDir;
-            Dragon.Translate(Vector3.up * speed);
+
+            BlackBoard.Instance.FlyingMovement(Index);
+            //speed = BlackBoard.Instance.Acceleration(speed, MaxSpeed, AccSpeed);
+            //curDir += speed;
+            //BlackBoard.Instance.Stat.CurTakeOffDir = curDir;
+            //Dragon.Translate(Vector3.up * speed);
             yield return CoroutineManager.EndOfFrame;
         }
         

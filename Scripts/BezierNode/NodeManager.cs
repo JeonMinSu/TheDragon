@@ -43,8 +43,11 @@ public class NodeManager : MonoBehaviour {
     private bool _isDragonStick = false;
     public bool IsDragonStick { set { _isDragonStick = value; } get { return _isDragonStick; } }
 
-    bool _isMoveReady = false;
+    bool _isMoveReady;
     public bool IsMoveReady { set { _isMoveReady = value; } get { return _isMoveReady; } }
+
+    bool _isMoveEnd;
+    public bool IsMoveEnd { set { _isMoveEnd = value; } get { return _isMoveEnd; } }
 
     public void Awake()
     {

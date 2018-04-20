@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class MoveManager : MonoBehaviour {
 
-    public List<NodeManager> NodeManager;
+    public List<NodeManager> Manager;
 
     public GameObject MoveObject;
     
@@ -25,15 +25,17 @@ public class MoveManager : MonoBehaviour {
 
     public void DragonStick(int Index)
     {
-        if (NodeManager[Index].IsDragonStick)
+        if (Manager[Index].IsDragonStick)
         { 
-            Vector3 forward = NodeManager[Index].transform.position - MoveObject.transform.position;
-            NodeManager[Index].transform.rotation = Quaternion.LookRotation(forward);
-            NodeManager[Index].transform.position = MoveObject.transform.position;
+            Vector3 forward = Manager[Index].transform.position - MoveObject.transform.position;
+            Manager[Index].transform.rotation = Quaternion.LookRotation(forward);
+            Manager[Index].transform.position = MoveObject.transform.position;
         }
         else
         {
-            Vector3 forward = (NodeManager[Index].transform.position - MoveObject.transform.position).normalized;
+            Vector3 forward = (Manager[Index].transform.position - MoveObject.transform.position).normalized;
+
+            float MoveSpeed = BlackBoard.Instance.Stat.MaxFlySpeed;
 
             MoveObject.transform.rotation =
                 Quaternion.RotateTowards(
@@ -44,8 +46,8 @@ public class MoveManager : MonoBehaviour {
             MoveObject.transform.position =
                 Vector3.MoveTowards(
                     MoveObject.transform.position,
-                    NodeManager[Index].transform.position,
-                    10.0f * Time.deltaTime);
+                    Manager[Index].transform.position,
+                    50.0f * Time.deltaTime);
         }
 
     }
@@ -55,17 +57,17 @@ public class MoveManager : MonoBehaviour {
     {
         DragonStick(Index);
 
-        NodeManager[Index].AllNodesCalc();
+        Manager[Index].AllNodesCalc();
 
-        int NodesCount = NodeManager[Index].NodesSpeed.Count;
+        int NodesCount = Manager[Index].NodesSpeed.Count;
         
         for (int nodeIndex = 0; nodeIndex < NodesCount; nodeIndex++)
         {
-            NodeManager[Index].Stat.NodeDir.Add(NodeManager[Index].NodesDir[nodeIndex]);
-            NodeManager[Index].Stat.NodeSpeed.Add(NodeManager[Index].NodesSpeed[nodeIndex]);
-            NodeManager[Index].Stat.NodeRot.Add(NodeManager[Index].NodesRot[nodeIndex]);
+            Manager[Index].Stat.NodeDir.Add(Manager[Index].NodesDir[nodeIndex]);
+            Manager[Index].Stat.NodeSpeed.Add(Manager[Index].NodesSpeed[nodeIndex]);
+            Manager[Index].Stat.NodeRot.Add(Manager[Index].NodesRot[nodeIndex]);
         }
-        NodeManager[Index].IsMoveReady = true;
+        Manager[Index].IsMoveReady = true;
 
     }
 
@@ -76,14 +78,19 @@ public class MoveManager : MonoBehaviour {
     //노드를 따라서 이동
     public void NodeMovement(int Index)
     {
-        int NodesCount = NodeManager[Index].NodesSpeed.Count;
+        int NodesCount = Manager[Index].NodesSpeed.Count;
 
         if (_nodesIndex < NodesCount)
         {
-            float moveDistance = NodeManager[Index].Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
-            float nextDistance = Vector3.Distance(NodeManager[Index].Stat.NodeDir[_nodesIndex], MoveObject.transform.position);
+            Manager[Index].IsMoveEnd = false;
 
-            Vector3 dir = (NodeManager[Index].Stat.NodeDir[_nodesIndex] - MoveObject.transform.position).normalized;
+            float moveDistance = Manager[Index].Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
+            float nextDistance = Vector3.Distance(Manager[Index].Stat.NodeDir[_nodesIndex], MoveObject.transform.position);
+
+            Vector3 dir = (Manager[Index].Stat.NodeDir[_nodesIndex] - MoveObject.transform.position).normalized;
+            
+            Quaternion rotation = (Manager[Index].NodesRot[_nodesIndex] *
+                MoveObject.transform.rotation);
 
             for (; moveDistance > nextDistance;)
             {
@@ -95,26 +102,34 @@ public class MoveManager : MonoBehaviour {
 
                 if (_nodesIndex + 1 >= NodesCount)
                     return;
-                dir = (NodeManager[Index].Stat.NodeDir[_nodesIndex + 1] - MoveObject.transform.position).normalized;
-                nextDistance = Vector3.Distance(NodeManager[Index].Stat.NodeDir[_nodesIndex + 1], MoveObject.transform.position);
+                dir = (Manager[Index].Stat.NodeDir[_nodesIndex + 1] - MoveObject.transform.position).normalized;
+                rotation = (Manager[Index].Stat.NodeRot[_nodesIndex + 1] * MoveObject.transform.rotation);
+                nextDistance = Vector3.Distance(Manager[Index].Stat.NodeDir[_nodesIndex + 1], MoveObject.transform.position);
 
             }
 
             Vector3 forward = dir - MoveObject.transform.position;
+
+
             MoveObject.transform.rotation =
                 Quaternion.RotateTowards(
                     MoveObject.transform.rotation,
-                    Quaternion.LookRotation(dir),
-                    90.0f * Time.fixedDeltaTime);
+                    rotation,
+                    //Quaternion.LookRotation(dir),
+                    //Manager[Index].NodesRot[_nodesIndex],
+                    360.0f * Time.fixedDeltaTime);
 
-            MoveObject.transform.position += dir * NodeManager[Index].Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
+            MoveObject.transform.position += dir * Manager[Index].Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
 
 
             if (_nodesIndex + 1 >= NodesCount)
                 return;
-            dir = (NodeManager[Index].Stat.NodeDir[_nodesIndex] - MoveObject.transform.position).normalized;
+            dir = (Manager[Index].Stat.NodeDir[_nodesIndex] - MoveObject.transform.position).normalized;
 
         }
-
+        else
+        {
+            Manager[Index].IsMoveEnd = true;
+        }
     }
 }

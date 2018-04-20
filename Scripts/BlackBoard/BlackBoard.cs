@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum MoveManagers
 {
-    FlyingCircle = 0
+    TakeOff = 0,
+    FlyingCircle
 }
 
 
@@ -232,12 +233,12 @@ public class BlackBoard : Singleton<BlackBoard>
 
     public NodeManager GetNodeManager(int Index)
     {
-        return MoveManager.NodeManager[Index];
+        return MoveManager.Manager[Index];
     }
 
     public bool IsMoveReady(int Index)
     {
-        return MoveManager.NodeManager[Index].IsMoveReady;
+        return GetNodeManager(Index).IsMoveReady;
     }
 
     public void FlyingMoveReady(int Index)

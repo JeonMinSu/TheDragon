@@ -16,4 +16,9 @@ public class DragonIceBullet : DragonAction {
 
         return true;
     }
+
+    IEnumerator IceBulletCor()
+    {
+        yield return new WaitForEndOfFrame();
+    }
 }
