@@ -6,17 +6,21 @@ public class DragonIdle : DragonAction
 {
     public override bool Run()
     {
-        float Curtime = BlackBoard.Instance.IdleTimes.CurIdleTime;
-        float MaxTime = BlackBoard.Instance.IdleTimes.MaxIdleTime;
+        float Curtime = BlackBoard.Instance.GetLandTime().CurIdleTime;
+        float MaxTime = BlackBoard.Instance.GetLandTime().IdleTime;
 
         bool IsStage = BlackBoard.Instance.IsStage;
-
+        
         if (IsStage && Curtime < MaxTime)
         {
-            BlackBoard.Instance.IdleTimes.CurIdleTime += Time.deltaTime;
+            Debug.Log("idle");
+            BlackBoard.Instance.GetLandTime().CurIdleTime += Time.deltaTime;
             BlackBoard.Instance.Manager.Ani.SetTrigger("Idle");
             return false;
+
         }
+        BlackBoard.Instance.Manager.Ani.ResetTrigger("Idle");
         return true;
 
-    }}
+    }
+}

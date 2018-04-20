@@ -6,27 +6,26 @@ public class DragonFlying : DragonAction
 {
     public override bool Run()
     {
-        float MaxTime = BlackBoard.Instance.FlyingTime.FlyTime;
-        float curTime = BlackBoard.Instance.FlyingTime.CurFlyTime;
+        float MaxTime = BlackBoard.Instance.GetFlyingTime().FlyTime;
+        float curTime = BlackBoard.Instance.GetFlyingTime().CurFlyTime;
         float Angle = BlackBoard.Instance.Theta;
+
+        int MoveIndex = (int)MoveManagers.FlyingCircle;
+
+        bool IsFlying = BlackBoard.Instance.IsFlying;
+        bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
+
 
         Transform Dragon = BlackBoard.Instance.Manager.transform;
         Transform Player = BlackBoard.Instance.Manager.Player;
 
-        if (curTime < MaxTime)
+        if (IsFlying && curTime < MaxTime)
         {
-            BlackBoard.Instance.Manager.Ani.ResetTrigger("Hovering");
             BlackBoard.Instance.Manager.Ani.SetTrigger("Flying");
+            if (!IsFlyingReady)
+                BlackBoard.Instance.FlyingMoveReady(MoveIndex);
+            BlackBoard.Instance.FlyingMovement(MoveIndex);
 
-            float moveSpeed = BlackBoard.Instance.Stat.CurFlySpeed;
-            float turnSpeed = BlackBoard.Instance.Stat.LandTurnSpeed;
-
-            if (BlackBoard.Instance.DistanceCalc(Dragon, Player, 0.0f))
- { 
-                BlackBoard.Instance.Move(Player, moveSpeed, turnSpeed);
-            }
-
-            BlackBoard.Instance.FlyingTime.CurFlyTime += Time.deltaTime;
             return false;
         }
         return true;

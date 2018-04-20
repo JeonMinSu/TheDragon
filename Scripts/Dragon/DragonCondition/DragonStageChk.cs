@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragonFlyChk : DragonConTask
-{
+public class DragonStageChk : DragonConTask {
 
     public override bool Run()
     {
-        bool isFlying = BlackBoard.Instance.IsFlying;
+        bool isStage = BlackBoard.Instance.IsStage;
 
-        if (isFlying)
+        if (isStage)
         {
+            Debug.Log("stage");
             return true;
         }
+
         return true;
     }
-
 }

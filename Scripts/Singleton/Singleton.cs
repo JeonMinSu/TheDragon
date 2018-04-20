@@ -4,8 +4,6 @@ using UnityEngine;
 
 //제네릭 싱글톤~~~
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
-    
-    //싱글톤
 
     protected static T _instance = null;
     public static T Instance

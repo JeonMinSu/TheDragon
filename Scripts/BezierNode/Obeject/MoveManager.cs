@@ -9,91 +9,110 @@ using UnityEngine;
     베지어곡선을 이용한 노드를 사용하여 오브젝트 이동    
 */
 
-
-[RequireComponent(typeof(MoveStat))]
 public class MoveManager : MonoBehaviour {
 
-    private NodeManager _nodeManager;
-    public NodeManager NodeManager { get { return _nodeManager; } }
+    public List<NodeManager> NodeManager;
 
-    private DragonManager _manager;
-    public DragonManager Manager { get { return _manager; } }
-
-    private MoveStat _stat;
-    public MoveStat Stat { get { return _stat; } }
-
+    public GameObject MoveObject;
+    
     private int _nodesIndex = 0;
-    private int _nodesCount;
-
-    bool _isMoveMentReady = false;
-
+    //private int _nodesCount = 0;
 
     private void Awake()
     {
-        _nodeManager = GameObject.FindWithTag("NodeManager").GetComponent<NodeManager>();
-        _manager = GetComponent<DragonManager>();
-        _stat = GetComponent<MoveStat>();
+
     }
 
-    //노드메니저를 돌린다.
-    public void IsMoveMentReady()
+    public void DragonStick(int Index)
     {
-        Vector3 forward = transform.position - _manager.Player.position;
-
-        NodeManager.transform.rotation = Quaternion.LookRotation(forward);
-        NodeManager.transform.position = transform.position;
-
-        _nodeManager.AllNodesCalc();
-
-        _nodesCount = _nodeManager.NodesSpeed.Count;
-
-        for (int nodeIndex = 0; nodeIndex < _nodesCount; nodeIndex++)
-        {
-            //Stat.NodeRot.Add(_nodeManager.NodesRot[nodeIndex]);
-            Stat.NodeDir.Add(_nodeManager.NodesDir[nodeIndex]);
-            Stat.NodeSpeed.Add(_nodeManager.NodesSpeed[nodeIndex]);
+        if (NodeManager[Index].IsDragonStick)
+        { 
+            Vector3 forward = NodeManager[Index].transform.position - MoveObject.transform.position;
+            NodeManager[Index].transform.rotation = Quaternion.LookRotation(forward);
+            NodeManager[Index].transform.position = MoveObject.transform.position;
         }
-        _isMoveMentReady = true;
+        else
+        {
+            Vector3 forward = (NodeManager[Index].transform.position - MoveObject.transform.position).normalized;
 
+            MoveObject.transform.rotation =
+                Quaternion.RotateTowards(
+                    MoveObject.transform.rotation,
+                    Quaternion.LookRotation(forward),
+                    360.0f * Time.fixedDeltaTime);
+
+            MoveObject.transform.position =
+                Vector3.MoveTowards(
+                    MoveObject.transform.position,
+                    NodeManager[Index].transform.position,
+                    10.0f * Time.deltaTime);
+        }
+
+    }
+
+    //계산 함수
+    public void MoveMentReady(int Index)
+    {
+        DragonStick(Index);
+
+        NodeManager[Index].AllNodesCalc();
+
+        int NodesCount = NodeManager[Index].NodesSpeed.Count;
+        
+        for (int nodeIndex = 0; nodeIndex < NodesCount; nodeIndex++)
+        {
+            NodeManager[Index].Stat.NodeDir.Add(NodeManager[Index].NodesDir[nodeIndex]);
+            NodeManager[Index].Stat.NodeSpeed.Add(NodeManager[Index].NodesSpeed[nodeIndex]);
+            NodeManager[Index].Stat.NodeRot.Add(NodeManager[Index].NodesRot[nodeIndex]);
+        }
+        NodeManager[Index].IsMoveReady = true;
+
+    }
+
+    private void Update()
+    {
     }
 
     //노드를 따라서 이동
-    public void NodeMovement()
+    public void NodeMovement(int Index)
     {
-        if (_nodesIndex < _nodesCount)
-        {
-            float moveDistance = Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
-            float nextDistance = Vector3.Distance(Stat.NodeDir[_nodesIndex], transform.position);
+        int NodesCount = NodeManager[Index].NodesSpeed.Count;
 
-            Vector3 dir = (Stat.NodeDir[_nodesIndex] - transform.position).normalized;
+        if (_nodesIndex < NodesCount)
+        {
+            float moveDistance = NodeManager[Index].Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
+            float nextDistance = Vector3.Distance(NodeManager[Index].Stat.NodeDir[_nodesIndex], MoveObject.transform.position);
+
+            Vector3 dir = (NodeManager[Index].Stat.NodeDir[_nodesIndex] - MoveObject.transform.position).normalized;
 
             for (; moveDistance > nextDistance;)
             {
-                
-                transform.position += dir * nextDistance;
+
+                MoveObject.transform.position += dir * nextDistance;
 
                 moveDistance -= nextDistance;
                 _nodesIndex++;
 
-                if (_nodesIndex + 1 >= _nodesCount)
+                if (_nodesIndex + 1 >= NodesCount)
                     return;
-                dir = (Stat.NodeDir[_nodesIndex + 1] - transform.position).normalized;
-                nextDistance = Vector3.Distance(Stat.NodeDir[_nodesIndex + 1], transform.position);
+                dir = (NodeManager[Index].Stat.NodeDir[_nodesIndex + 1] - MoveObject.transform.position).normalized;
+                nextDistance = Vector3.Distance(NodeManager[Index].Stat.NodeDir[_nodesIndex + 1], MoveObject.transform.position);
 
             }
-            transform.position += dir * Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
-            //기본값 = 기본값 + (바뀔값 - 기본값) / (2 이상의 숫자)
-            //transform.rotation = transform.rotation * (Stat.NodeRot[_nodesIndex]);
-            //transform.rotation =
-                //Quaternion.RotateTowards(
-                    //transform.rotation,
-                    //Stat.NodeRot[_nodesIndex],
-                    //360.0f * Time.deltaTime);
-            //transform.rotation = transform.rotation + (Stat.NodeRot[_nodesIndex] * transform.rotation) / 2;
 
-            if (_nodesIndex + 1 >= _nodesCount)
+            Vector3 forward = dir - MoveObject.transform.position;
+            MoveObject.transform.rotation =
+                Quaternion.RotateTowards(
+                    MoveObject.transform.rotation,
+                    Quaternion.LookRotation(dir),
+                    90.0f * Time.fixedDeltaTime);
+
+            MoveObject.transform.position += dir * NodeManager[Index].Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
+
+
+            if (_nodesIndex + 1 >= NodesCount)
                 return;
-            dir = (Stat.NodeDir[_nodesIndex] - transform.position).normalized;
+            dir = (NodeManager[Index].Stat.NodeDir[_nodesIndex] - MoveObject.transform.position).normalized;
 
         }
 

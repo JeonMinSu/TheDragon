@@ -16,7 +16,26 @@ public class DragonLanding : DragonAction
 
     IEnumerator LandingCor()
     {
-        yield return new WaitForSeconds(0.02f);
+        Transform Dragon = BlackBoard.Instance.Manager.transform;
+
+        float speed = 0.0f;
+        float MaxSpeed = BlackBoard.Instance.Stat.MaxTakeOffSpeed;
+        float AccSpeed = BlackBoard.Instance.Stat.AccTakeOffeSpeed;
+
+        float LimitDir = BlackBoard.Instance.TakeOffLimitDir;
+        float curDir = speed * Time.deltaTime;
+
+        BlackBoard.Instance.IsLandingAct = true;
+
+        while (curDir < LimitDir)
+        {
+            speed = BlackBoard.Instance.Acceleration(speed, MaxSpeed, AccSpeed);
+            curDir += speed;
+            BlackBoard.Instance.Stat.CurTakeOffDir = curDir;
+            Dragon.Translate(Vector3.down * speed);
+            yield return CoroutineManager.EndOfFrame;
+        }
+
     }
 
 }

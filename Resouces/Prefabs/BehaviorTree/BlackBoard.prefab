@@ -81,6 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc004bfe75cf6384e813726a43877e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveManager: {fileID: 0}
+  _bulletManager: {fileID: 0}
+  _dragonMouth: {fileID: 0}
   CurrentPhase: 0
   _maxHpTakeOffPercent: 0.05
   _hpTakeOff: 0
@@ -102,22 +105,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62895864d269c6e468b7fe67df664be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patternTimes:
-    _preRushDelay: 0.5
-    _rushRunTime: 1
-    _afterRushDelay: 0.5
+  _landTime:
+    _maxIdleTime: 0
+    _minChangeTime: 0
+    _maxChangeTime: 0
+    _preRushDelay: 0
+    _rushRunTime: 0
+    _afterRushDelay: 0
     _preOverLapDelay: 0
     _afterOverLapDelay: 0
-  _idleTimes:
-    _maxIdleTime: 3
-    _minChangeTime: 5
-    _maxChangeTime: 5
   _flyingTime:
     _hoveringTime: 2
     _curHoveringTime: 0
     _flyTime: 4
     _curFlyTime: 0
-  _flyingPatternTime:
     _preBreathTime: 0
     _afterBreathTime: 0
     _preMissileTime: 0

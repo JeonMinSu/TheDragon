@@ -15,8 +15,8 @@ public class DragonOverLap : DragonAction {
             return false;
         }
 
-        BlackBoard.Instance.IdleTimes.CurLandWalkTime = 0.0f;
-        BlackBoard.Instance.IdleTimes.CurIdleTime = 0.0f;
+        BlackBoard.Instance.GetLandTime().CurLandWalkTime = 0.0f;
+        BlackBoard.Instance.GetLandTime().CurIdleTime = 0.0f;
         return true;
     }
 

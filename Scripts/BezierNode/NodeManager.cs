@@ -11,7 +11,11 @@ using UnityEngine;
     베지어곡선을 이용하여 노드 만들기     
 */
 
+[RequireComponent(typeof(MoveStat))]
 public class NodeManager : MonoBehaviour {
+
+    private MoveStat _stat;
+    public MoveStat Stat { get { return _stat; } }
 
     public List<BezierNode> Nodes = new List<BezierNode>();    //노드들
 
@@ -31,9 +35,22 @@ public class NodeManager : MonoBehaviour {
     public float NodeInterval = 0.02f; //dir / speed;
 
     public List<Vector3> NodesDir { get { return _nodesDir; } }
-    //public List<Quaternion> NodesRot { get { return _nodesRot; } }
+    public List<Quaternion> NodesRot { get { return _nodesRot; } }
     public List<float> NodesSpeed { get { return _nodesSpeed; } }
-    
+
+
+    [SerializeField]
+    private bool _isDragonStick = false;
+    public bool IsDragonStick { set { _isDragonStick = value; } get { return _isDragonStick; } }
+
+    bool _isMoveReady = false;
+    public bool IsMoveReady { set { _isMoveReady = value; } get { return _isMoveReady; } }
+
+    public void Awake()
+    {
+        _stat = GetComponent<MoveStat>();
+    }
+
 
     public void AllNodesCalc()  //전체 노드 거리 계산
     {
@@ -47,10 +64,10 @@ public class NodeManager : MonoBehaviour {
                 float tt = (1.0f - t);
 
                 float speed = Mathf.Lerp(Nodes[index].NodeSpeed, Nodes[index + 1].NodeSpeed, t);
-                //Quaternion rot = Quaternion.Lerp(Nodes[index].GetRotate, Nodes[index + 1].GetRotate, t);
+                Quaternion rot = Quaternion.Lerp(Nodes[index].GetRotate, Nodes[index + 1].GetRotate, t);
 
                 to = CalcNodePos(index, index + 1, tt, t);  //현재 좌표
-                //_nodesRot.Add(rot);
+                _nodesRot.Add(rot);
                 _nodesSpeed.Add(speed);
                 _nodesDir.Add(to);
 
@@ -98,14 +115,9 @@ public class NodeManager : MonoBehaviour {
             {
                 float t = (1.0f / Nodes[index].NodeDiv) * div;          //
                 float tt = (1.0f - t);
-
-                float speed = Mathf.Lerp(Nodes[index].NodeSpeed, Nodes[index + 1].NodeSpeed, t);
                 
                 from = to;  //전 좌표
                 to = CalcNodePos(index, index + 1, tt, t);  //현재 좌표
-
-                _nodesSpeed.Add(speed);
-                _nodesDir.Add(to);
 
                 Gizmos.DrawLine(from, to);  //라인
 

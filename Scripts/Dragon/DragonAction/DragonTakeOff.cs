@@ -8,16 +8,15 @@ public class DragonTakeOff : DragonAction {
     {
         float curDir = BlackBoard.Instance.Stat.CurTakeOffDir;
         float LimitDir = BlackBoard.Instance.TakeOffLimitDir;
+        bool IsTakeOff = BlackBoard.Instance.IsTakeOff;
 
-        if (!BlackBoard.Instance.IsStage && curDir < LimitDir)
+        if (IsTakeOff && curDir < LimitDir)
         {
             if (!BlackBoard.Instance.IsTakeOffAct)
                 CoroutineManager.DoCoroutine(TakeOffStartCor());
 
             return false;
         }
-        BlackBoard.Instance.IsTakeOff = false;
-        BlackBoard.Instance.IsHovering = true;
         StopCoroutine(TakeOffStartCor());
         return true;
     }
@@ -34,6 +33,7 @@ public class DragonTakeOff : DragonAction {
 
         BlackBoard.Instance.IsTakeOffAct = true;
 
+
         while (curDir < LimitDir)
         {
             speed = BlackBoard.Instance.Acceleration(speed, MaxSpeed, AccSpeed);
@@ -42,6 +42,12 @@ public class DragonTakeOff : DragonAction {
             Dragon.Translate(Vector3.up * speed);
             yield return CoroutineManager.EndOfFrame;
         }
+        
+        BlackBoard.Instance.Clocks.InitLandTimes();
+        BlackBoard.Instance.IsTakeOff = false;
+        BlackBoard.Instance.IsTakeOffAct = false;
+        BlackBoard.Instance.IsHovering = true;
+        BlackBoard.Instance.Manager.Ani.ResetTrigger("TakeOff");
 
     }
 

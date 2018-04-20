@@ -9,14 +9,17 @@ public class DragonMissile : DragonAction
     {
         float PlayerHP = 70.0f;
         float PlayerMaxHp = 100.0f;
-        bool PatternChk = BlackBoard.Instance.HoveringAct;
+        bool IsHovering = BlackBoard.Instance.IsHovering;
+        bool HoveringAct = BlackBoard.Instance.HoveringAct;
 
-        float preTime = BlackBoard.Instance.FlyingPatternTime.PreMissileTime;
-        float afterTime = BlackBoard.Instance.FlyingPatternTime.AfterMissileTime;
+        float preTime = BlackBoard.Instance.GetFlyingTime().PreMissileTime;
+        float afterTime = BlackBoard.Instance.GetFlyingTime().AfterMissileTime;
 
-        if (!PatternChk && PlayerHP > PlayerMaxHp * 0.5f)
+        if (IsHovering && PlayerHP > PlayerMaxHp * 0.5f)
         {
-            CoroutineManager.DoCoroutine(MissileStart(preTime, afterTime));
+            Debug.Log("Missile");
+            if (!HoveringAct)
+                CoroutineManager.DoCoroutine(MissileStart(preTime, afterTime));
             return false;
         }
         StopCoroutine(MissileStart(preTime, afterTime));
@@ -34,7 +37,11 @@ public class DragonMissile : DragonAction
             yield return new WaitForSeconds(1.5f);
         }
         yield return new WaitForSeconds(afterTime);
+
+        BlackBoard.Instance.Manager.Ani.ResetTrigger("Hovering");
+        BlackBoard.Instance.HoveringAct = false;
         BlackBoard.Instance.IsFlying = true;
+        BlackBoard.Instance.IsHovering = false;
     }
 
 }

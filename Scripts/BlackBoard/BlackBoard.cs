@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MoveManagers
+{
+    FlyingCircle = 0
+}
+
+
 public class BlackBoard : Singleton<BlackBoard>
 {
+
     private DragonManager _manager;
     public DragonManager Manager { get { return _manager; } }
 
-    private MoveManager _patternManager;
-    public MoveManager PatternManager { get { return _patternManager; } }
+    public MoveManager MoveManager;
 
     [SerializeField]
     private BulletManager _bulletManager;
@@ -20,18 +26,6 @@ public class BlackBoard : Singleton<BlackBoard>
 
     private Clock _clocks;
     public Clock Clocks { get { return _clocks; } }
-
-    private Clock.LandIdleTimes _idleTimes;
-    public Clock.LandIdleTimes IdleTimes { get { return _idleTimes; } }
-
-    private Clock.LandPatternTimes _landPatternTime;
-    public Clock.LandPatternTimes LandPatternTime { get { return _landPatternTime; } }
-
-    private Clock.FlyingTimes _flyingTime;
-    public Clock.FlyingTimes FlyingTime { get { return _flyingTime; } }
-
-    private Clock.FlyingPatternTimes _flyingPatternTime;
-    public Clock.FlyingPatternTimes FlyingPatternTime { get { return _flyingPatternTime; } }
 
     private DragonStat _stat;
     public DragonStat Stat { get { return _stat; } }
@@ -63,7 +57,6 @@ public class BlackBoard : Singleton<BlackBoard>
     [SerializeField]
     private float _hpPhaseThird;
     public float HpPhaseThird { set { _hpPhaseThird = value; } get { return _hpPhaseThird; } }
-
 
     /* 보스몹 이동 관련 변수*/
     private float _radius;
@@ -125,25 +118,34 @@ public class BlackBoard : Singleton<BlackBoard>
     public void InitMamber()
     {
         _manager = GameObject.FindWithTag("Dragon").GetComponent<DragonManager>();
-        _patternManager = GameObject.FindWithTag("Dragon").GetComponent<MoveManager>();
 
+        _isStage = true;
 
         /* 시간 클래스 초기화 */
         _clocks = GetComponentInChildren<Clock>();
-        _idleTimes = _clocks.IdleTimes;
-        _landPatternTime = _clocks.PatternTimes;
-        _flyingTime = _clocks.Flyingtime;
-        _flyingPatternTime = _clocks.FlyingPatternTime;
 
         /* 스텟 초기화 */
         _stat = _manager.Stat;
 
-
         _hpTakeOff = _stat.MaxHP * _maxHpTakeOffPercent;
         _hpLand = _stat.MaxHP * _maxHpLandPercent;
 
-
         SetPhase(DragonPhases.FirstPhase);
+    }
+
+    public DragonStat GetDragonStat()
+    {
+        return _manager.Stat;
+    }
+
+    public Clock.LandTimes GetLandTime()
+    {
+        return _clocks.LandTime;
+    }
+
+    public Clock.FlyingTimes GetFlyingTime()
+    {
+        return _clocks.Flyingtime;
     }
 
     public void SetPhase(DragonPhases _newPhase)
@@ -227,5 +229,25 @@ public class BlackBoard : Singleton<BlackBoard>
 
         return false;
     }
-    
+
+    public NodeManager GetNodeManager(int Index)
+    {
+        return MoveManager.NodeManager[Index];
+    }
+
+    public bool IsMoveReady(int Index)
+    {
+        return MoveManager.NodeManager[Index].IsMoveReady;
+    }
+
+    public void FlyingMoveReady(int Index)
+    {
+        MoveManager.MoveMentReady(Index);
+    }
+
+    public void FlyingMovement(int Index)
+    {
+        MoveManager.NodeMovement(Index);
+    }
+
 }

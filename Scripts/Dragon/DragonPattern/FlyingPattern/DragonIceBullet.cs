@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragonFristPhaseChk : DragonConTask {
+public class DragonIceBullet : DragonAction {
 
     public override bool Run()
     {
-        if (BlackBoard.Instance.CurrentPhase == DragonPhases.FirstPhase)
+        bool IsFlying = BlackBoard.Instance.IsFlying;
+
+        if (IsFlying)
         {
-            Debug.Log("FirstPhase");
+            Debug.Log("IceBullet");
             return false;
         }
+
         return true;
     }
-
-
 }

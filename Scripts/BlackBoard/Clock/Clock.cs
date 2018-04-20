@@ -5,14 +5,14 @@ using UnityEngine;
 public class Clock : MonoBehaviour
 {
     [System.Serializable]
-    public class LandIdleTimes
+    public class LandTimes
     {
         private float _curIdleTime;
         public float CurIdleTime { set { _curIdleTime = value; } get { return _curIdleTime; } }
 
         [SerializeField]
-        private float _maxIdleTime;
-        public float MaxIdleTime { set { _maxIdleTime = value; } get { return _maxIdleTime; } }
+        private float _idleTime;
+        public float IdleTime { set { _idleTime = value; } get { return _idleTime; } }
 
         [SerializeField]
         private float _minChangeTime;
@@ -27,11 +27,7 @@ public class Clock : MonoBehaviour
 
         private float _changeTime;
         public float ChangeTime { set { _changeTime = value; } get { return _changeTime; } }
-    }
 
-    [System.Serializable]
-    public class LandPatternTimes
-    {
         [SerializeField]
         private float _preRushDelay;
         public float PreRushDelay { get { return _preRushDelay; } }
@@ -52,6 +48,11 @@ public class Clock : MonoBehaviour
         private float _afterOverLapDelay;
         public float AfterOverLapDelay { get { return _afterOverLapDelay; } }
 
+        public void InitTime()
+        {
+            _curIdleTime = 0.0f;
+            _curLandWalkTime = 0.0f;
+        }
     }
 
     [System.Serializable]
@@ -73,11 +74,6 @@ public class Clock : MonoBehaviour
         private float _curFlyTime;
         public float CurFlyTime { set { _curFlyTime = value; } get { return _curFlyTime; } }
 
-    }
-
-    [System.Serializable]
-    public class FlyingPatternTimes
-    {
         [SerializeField]
         private float _preBreathTime;
         public float PreBreathTime { set { _preBreathTime = value; } get { return _preBreathTime; } }
@@ -92,33 +88,41 @@ public class Clock : MonoBehaviour
 
         [SerializeField]
         private float _afterMissileTime;
-        public float AfterMissileTime { set { _afterMissileTime = value; }get { return _afterMissileTime; } }
+        public float AfterMissileTime { set { _afterMissileTime = value; } get { return _afterMissileTime; } }
 
+        public void InitTime()
+        {
+            _curHoveringTime = 0.0f;
+            _curFlyTime = 0.0f;
+        }
+        
     }
 
     [SerializeField]
-    private LandPatternTimes _patternTimes;
-    public LandPatternTimes PatternTimes { get { return _patternTimes; } }
-
-    [SerializeField]
-    private LandIdleTimes _idleTimes;
-    public LandIdleTimes IdleTimes { get { return _idleTimes; } }
+    private LandTimes _landTime;
+    public LandTimes LandTime { get { return _landTime; } }
 
     [SerializeField]
     private FlyingTimes _flyingTime;
     public FlyingTimes Flyingtime { get { return _flyingTime; } }
 
     [SerializeField]
-    private FlyingPatternTimes _flyingPatternTime;
-    public FlyingPatternTimes FlyingPatternTime { get { return _flyingPatternTime; } }
-
-    [SerializeField]
     private float _fallingTime;
     public float FallingTime { set { _fallingTime = value; } get { return _fallingTime; } }
 
+    public void InitLandTimes()
+    {
+        LandTime.InitTime();
+    }
+
+    public void InitFlyingTime()
+    {
+        Flyingtime.InitTime();
+    }
+
     private void Awake()
     {
-        IdleTimes.ChangeTime = Random.Range(IdleTimes.MinChangeTime, IdleTimes.MaxChangeTime);
+        LandTime.ChangeTime = Random.Range(LandTime.MinChangeTime, LandTime.MaxChangeTime);
     }
 
 }

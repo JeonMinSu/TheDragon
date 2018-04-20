@@ -8,8 +8,8 @@ public class DragonBreath : DragonAction {
     {
         bool PatternChk = BlackBoard.Instance.FlyingAct;
         
-        float preTime = BlackBoard.Instance.FlyingPatternTime.PreBreathTime;
-        float afterTime = BlackBoard.Instance.FlyingPatternTime.PreBreathTime;
+        float preTime = BlackBoard.Instance.GetFlyingTime().PreBreathTime;
+        float afterTime = BlackBoard.Instance.GetFlyingTime().PreBreathTime;
         
         if (!PatternChk)
         {

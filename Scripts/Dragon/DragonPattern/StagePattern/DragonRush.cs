@@ -9,8 +9,8 @@ public class DragonRush : DragonAction {
         Transform Dragon = BlackBoard.Instance.Manager.transform;
         Transform Player = BlackBoard.Instance.Manager.Player;
 
-        float preTime = BlackBoard.Instance.LandPatternTime.PreRushDelay;
-        float afterTime = BlackBoard.Instance.LandPatternTime.AfterRushDelay;
+        float preTime = BlackBoard.Instance.GetLandTime().PreRushDelay;
+        float afterTime = BlackBoard.Instance.GetLandTime().AfterRushDelay;
 
         bool Ready = BlackBoard.Instance.IsPatternChk;
 
@@ -27,7 +27,7 @@ public class DragonRush : DragonAction {
             return false;
         }
 
-        BlackBoard.Instance.IdleTimes.CurLandWalkTime = 0.0f;
+        BlackBoard.Instance.GetLandTime().CurLandWalkTime = 0.0f;
         BlackBoard.Instance.IsRadiusChk = false;
         return true;
 
@@ -39,7 +39,7 @@ public class DragonRush : DragonAction {
         Transform Dragon = BlackBoard.Instance.Manager.transform;
 
         float LimitDir = BlackBoard.Instance.RushLimitDir;
-        float RunTime = BlackBoard.Instance.LandPatternTime.RushRunTime;
+        float RunTime = BlackBoard.Instance.GetLandTime().RushRunTime;
         float CurTime = 0.0f;
         float AccSpeed = BlackBoard.Instance.Stat.AccRushSpeed;
 
