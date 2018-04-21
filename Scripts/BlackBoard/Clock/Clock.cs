@@ -75,20 +75,25 @@ public class Clock : MonoBehaviour
         public float CurFlyTime { set { _curFlyTime = value; } get { return _curFlyTime; } }
 
         [SerializeField]
-        private float _preBreathTime;
-        public float PreBreathTime { set { _preBreathTime = value; } get { return _preBreathTime; } }
-
-        [SerializeField]
-        private float _afterBreathTime;
-        public float AfterBreathTime { set { _afterBreathTime = value; } get { return _afterBreathTime; } }
-
-        [SerializeField]
         private float _preMissileTime;
         public float PreMissileTime { set { _preMissileTime = value; } get { return _preMissileTime; } }
 
         [SerializeField]
         private float _afterMissileTime;
         public float AfterMissileTime { set { _afterMissileTime = value; } get { return _afterMissileTime; } }
+
+        [SerializeField]
+        private float _preBreathTime;
+        public float PreBreathTime { set { _preBreathTime = value; } get { return _preBreathTime; } }
+
+        [SerializeField]
+        private float _runBreathTime;
+        public float RunBreathTime { set { _runBreathTime = value; } get { return _runBreathTime; } }
+
+        [SerializeField]
+        private float _afterBreathTime;
+        public float AfterBreathTime { set { _afterBreathTime = value; } get { return _afterBreathTime; } }
+
 
         public void InitTime()
         {

@@ -20,6 +20,15 @@ public class CoroutineManager : Singleton<CoroutineManager> {
 
 	private static WaitForEndOfFrame _endOfFrame = new WaitForEndOfFrame();
 	public static WaitForEndOfFrame EndOfFrame { get { return _endOfFrame; } }
+
+    private static WaitForSeconds _seconds;
+    public static WaitForSeconds Seconds { get { return _seconds; } }
+
+    public static void SetWaitForSeconds(float _time)
+    {
+        _seconds = new WaitForSeconds(_time);
+    }
+         
     
     //코루틴이 종료가 될 때까지...(실제로 코루틴 부분)
     IEnumerator Preform(IEnumerator coroutine)
