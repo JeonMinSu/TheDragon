@@ -115,6 +115,29 @@ public class BlackBoard : Singleton<BlackBoard>
     private bool _isTakeOffAct;
     public bool IsTakeOffAct { set { _isTakeOffAct = value; } get { return _isTakeOffAct; } }
 
+    /* 현재 얼음결정 개수 */
+    [SerializeField]
+    private int _curIceCrystalNum;
+    public int CurIceCrystalNum { set { _curIceCrystalNum = value; } get { return _curIceCrystalNum; } }
+
+    /* IceBullet(얼음탄환) 얼음 결정 개수 */
+    [SerializeField]
+    private int _iceBulletCrystalNum;
+    public int IceBulletCrystalNum { set { _iceBulletCrystalNum = value; } get { return _iceBulletCrystalNum; } }
+
+    /* Missile(유도탄) 얼음 결정 개수 */
+    [SerializeField]
+    private int _missileCrystalNum;
+    public int MissileCrystalNum { set { _missileCrystalNum = value; } get{ return _missileCrystalNum; } }
+
+    [SerializeField]
+    private int _breathCrystalNum;
+    public int BreathCrystalNum { set { _breathCrystalNum = value; }  get { return _breathCrystalNum; } }
+
+    /* 나중에 지워야 됨!!! */
+    public float PlayerMaxHP;
+    public float CurPlayerHP;
+
 
     public void InitMamber()
     {

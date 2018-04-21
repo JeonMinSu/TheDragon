@@ -6,20 +6,25 @@ public class DragonBreath : DragonAction {
 
     public override bool Run()
     {
-        bool PatternChk = BlackBoard.Instance.FlyingAct;
-        
+        float PlayerHP = 70.0f;
+        float PlayerMaxHp = 100.0f;
+
+        bool HoveringAct = BlackBoard.Instance.HoveringAct;
+        bool IsHovering = BlackBoard.Instance.IsHovering;
+
         float preTime = BlackBoard.Instance.GetFlyingTime().PreBreathTime;
-        float afterTime = BlackBoard.Instance.GetFlyingTime().PreBreathTime;
+        float afterTime = BlackBoard.Instance.GetFlyingTime().AfterBreathTime;
         
-        if (!PatternChk)
+        if (IsHovering && PlayerHP < PlayerMaxHp * 0.5)
         {
-            CoroutineManager.DoCoroutine(BreathOn(preTime, afterTime));
+            if (!HoveringAct)
+                CoroutineManager.DoCoroutine(BreathShot(preTime, afterTime));
             return false;
         }
         return true;
     }
 
-    IEnumerator BreathOn(float preTime, float afterTime)
+    IEnumerator BreathShot(float preTime, float afterTime)
     {
         Transform Mouth = BlackBoard.Instance.DragonMouth;
         BlackBoard.Instance.FlyingAct = true;
@@ -31,6 +36,11 @@ public class DragonBreath : DragonAction {
 
         yield return new WaitForSeconds(afterTime);
         BlackBoard.Instance.BulletManager.BreathOff();
-        BlackBoard.Instance.IsFlying = false;
+
+        BlackBoard.Instance.Manager.Ani.ResetTrigger("Hovering");
+        BlackBoard.Instance.HoveringAct = false;
+        BlackBoard.Instance.IsHovering = false;
+        BlackBoard.Instance.IsFlying = true;
+        StopCoroutine(BreathShot(preTime, afterTime));
     }
 }
