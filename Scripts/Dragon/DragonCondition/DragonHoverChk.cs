@@ -12,7 +12,7 @@ public class DragonHoverChk : DragonConTask
         if (isHovering)
         {
             Debug.Log("Hovering");
-            return true;
+            return false;
         }
         return true;
 

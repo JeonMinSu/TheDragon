@@ -13,7 +13,6 @@ public class DragonHover : DragonAction {
         if (CurTime < MaxTime && IsHovering)
         {
             BlackBoard.Instance.Manager.Ani.SetTrigger("Hovering");
-            BlackBoard.Instance.HoveringAct = false;
             CurTime += Time.deltaTime;
             BlackBoard.Instance.GetFlyingTime().CurHoveringTime = CurTime;
             return false;

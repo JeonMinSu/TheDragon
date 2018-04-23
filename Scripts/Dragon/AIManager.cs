@@ -35,6 +35,7 @@ public class AIManager : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
+        Debug.Log("End");
     }
 
 }

@@ -29,24 +29,28 @@ public class Clock : MonoBehaviour
         public float ChangeTime { set { _changeTime = value; } get { return _changeTime; } }
 
         [SerializeField]
-        private float _preRushDelay;
-        public float PreRushDelay { get { return _preRushDelay; } }
+        private float _preRushTime;
+        public float PreRushTime { get { return _preRushTime; } }
 
         [SerializeField]
         private float _rushRunTime;
-        public float RushRunTime { get { return _rushRunTime; } }
+        public float RushRunTime { set { _rushRunTime = value; } get { return _rushRunTime; } }
 
         [SerializeField]
-        private float _afterRushDelay;
-        public float AfterRushDelay { get { return _afterRushDelay; } }
+        private float _afterRushTime;
+        public float AfterRushTime { get { return _afterRushTime; } }
 
         [SerializeField]
-        private float _preOverLapDelay;
-        public float PreOverLapDelay { get { return _preOverLapDelay; } }
+        private float _preOverLapTime;
+        public float PreOverLapTime { get { return _preOverLapTime; } }
 
         [SerializeField]
-        private float _afterOverLapDelay;
-        public float AfterOverLapDelay { get { return _afterOverLapDelay; } }
+        private float _overLapRunTime;
+        public float OverLapRunTime { set { _overLapRunTime = value; } get{ return _overLapRunTime; } }
+
+        [SerializeField]
+        private float _afterOverLapTime;
+        public float AfterOverLapTime { get { return _afterOverLapTime; } }
 
         public void InitTime()
         {

@@ -8,11 +8,12 @@ public class DragonWalk : DragonAction
     {
         Transform Dragon = BlackBoard.Instance.Manager.transform;
         Transform Player = BlackBoard.Instance.Manager.Player;
-        
+
+        float CurTime = BlackBoard.Instance.GetLandTime().CurLandWalkTime;
         float MaxTime = BlackBoard.Instance.GetLandTime().ChangeTime;
         bool IsStage = BlackBoard.Instance.IsStage;
 
-        if (IsStage && BlackBoard.Instance.GetLandTime().CurLandWalkTime <  MaxTime)
+        if (IsStage && CurTime <  MaxTime)
         {
             float moveSpeed = BlackBoard.Instance.Stat.MoveSpeed;
             float turnSpeed = BlackBoard.Instance.Stat.LandTurnSpeed;
@@ -75,16 +76,16 @@ public class DragonWalk : DragonAction
 
                 }
 
-                BlackBoard.Instance.CircleMove(BlackBoard.Instance.FixTargetPos,
-                BlackBoard.Instance.Theta);
-
                 float angleSpeed = moveSpeed * Mathf.Deg2Rad * Time.deltaTime;
 
                 BlackBoard.Instance.Theta += angleSpeed;
 
-                BlackBoard.Instance.GetLandTime().CurLandWalkTime += Time.deltaTime;
+                BlackBoard.Instance.CircleMove(BlackBoard.Instance.FixTargetPos,
+                BlackBoard.Instance.Theta);
+
 
             }
+            BlackBoard.Instance.GetLandTime().CurLandWalkTime += Time.deltaTime;
             return false;
         }
         return true;

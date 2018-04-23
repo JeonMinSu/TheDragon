@@ -9,9 +9,9 @@ public class DragonThirdPhaseChk : DragonConTask {
         if (BlackBoard.Instance.CurrentPhase == DragonPhases.ThridPhase)
         {
             Debug.Log("ThridPhase");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

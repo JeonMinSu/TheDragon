@@ -9,9 +9,9 @@ public class DaagonSecondPhaseChk : DragonConTask {
         if (BlackBoard.Instance.CurrentPhase == DragonPhases.SecondPhase)
         {
             Debug.Log("SecondPhase");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

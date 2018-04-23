@@ -9,26 +9,19 @@ public class DragonRush : DragonAction {
         Transform Dragon = BlackBoard.Instance.Manager.transform;
         Transform Player = BlackBoard.Instance.Manager.Player;
 
-        float preTime = BlackBoard.Instance.GetLandTime().PreRushDelay;
-        float afterTime = BlackBoard.Instance.GetLandTime().AfterRushDelay;
+        float preTime = BlackBoard.Instance.GetLandTime().PreRushTime;
+        float afterTime = BlackBoard.Instance.GetLandTime().AfterRushTime;
 
-        bool Ready = BlackBoard.Instance.IsPatternChk;
+        bool IsStage = BlackBoard.Instance.IsStage;
+        bool IsStageAct = BlackBoard.Instance.IsStageAct;
 
-        if (BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) ||
-            BlackBoard.Instance.IsPatternChk)
+        if (BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) && IsStage)
         {
-            if (!Ready)
-            {
-                Ready = true;
-                BlackBoard.Instance.IsPatternChk = Ready;
+            if (!IsStageAct)
                 CoroutineManager.DoCoroutine(DragonRushStart(preTime, afterTime));
-            }
-            StopCoroutine(DragonRushStart(preTime, afterTime));
+
             return false;
         }
-
-        BlackBoard.Instance.GetLandTime().CurLandWalkTime = 0.0f;
-        BlackBoard.Instance.IsRadiusChk = false;
         return true;
 
     }
@@ -37,13 +30,15 @@ public class DragonRush : DragonAction {
     {
         Transform fixPos = BlackBoard.Instance.Manager.Player;
         Transform Dragon = BlackBoard.Instance.Manager.transform;
-
+        
         float LimitDir = BlackBoard.Instance.RushLimitDir;
         float RunTime = BlackBoard.Instance.GetLandTime().RushRunTime;
         float CurTime = 0.0f;
         float AccSpeed = BlackBoard.Instance.Stat.AccRushSpeed;
 
-        Vector3 dir = (Dragon.position - fixPos.position).normalized;
+        Vector3 dir = (fixPos.position - Dragon.position).normalized;
+
+        BlackBoard.Instance.IsStageAct = true;
 
         yield return new WaitForSeconds(_preTime);
 
@@ -67,6 +62,9 @@ public class DragonRush : DragonAction {
         }
 
         yield return new WaitForSeconds(_afterTime);
+        BlackBoard.Instance.GetLandTime().CurLandWalkTime = 0.0f;
+        BlackBoard.Instance.IsStageAct = false;
+
     }
 
 

@@ -8,10 +8,13 @@ public class DragonFlyChk : DragonConTask
     public override bool Run()
     {
         bool isFlying = BlackBoard.Instance.IsFlying;
+        bool HoveringAct = BlackBoard.Instance.HoveringAct;
 
-        if (isFlying)
+        if (isFlying && !HoveringAct)
         {
-            return true;
+            Debug.Log("Flying");
+            BlackBoard.Instance.Manager.Ani.SetTrigger("Flying");
+            return false;
         }
         return true;
     }

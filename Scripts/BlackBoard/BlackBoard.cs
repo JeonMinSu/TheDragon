@@ -74,9 +74,6 @@ public class BlackBoard : Singleton<BlackBoard>
     private float _rushLimitDir;
     public float RushLimitDir { set { _rushLimitDir = value; } get { return _rushLimitDir; } }
 
-    private bool _isPatternChk;
-    public bool IsPatternChk { set { _isPatternChk = value; } get { return _isPatternChk; } }
-
     private Vector3 _fixTargetPos;
     public Vector3 FixTargetPos { set { _fixTargetPos = value; } get { return _fixTargetPos; } }
 
@@ -89,31 +86,44 @@ public class BlackBoard : Singleton<BlackBoard>
     private float _dragonFlyingRadius;
     public float DragonFlyingRadius { get { return _dragonFlyingRadius; } }
 
-    /* fly 패턴 관련 변수 */
-    private bool _isStage;
+    /* 보스몹 행동 관련 변수 */
+    private bool _isStage;      //땅에 있는지
     public bool IsStage { set { _isStage = value; } get { return _isStage; } }
 
-    private bool _isTakeOff;
+    private bool _isLanding;    //착륙 중인지
+    public bool IsLanding { set { _isLanding = value; } get { return _isLanding; } }
+
+    private bool _isIdle;
+    public bool IsIdle { set { _isIdle = value; } get { return _isIdle; } }
+
+    private bool _isWalk;
+    public bool IsWalk { set { _isWalk = value; }  get { return _isIdle; } }
+
+    private bool _isTakeOff;    //이륙 중인지
     public bool IsTakeOff { set { _isTakeOff = value; } get { return _isTakeOff; } }
 
-    private bool _isHovering;
+    private bool _isHovering;   //호버링 중인지
     public bool IsHovering{ set { _isHovering = value; } get { return _isHovering; } }
 
-    private bool _isFlying;
+    private bool _isFlying;     //날고 있는지
     public bool IsFlying { set { _isFlying = value; } get { return _isFlying; } }
 
-    private bool _hoveringAct;
-    public bool HoveringAct { set { _hoveringAct = value; } get { return _hoveringAct; } }
+    /* 보스몹 행동 체크 */
+    private bool _isStageAct;   //땅에서 패턴을 사용하고 있는지
+    public bool IsStageAct { set { _isStageAct = value; } get { return _isStageAct; } }
 
-    private bool _flyingAct;
-    public bool FlyingAct { set { _flyingAct = value; } get { return _flyingAct; } }
-
-    /* 보스몹 이륙착륙 액션 확인 */
-    private bool _isLandingAct;
+    private bool _isLandingAct; //착륙 액션을 하고 있는지
     public bool IsLandingAct { set { _isLandingAct = value; } get { return _isLandingAct; } }
 
-    private bool _isTakeOffAct;
+    private bool _isTakeOffAct; //이륙 액션을 하고 있는지
     public bool IsTakeOffAct { set { _isTakeOffAct = value; } get { return _isTakeOffAct; } }
+
+    private bool _hoveringAct;  //호버링 패턴을 사용하고 있는지
+    public bool HoveringAct { set { _hoveringAct = value; } get { return _hoveringAct; } }
+
+    private bool _flyingAct;    //플라잉 패턴을 사용하고 있는지
+    public bool FlyingAct { set { _flyingAct = value; } get { return _flyingAct; } }
+
 
     /* 현재 얼음결정 개수 */
     [SerializeField]
@@ -122,8 +132,12 @@ public class BlackBoard : Singleton<BlackBoard>
 
     /* IceBullet(얼음탄환) 얼음 결정 개수 */
     [SerializeField]
-    private int _iceBulletCrystalNum;
-    public int IceBulletCrystalNum { set { _iceBulletCrystalNum = value; } get { return _iceBulletCrystalNum; } }
+    private int _maxIceBulletCrystalNum;
+    public int MaxIceBulletCrystalNum { set { _maxIceBulletCrystalNum = value; } get { return _maxIceBulletCrystalNum; } }
+
+    [SerializeField]
+    private int _minIceBulletCrystalNum;
+    public int MinIceBulletCrtystalNum { set { _minIceBulletCrystalNum = value; } get { return _minIceBulletCrystalNum; } }
 
     /* Missile(유도탄) 얼음 결정 개수 */
     [SerializeField]
@@ -142,7 +156,6 @@ public class BlackBoard : Singleton<BlackBoard>
     public void InitMamber()
     {
         _manager = GameObject.FindWithTag("Dragon").GetComponent<DragonManager>();
-
         _isStage = true;
 
         /* 시간 클래스 초기화 */

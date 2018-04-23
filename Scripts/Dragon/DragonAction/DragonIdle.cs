@@ -17,9 +17,7 @@ public class DragonIdle : DragonAction
             BlackBoard.Instance.GetLandTime().CurIdleTime += Time.deltaTime;
             BlackBoard.Instance.Manager.Ani.SetTrigger("Idle");
             return false;
-
         }
-        BlackBoard.Instance.Manager.Ani.ResetTrigger("Idle");
         return true;
 
     }

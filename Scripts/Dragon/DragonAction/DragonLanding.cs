@@ -6,7 +6,17 @@ public class DragonLanding : DragonAction
 {
     public override bool Run()
     {
-        if (BlackBoard.Instance.IsLandingAct)
+
+        //int MoveIndex = (int)MoveManagers.TakeOff;
+
+        float curDir = BlackBoard.Instance.Stat.CurTakeOffDir;
+        float LimitDir = BlackBoard.Instance.TakeOffLimitDir;
+
+        bool IsLanding = BlackBoard.Instance.IsLanding;
+        //bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
+        //bool IsFlyingMoveEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;
+
+        if (IsLanding)
         { 
             Debug.Log("Landing");
             return false;

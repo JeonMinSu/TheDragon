@@ -9,10 +9,8 @@ public class DragonFristPhaseChk : DragonConTask {
         if (BlackBoard.Instance.CurrentPhase == DragonPhases.FirstPhase)
         {
             Debug.Log("FirstPhase");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
-
-
 }
