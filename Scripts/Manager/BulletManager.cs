@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-
-    public GameObject BaseBulletPrefab;
-    public GameObject WaveBulletPrefab;
-    public GameObject RotateBulletPrefab;
-    public GameObject HomingBulletPrefab;
-    public GameObject BreathPrefab;
-
-    public GameObject IceBlockPrefab;
-
-    public GameObject Dragon;
-    public GameObject Player;
+    [SerializeField]
+    private GameObject BasePlayerBullet;
+    [SerializeField]
+    private GameObject WaveBulletPrefab;
+    [SerializeField]
+    private GameObject BaseDragonBullet;
+    [SerializeField]
+    private GameObject RotateDragonBullet;
+    [SerializeField]
+    private GameObject HomingDragonBullet;
+    [SerializeField]
+    private GameObject BreathPrefab;
+    [SerializeField]
+    private GameObject IceBlockPrefab;
+    [SerializeField]
+    private GameObject Dragon;
+    [SerializeField]
+    private GameObject Player;
 
     private void Update()
     {
@@ -22,71 +29,99 @@ public class BulletManager : MonoBehaviour
         {
             IceBlockSpawn(this.transform.position);
         }
-
     }
 
-    public void BaseBulletFire(Transform _firepos)
+    public void PlayerBaseBulletFire(Transform _firepos)
     {
-
-        GameObject bullet = Instantiate(BaseBulletPrefab, _firepos.position, Quaternion.identity);
-        bullet.GetComponent<BulletBase>().SetBulletValue(_firepos, 30.0f);
+        GameObject bullet = Instantiate(BasePlayerBullet, _firepos.position, Quaternion.identity);
+        bullet.GetComponent<BulletBase>().SetBulletValue(_firepos, 500.0f);
+        bullet.GetComponent<BulletBase>().SetTag("Player");
     }
 
-    public void WaveBulletFire(Transform _firePos)
+    //public void WaveBulletFire(Transform _firePos)
+    //{
+
+    //    GameObject bullet = Instantiate(WaveBulletPrefab, _firePos.position, Quaternion.identity);
+    //    bullet.GetComponent<BulletWave>().SetBulletValue(_firePos, 30.0f, 1, 1);
+
+    //    bullet = Instantiate(WaveBulletPrefab, _firePos.position, Quaternion.identity);
+    //    bullet.GetComponent<BulletWave>().SetBulletValue(_firePos, 30.0f, 1, 1);
+    //    bullet.GetComponent<BulletWave>().Revers();
+
+    //    bullet = Instantiate(WaveBulletPrefab, _firePos.position, Quaternion.identity);
+    //    bullet.GetComponent<BulletWave>().SetBulletValue(_firePos, 30.0f, 0, 0, 1, 1);
+
+    //    bullet = Instantiate(WaveBulletPrefab, _firePos.position, Quaternion.identity);
+    //    bullet.GetComponent<BulletWave>().SetBulletValue(_firePos, 30.0f, 0, 0, 1, 1);
+    //    bullet.GetComponent<BulletWave>().Revers();
+    //}
+
+    //public void RotateBulletFire(Transform _firePos)
+    //{
+
+    //    BulletRotate bullet = Instantiate(RotateDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
+    //    bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.ZRot);
+
+    //    bullet = Instantiate(RotateDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
+    //    bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.ZRot);
+    //    bullet.SetTime((float)1 / 3);
+
+    //    bullet = Instantiate(RotateDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
+    //    bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.ZRot);
+    //    bullet.SetTime((float)2 / 3);
+
+    //    bullet = Instantiate(RotateDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
+    //    bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.XRot);
+
+    //    bullet = Instantiate(RotateDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
+    //    bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.XRot);
+    //    bullet.SetTime((float)1 / 3);
+
+    //    bullet = Instantiate(RotateDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
+    //    bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.XRot);
+    //    bullet.SetTime((float)2 / 3);
+    //}
+
+    /*Dragon Bullet*/
+
+
+    public void DragonBaseBulletFire(Transform _firepos)
     {
-
-        GameObject bullet = Instantiate(WaveBulletPrefab, _firePos.position, Quaternion.identity);
-        bullet.GetComponent<BulletWave>().SetBulletValue(_firePos, 30.0f, 1, 1);
-
-        bullet = Instantiate(WaveBulletPrefab, _firePos.position, Quaternion.identity);
-        bullet.GetComponent<BulletWave>().SetBulletValue(_firePos, 30.0f, 1, 1);
-        bullet.GetComponent<BulletWave>().Revers();
-
-        bullet = Instantiate(WaveBulletPrefab, _firePos.position, Quaternion.identity);
-        bullet.GetComponent<BulletWave>().SetBulletValue(_firePos, 30.0f, 0, 0, 1, 1);
-
-        bullet = Instantiate(WaveBulletPrefab, _firePos.position, Quaternion.identity);
-        bullet.GetComponent<BulletWave>().SetBulletValue(_firePos, 30.0f, 0, 0, 1, 1);
-        bullet.GetComponent<BulletWave>().Revers();
+        StartCoroutine("CorBaseBulletFire", _firepos);
+        //CorBaseBulletFire()
     }
-
-    public void RotateBulletFire(Transform _firePos)
+    public void DragonHomingBulletFire(Transform _firePos)
     {
-
-        BulletRotate bullet = Instantiate(RotateBulletPrefab, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
-        bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.ZRot);
-
-
-        bullet = Instantiate(RotateBulletPrefab, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
-        bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.ZRot);
-        bullet.SetTime((float)1 / 3);
-
-        bullet = Instantiate(RotateBulletPrefab, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
-        bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.ZRot);
-        bullet.SetTime((float)2 / 3);
-
-        bullet = Instantiate(RotateBulletPrefab, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
-        bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.XRot);
-
-        bullet = Instantiate(RotateBulletPrefab, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
-        bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.XRot);
-        bullet.SetTime((float)1 / 3);
-
-        bullet = Instantiate(RotateBulletPrefab, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
-        bullet.SetBulletValue(_firePos, 30, 1, 360, RotAxis.XRot);
-        bullet.SetTime((float)2 / 3);
-    }
-
-    public void HomingBulletFire(Transform _firePos)
-    {
-
-        BulletHoming bullet = Instantiate(HomingBulletPrefab, _firePos.position, Quaternion.identity).GetComponent<BulletHoming>();
-        bullet.SetBulletValue(_firePos, 100, 1.5f,Player.transform);
-        //bullet.SetTarget(Player.transform);
+        BulletHoming bullet = Instantiate(HomingDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletHoming>();
+        bullet.SetBulletValue(_firePos, 100.0f, 1.5f,Player.transform);
         bullet.SetTag("Dragon");
         bullet.SetPlayer(Player);
         bullet.SetBulletManager(this);
-        //bullet.SetTag("Player");
+
+        foreach (RotAxis suit in RotAxis.GetValues(typeof(RotAxis)))
+        {
+            BulletRotate rotBullet = Instantiate(RotateDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
+            rotBullet.SetBulletValue(_firePos, 0, 10, 360, suit);
+            rotBullet.SetTime(0.0f);
+            rotBullet.SetbaseTarget(bullet.gameObject.transform);
+            rotBullet.SetTag("Dragon");
+
+            rotBullet = Instantiate(RotateDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletRotate>();
+            rotBullet.SetBulletValue(_firePos, 0, 10, 360,suit);
+            rotBullet.SetTime(0.5f);
+            rotBullet.SetbaseTarget(bullet.gameObject.transform);
+            rotBullet.SetTag("Dragon");
+        }
+    }
+
+    public void DragonBreathOn(Transform _firePos)
+    {
+        BreathPrefab.GetComponent<Breath>().OnBreath(_firePos);
+    }
+
+    public void DragonBreathOff()
+    {
+        BreathPrefab.GetComponent<Breath>().OffBreath();
     }
 
     public void IceBlockSpawn(Vector3 SpawnPos)
@@ -96,15 +131,6 @@ public class BulletManager : MonoBehaviour
         //StartCoroutine("CorIceBreath");
     }
 
-    public void BreathOn(Transform _firePos)
-    {
-        BreathPrefab.GetComponent<Breath>().OnBreath(_firePos);
-    }
-
-    public void BreathOff()
-    {
-        BreathPrefab.GetComponent<Breath>().OffBreath();
-    }
     public void CameraShake()
     {
         Player.GetComponent<PlayerCharacter.PlayerCharacterController>().SendMessage("CorCameraShake");
@@ -120,6 +146,36 @@ public class BulletManager : MonoBehaviour
         }
     }
 
+    IEnumerator CorBaseBulletFire(Transform _firePos)
+    {
+        List<GameObject> bulletList = new List<GameObject>();
+
+        Vector3 dir = (Player.transform.position - _firePos.position).normalized;
+        Quaternion rot = Quaternion.LookRotation(dir, _firePos.up);
+
+        for (int i = 0; i < 10; i++)
+        {
+            Vector3 correct = new Vector3(0, 0, 0);//; = new Vector3(Mathf.Sin(i * Mathf.Deg2Rad * 360 / 10) * 10, Mathf.Cos(i * Mathf.Deg2Rad * 360 / 10) * 10, 0.0f);
+            correct += _firePos.up * Mathf.Sin(i * Mathf.Deg2Rad * 360 / 10) * 10;
+            correct += _firePos.right * Mathf.Cos(i * Mathf.Deg2Rad * 360 / 10) * 10;
+            dir = (Player.transform.position - _firePos.position + correct).normalized;
+            rot = Quaternion.LookRotation(dir, _firePos.up);
+            GameObject bullet = Instantiate(BaseDragonBullet, _firePos.position, Quaternion.identity);
+            bullet.GetComponent<BulletBase>().SetBulletValue(_firePos, 0.0f,rot, correct);
+            bullet.GetComponent<BulletBase>().SetTag("Dragon");
+            bulletList.Add(bullet);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        for(int i = 0; i<bulletList.Count; i++)
+        {
+            bulletList[i].GetComponent<BulletBase>().SetBulletSpeed(150.0f);
+            yield return new WaitForSeconds(0.3f);
+        }
+        yield return null;
+    }
+
     bool ErrorFind()
     {
 
@@ -133,7 +189,7 @@ public class BulletManager : MonoBehaviour
             Debug.LogWarning("Not Dragon Player");
             return true;
         }
-        if (BaseBulletPrefab == null)
+        if (BasePlayerBullet == null)
         {
             Debug.LogWarning("No BaseBullet Prefab");
             return true;
@@ -144,14 +200,14 @@ public class BulletManager : MonoBehaviour
             return true;
         }
 
-        if (RotateBulletPrefab == null)
+        if (RotateDragonBullet == null)
         {
-            Debug.LogWarning("No RotateBulletPrefab Prefab");
+            Debug.LogWarning("No RotateDragonBullet Prefab");
             return true;
         }
-        if (HomingBulletPrefab == null)
+        if (HomingDragonBullet == null)
         {
-            Debug.LogWarning("No HomingBulletPrefab Prefab");
+            Debug.LogWarning("No HomingDragonBullet Prefab");
             return true;
 
         }
@@ -162,5 +218,4 @@ public class BulletManager : MonoBehaviour
         }
         return false;
     }
-
 }

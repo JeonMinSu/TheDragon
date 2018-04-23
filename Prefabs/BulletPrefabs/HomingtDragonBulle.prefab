@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 4693787284870820}
   - component: {fileID: 114159581615777720}
   m_Layer: 0
-  m_Name: HomingBullet
+  m_Name: HomingtDragonBulle
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

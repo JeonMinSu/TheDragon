@@ -55,9 +55,10 @@ GameObject:
   - component: {fileID: 4915030206466684}
   - component: {fileID: 95402650637858516}
   - component: {fileID: 114860631119989932}
+  - component: {fileID: 65374242127132586}
   m_Layer: 0
   m_Name: IceBlock
-  m_TagString: Untagged
+  m_TagString: IceBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +107,7 @@ GameObject:
   - component: {fileID: 4703186735871076}
   - component: {fileID: 33040138015804708}
   - component: {fileID: 23760629037694548}
+  - component: {fileID: 64533634408467818}
   m_Layer: 0
   m_Name: Object003
   m_TagString: Untagged
@@ -155,6 +157,7 @@ GameObject:
   - component: {fileID: 4952236377965322}
   - component: {fileID: 33795740062370094}
   - component: {fileID: 23177313589058216}
+  - component: {fileID: 64668873696573960}
   m_Layer: 0
   m_Name: Cone003
   m_TagString: Untagged
@@ -451,6 +454,46 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1074276824953368}
   m_Mesh: {fileID: 4300000, guid: 8365645b733011041a0a5225be0b6d75, type: 3}
+--- !u!64 &64533634408467818
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756751518215962}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: a3b8d638afa661e439183b8d3a8c9ebb, type: 3}
+--- !u!64 &64668873696573960
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944138393920284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: a3b8d638afa661e439183b8d3a8c9ebb, type: 3}
+--- !u!65 &65374242127132586
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439547689633074}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8, y: 10, z: 5}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!95 &95402650637858516
 Animator:
   serializedVersion: 3
@@ -7354,7 +7397,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 490297829
+  randomSeed: -1292573328
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -45,7 +45,7 @@ public class DragonMissile : DragonAction
         //용 유도탄 실행 애니메이션 넣는 곳
         for (int i = 0; i < 5; i++)
         {
-            BlackBoard.Instance.BulletManager.HomingBulletFire(Mouth);
+            BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth);
             yield return new WaitForSeconds(1.5f);
         }
         //용 유도탄 후딜 애니메이션 넣는 곳
@@ -54,5 +54,8 @@ public class DragonMissile : DragonAction
         BlackBoard.Instance.IsHovering = false;
         BlackBoard.Instance.HoveringAct = false;
     }
+
+
+    
 
 }

@@ -18,11 +18,13 @@ public class IceBlock : MonoBehaviour {
     public void GetDamage(float Damage)
     {
         _Hp -= Damage;
+        Debug.Log("HitIceblock");
         if(_Hp <= 0 && !isDead)
         {
             if(_PrismBrokenPrefab == null)
             {
                 Debug.LogWarning("Not Found _PrismBrokenPrefab");
+                Destroy(this.gameObject);
                 return;
             }
             isDead = true;

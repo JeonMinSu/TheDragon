@@ -19,19 +19,19 @@ namespace PlayerCharacter
         }
         enum PLAYERSTATE
         {
-            STAND,
-            MOVE,
-            ROLL,
-            FALLING,
-            HIT,
-            DEAD
+            STAND = 1,
+            MOVE = 2,
+            ROLL = 4,
+            FALLING = 8,
+            HIT = 16,
+            DEAD = 32
         }
         enum PLAYERUPDATESTATE
         {
-            NONE,
-            FLASH,
-            ATTACK,
-            JUMP
+            NONE =0,
+            FLASH = 1,
+            ATTACK = 2,
+            JUMP = 4
         }
 
         //이동 관련
@@ -43,7 +43,6 @@ namespace PlayerCharacter
         public float _JumpDelay = 0.2f;
         private float  _JumpCoolTime= 0.0f;
         private bool _IsFalling = false;
-
 
         //카메라 회전
         private Vector3 CameraRot;
@@ -61,8 +60,10 @@ namespace PlayerCharacter
         //키 입력값
         //int m_KeyBit = 0;
         float _PlayerRotAngle = 0;
+
         PLAYERSTATE _PlayerState = PLAYERSTATE.STAND;
-        PLAYERUPDATESTATE _PlayerUpdateState = PLAYERUPDATESTATE.NONE;
+        int _PlayerUpdateState = (int)PLAYERUPDATESTATE.NONE;
+        //PLAYERUPDATESTATE _PlayerUpdateState = PLAYERUPDATESTATE.NONE;
 
         //머리 카메라
         public GameObject headCamera;
@@ -75,6 +76,9 @@ namespace PlayerCharacter
 
         //플레이어 물리
         Rigidbody rigid;
+
+        //총매니저
+        public GunManager gunManager;
 
         //코루틴 확인
         bool corFlash = false;
@@ -106,6 +110,7 @@ namespace PlayerCharacter
             //    StartCoroutine("CorCameraShake");
             //}
         }
+
         private void LateUpdate()
         {
             PlayerStateMoveLU();   

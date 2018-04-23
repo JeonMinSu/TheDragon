@@ -16,6 +16,7 @@ namespace PlayerCharacter
             if (Input.GetKey(KeyCode.A)) { _keyBit |= (int)INPUTKEY.KEY_A; }
             else if (Input.GetKey(KeyCode.D)) { _keyBit |= (int)INPUTKEY.KEY_D; }
 
+            if (Input.GetMouseButton(0)) { _keyBit |= (int)INPUTKEY.MOUSE_LEFT; }
             if (Input.GetKeyDown(KeyCode.Space)) { _keyBit |= (int)INPUTKEY.KEY_SPACE; }
             if (Input.GetMouseButtonDown(1)) { _keyBit |= (int)INPUTKEY.MOUSE_RIGHT; }
 
@@ -29,17 +30,22 @@ namespace PlayerCharacter
 
             if ((_keyBit & (int)INPUTKEY.KEY_SPACE) == (int)INPUTKEY.KEY_SPACE)
             {
-                _PlayerUpdateState = PLAYERUPDATESTATE.JUMP;
+                _PlayerUpdateState |= (int)PLAYERUPDATESTATE.JUMP;
                 _keyBit -= (int)INPUTKEY.KEY_SPACE;
                 
             }
 
             if ((_keyBit & (int)INPUTKEY.MOUSE_RIGHT) == (int)INPUTKEY.MOUSE_RIGHT)
             {
-                _PlayerUpdateState = PLAYERUPDATESTATE.FLASH;
-                _keyBit -= (int)INPUTKEY.MOUSE_RIGHT;
-                
+                _PlayerUpdateState |= (int)PLAYERUPDATESTATE.FLASH;
+                _keyBit -= (int)INPUTKEY.MOUSE_RIGHT;               
             }
+            else if ((_keyBit & (int)INPUTKEY.MOUSE_LEFT) == (int)INPUTKEY.MOUSE_LEFT)
+            {
+                _PlayerUpdateState |= (int)PLAYERUPDATESTATE.ATTACK;
+                _keyBit -= (int)INPUTKEY.MOUSE_LEFT;
+            }
+
             switch (_keyBit)
             {
                 case (int)INPUTKEY.KEY_W: _PlayerRotAngle = 0; _PlayerState = PLAYERSTATE.MOVE; break;
@@ -58,21 +64,41 @@ namespace PlayerCharacter
 
         private void PlayerStateMoveLU()
         {
-            if ((_PlayerUpdateState == PLAYERUPDATESTATE.FLASH) && corFlash == false &&  _FlashCoolTime <= 0)
+            if ((_PlayerUpdateState & (int)PLAYERUPDATESTATE.FLASH) == (int)PLAYERUPDATESTATE.FLASH && corFlash == false && _FlashCoolTime <= 0)
             {
                 StartCoroutine("CorFlash");
-                _PlayerUpdateState = PLAYERUPDATESTATE.NONE;
             }
-
-            if(_PlayerUpdateState == PLAYERUPDATESTATE.JUMP && _JumpCoolTime <= 0.0f && !_IsFalling)
+            if ((_PlayerUpdateState & (int)PLAYERUPDATESTATE.JUMP) == (int)PLAYERUPDATESTATE.JUMP && _JumpCoolTime <= 0.0f && !_IsFalling)
             {
-                Debug.Log("JUMP");
                 rigid.AddForce(Vector3.up * _JumpPower, ForceMode.VelocityChange);
-                _PlayerUpdateState = PLAYERUPDATESTATE.NONE;
                 _JumpCoolTime = _JumpDelay;
             }
-            _PlayerUpdateState = PLAYERUPDATESTATE.NONE;
+            if ((_PlayerUpdateState & (int)PLAYERUPDATESTATE.ATTACK) == (int)PLAYERUPDATESTATE.ATTACK)
+            {
+                gunManager.Fire();
+            }
+            //if ((_PlayerUpdateState == PLAYERUPDATESTATE.FLASH) && corFlash == false &&  _FlashCoolTime <= 0)
+            //{
+            //    StartCoroutine("CorFlash");
+            //    //_PlayerUpdateState = PLAYERUPDATESTATE.NONE;
+            //}
+
+            // if (_PlayerUpdateState == PLAYERUPDATESTATE.JUMP && _JumpCoolTime <= 0.0f && !_IsFalling)
+            //{
+            //    Debug.Log("JUMP");
+            //    rigid.AddForce(Vector3.up * _JumpPower, ForceMode.VelocityChange);
+            //    //_PlayerUpdateState = PLAYERUPDATESTATE.NONE;
+            //    _JumpCoolTime = _JumpDelay;
+            //}
+
+            //if (_PlayerUpdateState == PLAYERUPDATESTATE.ATTACK)
+            //{
+            //    gunManager.Fire();
+            //}
+
+            _PlayerUpdateState = (int)PLAYERUPDATESTATE.NONE;
         }
+
         private void PlayerStateMoveFU()
         {
             if (IsFalling())

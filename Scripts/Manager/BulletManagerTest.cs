@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class BulletManagerTest : MonoBehaviour {
 
-    public BulletManager manager;
+    enum BULLETTYPE
+    {
+        BASE,
+        HOMING
+    };
 
+
+    public BulletManager manager;
     public float bulletFireTime = 5.0f;
+    [SerializeField]
+    private BULLETTYPE bulletType;
     float fireDelay = 0.0f;
     bool isFire = false;
+    
+
 
 	
 	// Update is called once per frame
@@ -16,7 +26,17 @@ public class BulletManagerTest : MonoBehaviour {
     {
 	    if(fireDelay < 0)
         {
-            manager.HomingBulletFire(this.transform);
+            switch (bulletType)
+            {
+                case BULLETTYPE.BASE:
+                    manager.DragonBaseBulletFire(this.transform);
+                    break;
+                case BULLETTYPE.HOMING:
+                    manager.DragonHomingBulletFire(this.transform);
+                    break;
+            }
+
+
             fireDelay = bulletFireTime;
         }
         fireDelay -= Time.fixedDeltaTime;

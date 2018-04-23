@@ -13,6 +13,8 @@ public class BulletBase : MonoBehaviour
     public void SetTime(float _time) { _moveTime = _time; } 
     private Vector3 _basePosition;
     protected Vector3 BasePosition { get { return _basePosition; } }
+    private Transform _baseTarget;
+    public void SetbaseTarget(Transform target) { _baseTarget = target; }
 
     //총알 방향
     private Vector3 _bulletForward;
@@ -22,6 +24,10 @@ public class BulletBase : MonoBehaviour
     private Vector3 _bulletUp;
     protected Vector3 BulletUp { get { return _bulletUp; } }
 
+    ////시작시 보정값 (위치, 회전값)
+    //private Quaternion _bulletRot;
+    //private Vector3 _firePosCorrect;
+
     //rotate, curve를 반대로 시작할껀지
     protected bool _isRevers = false;
     public void Revers() { _isRevers = true; }
@@ -30,7 +36,6 @@ public class BulletBase : MonoBehaviour
     protected string _tag = "Player";
     //public string Tag {  get { return _tag; } set { _tag = value; } }
     public void SetTag(string tag) { _tag = tag; }
-
 
     //이전 위치저장
     private Vector3 _prevPosition;
@@ -50,6 +55,12 @@ public class BulletBase : MonoBehaviour
         SetBaseValue(firePos, moveSpeed);
     }
 
+    public void SetBulletValue(Transform firePos, float moveSpeed, Quaternion rot, Vector3 correctPos)
+    {
+        SetBaseValue(firePos, moveSpeed, rot, correctPos);
+    }
+
+
     //기본값 넣어줌
     protected void SetBaseValue(Transform firePos, float moveSpeed)
     {
@@ -58,10 +69,34 @@ public class BulletBase : MonoBehaviour
         _basePosition = this.transform.position;
     }
 
+    protected void SetBaseValue(Transform firePos, float moveSpeed, Quaternion rot, Vector3 correctPos)
+    {
+        firePos.rotation = rot;
+        transform.rotation = rot;
+        SetDirection(firePos);
+        _moveSpeed = moveSpeed;
+        _basePosition = this.transform.position + correctPos;
+    }
+
+
+    public void SetBulletSpeed(float moveSpeed)
+    {
+        _moveSpeed = moveSpeed;
+    }
+
+
     //총알 기본 위치값, 이동거리 업데이트
     protected void UpdateBulletValue()
     {
-        _basePosition += _bulletForward * _moveSpeed * Time.fixedDeltaTime;
+        if(_baseTarget != null)
+        {
+            _basePosition = _baseTarget.position;
+        }
+        else
+        {
+            _basePosition += _bulletForward * _moveSpeed * Time.fixedDeltaTime;
+        }
+
         _moveTime += Time.fixedDeltaTime;
         PrevPosition = transform.position;
     }
@@ -77,7 +112,6 @@ public class BulletBase : MonoBehaviour
     {
         GameObject.Destroy(this.gameObject);
     }
-
 
     //총이 맞는지 안맞는지 체크하는 구문
     protected virtual void BulletCollisionCheck()

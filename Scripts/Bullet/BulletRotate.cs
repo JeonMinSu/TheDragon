@@ -18,6 +18,7 @@ public class BulletRotate : BulletBase
     float _CurrentRadius = 0.0f;
     float _LerpTime = 1.0f;
     float _Time = 0.0f;
+    bool isLerp = false;
 
     protected override void UpdateBulletPos()
     {
@@ -46,7 +47,7 @@ public class BulletRotate : BulletBase
                 break;
         }
 
-        if (_Time < _LerpTime)
+        if (_Time < _LerpTime && isLerp)
         {
             _CurrentRadius = Mathf.Lerp(0, Radius, _Time / _LerpTime);
             _Time += Time.deltaTime;
@@ -73,4 +74,7 @@ public class BulletRotate : BulletBase
         SetBaseValue(_firePos, moveSpeed);
         SetRotValue(_axis, _radius, _angleSpeed);
     }
+
+    public void LerpOn() { isLerp = true; }
+
 }

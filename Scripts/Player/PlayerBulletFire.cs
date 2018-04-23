@@ -19,7 +19,7 @@ public class PlayerBulletFire : MonoBehaviour {
         {
             //bulletManager.BaseBulletFire(FirePos.transform);
             //bulletManager.WaveBulletFire(FirePos.transform);
-            bulletManager.RotateBulletFire(FirePos.transform);
+            //bulletManager.DragonRotateBulletFire(FirePos.transform);
             //bulletManager.HomingBulletFire(FirePos.transform);
             //Debug.Log(FirePos.transform.forward.ToString() + FirePos.transform.right.ToString() + FirePos.transform.up.ToString());
         }
