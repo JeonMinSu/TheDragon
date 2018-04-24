@@ -4,42 +4,28 @@ using UnityEngine;
 
 public class Breath : MonoBehaviour
 {
-    private Transform _firePos;
-    public GameObject _breathParticle;
-    private bool isFire = false;
-    private ParticleSystem[] _breatParticles;
+    public GameObject BreathOnEffect;
+    public GameObject BreathEffect;
 
-    private void Start()
+    public void OnBreath()
     {
-        _breatParticles = _breathParticle.GetComponentsInChildren<ParticleSystem>();
-        for (int i = 0; i < _breatParticles.Length; i++)
-        {
-            _breatParticles[i].Stop();
-        }
+        StartCoroutine("corBreath");
     }
-    public void OnBreath(Transform pos)
+
+    IEnumerator corBreath()
     {
-        _firePos = pos;
-        for (int i = 0; i < _breatParticles.Length; i++)
-        {
-            _breatParticles[i].Play();
-        }
-        isFire = true;
-    }
-    private void Update()
-    {
-        if (isFire)
-        {
-            _breathParticle.transform.position = _firePos.transform.position;
-            _breathParticle.transform.rotation = _firePos.transform.rotation;
-        }
-    }
-    public void OffBreath()
-    {
-        for (int i = 0; i < _breatParticles.Length; i++)
-        {
-            _breatParticles[i].Stop();
-        }
-        isFire = false;
+        //GameObject BreathOn =   Instantiate(BreathOnEffect, this.transform.position, Quaternion.identity);
+
+        BreathOnEffect.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+
+        //GameObject Breath = Instantiate(BreathEffect, this.transform.position, Quaternion.identity);
+        BreathEffect.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+
+        //GameObject.Destroy(BreathOn);
+        //GameObject.Destroy(Breath);
+        GameObject.Destroy(this.gameObject);
+        yield return null;
     }
 }

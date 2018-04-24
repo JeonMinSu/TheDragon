@@ -84,7 +84,6 @@ public class BulletManager : MonoBehaviour
 
     /*Dragon Bullet*/
 
-
     public void DragonBaseBulletFire(Transform _firePos)
     {
         GameObject bullet = Instantiate(BaseDragonBullet, _firePos.position, Quaternion.identity);
@@ -147,15 +146,16 @@ public class BulletManager : MonoBehaviour
         }
     }
 
-    public void DragonBreathOn(Transform _firePos)
+    public void DragonBreathOn(Vector3 _firePos, Vector3 _fireDir)
     {
-        BreathPrefab.GetComponent<Breath>().OnBreath(_firePos);
+        Breath breath = Instantiate(BreathPrefab, _firePos, Quaternion.LookRotation(_fireDir, Vector3.up)).GetComponent<Breath>();
+        breath.OnBreath();
     }
 
-    public void DragonBreathOff()
-    {
-        BreathPrefab.GetComponent<Breath>().OffBreath();
-    }
+    //public void DragonBreathOff()
+    //{
+    //    BreathPrefab.GetComponent<Breath>().OffBreath();
+    //}
 
     public void IceBlockSpawn(Vector3 SpawnPos)
     {
