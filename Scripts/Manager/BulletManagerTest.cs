@@ -7,9 +7,9 @@ public class BulletManagerTest : MonoBehaviour {
     enum BULLETTYPE
     {
         BASE,
-        HOMING
+        HOMING,
+        BREATH
     };
-
 
     public BulletManager manager;
     public float bulletFireTime = 5.0f;
@@ -17,10 +17,9 @@ public class BulletManagerTest : MonoBehaviour {
     private BULLETTYPE bulletType;
     float fireDelay = 0.0f;
     bool isFire = false;
+   
+
     
-
-
-	
 	// Update is called once per frame
 	void Update ()
     {
@@ -34,9 +33,11 @@ public class BulletManagerTest : MonoBehaviour {
                 case BULLETTYPE.HOMING:
                         manager.DragonHomingBulletFire(this.transform.position,this.transform.forward);
                     break;
+                case BULLETTYPE.BREATH:
+                    manager.DragonBreathOn(this.transform.position + this.transform.forward,this.transform.forward );
+                    break;
+                
             }
-
-
             fireDelay = bulletFireTime;
         }
         fireDelay -= Time.fixedDeltaTime;
