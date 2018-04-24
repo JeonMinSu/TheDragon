@@ -26,26 +26,31 @@ public class DragonBreath : DragonAction {
                 CoroutineManager.DoCoroutine(BreathShot(preTime, afterTime));
             Debug.Log("Breath");
 
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     IEnumerator BreathShot(float preTime, float afterTime)
     {
+        Transform Player = BlackBoard.Instance.Manager.Player;
+        Transform Dragon = BlackBoard.Instance.Manager.transform;
+
         Transform Mouth = BlackBoard.Instance.DragonMouth;
         BlackBoard.Instance.HoveringAct = true;
 
+        Vector3 forward = Player.position - Dragon.position;
+
         float RunTime = BlackBoard.Instance.GetFlyingTime().RunBreathTime;
-
-
+        
         //용 브레스 선딜 애니메이션 넣는 곳
         yield return new WaitForSeconds(preTime);
 
         BlackBoard.Instance.Manager.Ani.ResetTrigger("Hovering");
         BlackBoard.Instance.Manager.Ani.SetTrigger("Breath");
-        //용 브레스 실행 애니메이션 넣는 곳
 
+        BlackBoard.Instance.BulletManager.DragonBreathOn(Mouth.position, forward);
+        //용 브레스 실행 애니메이션 넣는 곳
         //BlackBoard.Instance.BulletManager.DragonBreathOn(Mouth);
         yield return new WaitForSeconds(RunTime);
         //BlackBoard.Instance.BulletManager.DragonBreathOff();

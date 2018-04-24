@@ -125,18 +125,18 @@ public class MoveManager : MonoBehaviour {
                     MoveObject.transform.position);
 
             }
-
             Vector3 forward = dir - MoveObject.transform.position;
+            Quaternion qua = Quaternion.LookRotation(dir);
 
             if (Manager[Index].CenterAxis != null)
             {
                 Vector3 CentralAxis = (Manager[Index].CenterAxis.position - MoveObject.transform.position).normalized;
-
+ 
                 MoveObject.transform.rotation =
                     Quaternion.RotateTowards(
                         MoveObject.transform.rotation,
                         Quaternion.LookRotation(dir, CentralAxis),
-                        360.0f * Time.fixedDeltaTime);
+                        45.0f * Time.fixedDeltaTime);
 
             }
             else
@@ -144,7 +144,7 @@ public class MoveManager : MonoBehaviour {
                 MoveObject.transform.rotation =
                     Quaternion.RotateTowards(
                         MoveObject.transform.rotation,
-                        rotation,
+                        rotation * qua,
                         360.0f * Time.fixedDeltaTime);
             }
 

@@ -93,10 +93,10 @@ public class BlackBoard : Singleton<BlackBoard>
     private bool _isLanding;    //착륙 중인지
     public bool IsLanding { set { _isLanding = value; } get { return _isLanding; } }
 
-    private bool _isIdle;
+    private bool _isIdle;       //아이들 중인지
     public bool IsIdle { set { _isIdle = value; } get { return _isIdle; } }
 
-    private bool _isWalk;
+    private bool _isWalk;       //걷는 중인지
     public bool IsWalk { set { _isWalk = value; }  get { return _isIdle; } }
 
     private bool _isTakeOff;    //이륙 중인지
@@ -284,6 +284,28 @@ public class BlackBoard : Singleton<BlackBoard>
     public void FlyingMovement(int Index)
     {
         MoveManager.NodeMovement(Index);
+    }
+
+    public void HoveringPatternChk()
+    {
+        if (CurPlayerHP >= PlayerMaxHP * 0.5f &&
+            CurIceCrystalNum < MissileCrystalNum)
+        {
+            IsFlying = false;
+            FlyingAct = false;
+            IsHovering = true;
+            return;
+        }
+
+        if (CurPlayerHP < PlayerMaxHP * 0.5 &&
+            CurIceCrystalNum < BreathCrystalNum)
+        {
+            IsFlying = false;
+            FlyingAct = false;
+            IsHovering = true;
+            return;
+        }
+
     }
 
 }
