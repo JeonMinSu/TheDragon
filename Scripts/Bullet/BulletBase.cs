@@ -9,8 +9,8 @@ public class BulletBase : MonoBehaviour
     private float _moveSpeed;
     public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; } }
     private float _moveTime;
-    protected float MoveTime { get { return _moveTime; }}
-    public void SetTime(float _time) { _moveTime = _time; } 
+    protected float MoveTime { get { return _moveTime; } }
+    public void SetTime(float _time) { _moveTime = _time; }
     private Vector3 _basePosition;
     protected Vector3 BasePosition { get { return _basePosition; } }
     private Transform _baseTarget;
@@ -40,7 +40,7 @@ public class BulletBase : MonoBehaviour
     //이전 위치저장
     private Vector3 _prevPosition;
     protected Vector3 PrevPosition { get { return _prevPosition; } set { _prevPosition = value; } }
-    
+
     //총 방향 설정해주는 구간
     void SetDirection(Transform _firePos)
     {
@@ -54,12 +54,10 @@ public class BulletBase : MonoBehaviour
     {
         SetBaseValue(firePos, moveSpeed);
     }
-
-    public void SetBulletValue(Transform firePos, float moveSpeed, Quaternion rot, Vector3 correctPos)
+    public virtual void SetBulletValue(Vector3 firePos, Vector3 fireDir, float moveSpeed)
     {
-        SetBaseValue(firePos, moveSpeed, rot, correctPos);
+        SetBaseValue(firePos, fireDir, moveSpeed);
     }
-
 
     //기본값 넣어줌
     protected void SetBaseValue(Transform firePos, float moveSpeed)
@@ -67,17 +65,23 @@ public class BulletBase : MonoBehaviour
         SetDirection(firePos);
         _moveSpeed = moveSpeed;
         _basePosition = this.transform.position;
+        StartSettingBullet();
     }
-
-    protected void SetBaseValue(Transform firePos, float moveSpeed, Quaternion rot, Vector3 correctPos)
+    protected void SetBaseValue(Vector3 firePos, Vector3 fireDir, float moveSpeed)
     {
-        firePos.rotation = rot;
-        transform.rotation = rot;
-        SetDirection(firePos);
+        _bulletForward = fireDir.normalized;
+        _bulletRight = Vector3.right;
+        _bulletUp = Vector3.up;
         _moveSpeed = moveSpeed;
-        _basePosition = this.transform.position + correctPos;
+        _basePosition = firePos;
+        StartSettingBullet();
     }
 
+    //초기 시작할때 추가로 값을 넣어주고 싶은것들은 여기서 작업한다.
+    public virtual void StartSettingBullet()
+    {
+        this.transform.rotation = Quaternion.LookRotation(_bulletForward, this.transform.up);
+    }
 
     public void SetBulletSpeed(float moveSpeed)
     {

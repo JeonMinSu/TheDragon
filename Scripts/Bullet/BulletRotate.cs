@@ -74,7 +74,11 @@ public class BulletRotate : BulletBase
         SetBaseValue(_firePos, moveSpeed);
         SetRotValue(_axis, _radius, _angleSpeed);
     }
-
+    public virtual void SetBulletValue(Vector3 _firePos,Vector3 _fireDir,  float moveSpeed, float _radius, float _angleSpeed, RotAxis _axis)
+    {
+        SetBaseValue(_firePos,_fireDir, moveSpeed);
+        SetRotValue(_axis, _radius, _angleSpeed);
+    }
     public void LerpOn() { isLerp = true; }
 
 }
