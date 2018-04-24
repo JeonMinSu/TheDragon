@@ -41,6 +41,14 @@ public class BulletHoming : BulletBase
         _homingPower = homingPower; 
         _target = target;
     }
+    public virtual void SetBulletValue(Vector3 firePos, Vector3 fireDir, float moveSpeed, float homingPower, Transform target)
+    {
+        SetBaseValue(firePos, fireDir, moveSpeed);
+        _direction = fireDir;
+        _homingPower = homingPower;
+        _target = target;
+
+    }
     public void SetTarget(Transform _t)
     {
         _target = _t;

@@ -90,6 +90,7 @@ public class BulletManager : MonoBehaviour
         StartCoroutine("CorBaseBulletFire", _firepos);
         //CorBaseBulletFire()
     }
+
     public void DragonHomingBulletFire(Transform _firePos)
     {
         BulletHoming bullet = Instantiate(HomingDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletHoming>();
@@ -113,7 +114,29 @@ public class BulletManager : MonoBehaviour
             rotBullet.SetTag("Dragon");
         }
     }
+    public void DragonHomingBulletFire(Vector3 _firePos, Vector3 _fireDir)
+    {
+        BulletHoming bullet = Instantiate(HomingDragonBullet, _firePos, Quaternion.identity).GetComponent<BulletHoming>();
+        bullet.SetBulletValue(_firePos, _fireDir, 100.0f, 1.5f, Player.transform);
+        bullet.SetTag("Dragon");
+        bullet.SetPlayer(Player);
+        bullet.SetBulletManager(this);
 
+        foreach (RotAxis suit in RotAxis.GetValues(typeof(RotAxis)))
+        {
+            BulletRotate rotBullet = Instantiate(RotateDragonBullet, _firePos, Quaternion.identity).GetComponent<BulletRotate>();
+            rotBullet.SetBulletValue(_firePos, _fireDir, 0, 10, 360, suit);
+            rotBullet.SetTime(0.0f);
+            rotBullet.SetbaseTarget(bullet.gameObject.transform);
+            rotBullet.SetTag("Dragon");
+
+            rotBullet = Instantiate(RotateDragonBullet, _firePos, Quaternion.identity).GetComponent<BulletRotate>();
+            rotBullet.SetBulletValue(_firePos, _fireDir, 0, 10, 360, suit);
+            rotBullet.SetTime(0.5f);
+            rotBullet.SetbaseTarget(bullet.gameObject.transform);
+            rotBullet.SetTag("Dragon");
+        }
+    }
     public void DragonBreathOn(Transform _firePos)
     {
         BreathPrefab.GetComponent<Breath>().OnBreath(_firePos);
@@ -151,7 +174,6 @@ public class BulletManager : MonoBehaviour
         List<GameObject> bulletList = new List<GameObject>();
 
         Vector3 dir = (Player.transform.position - _firePos.position).normalized;
-        Quaternion rot = Quaternion.LookRotation(dir, _firePos.up);
 
         for (int i = 0; i < 10; i++)
         {
@@ -159,9 +181,9 @@ public class BulletManager : MonoBehaviour
             correct += _firePos.up * Mathf.Sin(i * Mathf.Deg2Rad * 360 / 10) * 10;
             correct += _firePos.right * Mathf.Cos(i * Mathf.Deg2Rad * 360 / 10) * 10;
             dir = (Player.transform.position - _firePos.position + correct).normalized;
-            rot = Quaternion.LookRotation(dir, _firePos.up);
             GameObject bullet = Instantiate(BaseDragonBullet, _firePos.position, Quaternion.identity);
-            bullet.GetComponent<BulletBase>().SetBulletValue(_firePos, 0.0f,rot, correct);
+            // bullet.GetComponent<BulletBase>().SetBulletValue(_firePos, 0.0f,rot, correct);
+            bullet.GetComponent<BulletBase>().SetBulletValue(_firePos.position + correct , dir, 0.0f);
             bullet.GetComponent<BulletBase>().SetTag("Dragon");
             bulletList.Add(bullet);
 

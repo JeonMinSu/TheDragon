@@ -32,7 +32,7 @@ public class BulletManagerTest : MonoBehaviour {
                     manager.DragonBaseBulletFire(this.transform);
                     break;
                 case BULLETTYPE.HOMING:
-                    manager.DragonHomingBulletFire(this.transform);
+                        manager.DragonHomingBulletFire(this.transform.position,this.transform.forward);
                     break;
             }
 

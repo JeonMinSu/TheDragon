@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breath : MonoBehaviour {
-
+public class Breath : MonoBehaviour
+{
     private Transform _firePos;
     public GameObject _breathParticle;
     private bool isFire = false;
@@ -17,40 +17,29 @@ public class Breath : MonoBehaviour {
             _breatParticles[i].Stop();
         }
     }
-
     public void OnBreath(Transform pos)
     {
         _firePos = pos;
-        for(int i = 0; i<_breatParticles.Length; i++)
+        for (int i = 0; i < _breatParticles.Length; i++)
         {
             _breatParticles[i].Play();
         }
-        //_breathParticle.GetComponent<Animator>().SetBool("IsFire", true);
-        //_breathParticle.SetActive(true);       
         isFire = true;
     }
-
     private void Update()
     {
-        if(isFire)
+        if (isFire)
         {
             _breathParticle.transform.position = _firePos.transform.position;
             _breathParticle.transform.rotation = _firePos.transform.rotation;
         }
     }
-
     public void OffBreath()
     {
         for (int i = 0; i < _breatParticles.Length; i++)
         {
             _breatParticles[i].Stop();
         }
-        //_breathParticle.GetComponent<Animator>().SetBool("IsFire", false);
-        // _breathParticle.SetActive(false);
         isFire = false;
     }
-
-
-          
-
 }
