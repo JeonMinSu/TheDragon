@@ -85,10 +85,18 @@ public class BulletManager : MonoBehaviour
     /*Dragon Bullet*/
 
 
-    public void DragonBaseBulletFire(Transform _firepos)
+    public void DragonBaseBulletFire(Transform _firePos)
     {
-        StartCoroutine("CorBaseBulletFire", _firepos);
-        //CorBaseBulletFire()
+        GameObject bullet = Instantiate(BaseDragonBullet, _firePos.position, Quaternion.identity);
+        bullet.GetComponent<BulletBase>().SetBulletValue(_firePos, 300.0f);
+        bullet.GetComponent<BulletBase>().SetTag("Dragon");
+    }
+
+    public void DragonBaseBulletFire(Vector3 _firePos, Vector3 _fireDir)
+    {
+        GameObject bullet = Instantiate(BaseDragonBullet, _firePos, Quaternion.identity);
+        bullet.GetComponent<BulletBase>().SetBulletValue(_firePos,_fireDir, 300.0f);
+        bullet.GetComponent<BulletBase>().SetTag("Dragon");
     }
 
     public void DragonHomingBulletFire(Transform _firePos)
@@ -114,6 +122,7 @@ public class BulletManager : MonoBehaviour
             rotBullet.SetTag("Dragon");
         }
     }
+
     public void DragonHomingBulletFire(Vector3 _firePos, Vector3 _fireDir)
     {
         BulletHoming bullet = Instantiate(HomingDragonBullet, _firePos, Quaternion.identity).GetComponent<BulletHoming>();
@@ -137,6 +146,7 @@ public class BulletManager : MonoBehaviour
             rotBullet.SetTag("Dragon");
         }
     }
+
     public void DragonBreathOn(Transform _firePos)
     {
         BreathPrefab.GetComponent<Breath>().OnBreath(_firePos);
