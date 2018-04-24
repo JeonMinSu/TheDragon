@@ -37,9 +37,9 @@ public class DragonManager : MonoBehaviour {
     {
         _player = GameObject.FindWithTag("Player").transform;
         _aiManager = GetComponent<AIManager>();
-
         _stat = GetComponent<DragonStat>();
         _ani = GetComponentInChildren<Animator>();
+
 
     } 
 

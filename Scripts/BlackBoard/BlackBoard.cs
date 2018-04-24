@@ -155,7 +155,7 @@ public class BlackBoard : Singleton<BlackBoard>
     public void InitMamber()
     {
         _manager = GameObject.FindWithTag("Dragon").GetComponent<DragonManager>();
-        _isStage = true;
+        _isStage = true;;
 
         /* 시간 클래스 초기화 */
         _clocks = GetComponentInChildren<Clock>();

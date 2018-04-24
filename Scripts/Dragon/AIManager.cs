@@ -11,14 +11,14 @@ public class AIManager : MonoBehaviour
 
     private void Awake()
     {
-        BlackBoard.Instance.InitMamber();
     }
 
     // Use this for initialization
     void Start()
     {
         if (Application.isPlaying)
-        { 
+        {
+            BlackBoard.Instance.InitMamber();
             StartCoroutine(BehaviorTreeCor());
         }
 

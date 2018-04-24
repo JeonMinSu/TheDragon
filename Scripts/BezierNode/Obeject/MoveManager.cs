@@ -15,7 +15,6 @@ public class MoveManager : MonoBehaviour {
 
     public GameObject MoveObject;
     
-    private int _nodesIndex = 0;
     //private int _nodesCount = 0;
 
     public void DragonStick(int Index)
@@ -29,8 +28,6 @@ public class MoveManager : MonoBehaviour {
         else
         {
             Vector3 forward = (Manager[Index].transform.position - MoveObject.transform.position).normalized;
-
-            float MoveSpeed = BlackBoard.Instance.Stat.MaxFlySpeed;
 
             MoveObject.transform.rotation =
                 Quaternion.RotateTowards(
@@ -47,10 +44,34 @@ public class MoveManager : MonoBehaviour {
 
     }
 
+    public void AxisRotation(int Index)
+    {
+        if (Manager[Index].IsAxisRot)
+        {
+            Vector3 forward = (MoveObject.transform.position - Manager[Index].transform.position).normalized;
+            float dot = Vector3.Dot(forward, Vector3.forward);
+            float Theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+            Manager[Index].transform.localRotation = Quaternion.Euler(0.0f, Theta, 0.0f);
+        }
+    }
+
+    public void MovementLoop(int Index)
+    {
+        if (Manager[Index].IsMoveLoop)
+        {
+            if (Manager[Index].IsMoveEnd)
+            {
+                Manager[Index].CurNodesIndex = 0;
+            }
+        }
+    }
+
     //계산 함수
     public void MoveMentReady(int Index)
     {
         DragonStick(Index);
+        AxisRotation(Index);
 
         Manager[Index].AllNodesCalc();
 
@@ -66,25 +87,22 @@ public class MoveManager : MonoBehaviour {
 
     }
 
-    private void Update()
-    {
-    }
-
     //노드를 따라서 이동
     public void NodeMovement(int Index)
     {
         int NodesCount = Manager[Index].NodesSpeed.Count;
+        int NodesIndex = Manager[Index].CurNodesIndex;
 
-        if (_nodesIndex < NodesCount)
+        if (NodesIndex < NodesCount)
         {
             Manager[Index].IsMoveEnd = false;
 
-            float moveDistance = Manager[Index].Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
-            float nextDistance = Vector3.Distance(Manager[Index].Stat.NodeDir[_nodesIndex], MoveObject.transform.position);
+            float moveDistance = Manager[Index].Stat.NodeSpeed[NodesIndex] * Time.deltaTime;
+            float nextDistance = Vector3.Distance(Manager[Index].Stat.NodeDir[NodesIndex], MoveObject.transform.position);
 
-            Vector3 dir = (Manager[Index].Stat.NodeDir[_nodesIndex] - MoveObject.transform.position).normalized;
+            Vector3 dir = (Manager[Index].Stat.NodeDir[NodesIndex] - MoveObject.transform.position).normalized;
             
-            Quaternion rotation = (Manager[Index].NodesRot[_nodesIndex] *
+            Quaternion rotation = (Manager[Index].NodesRot[NodesIndex] *
                 MoveObject.transform.rotation);
 
             for (; moveDistance > nextDistance;)
@@ -93,38 +111,55 @@ public class MoveManager : MonoBehaviour {
                 MoveObject.transform.position += dir * nextDistance;
 
                 moveDistance -= nextDistance;
-                _nodesIndex++;
 
-                if (_nodesIndex + 1 >= NodesCount)
+                Manager[Index].CurNodesIndex++;
+
+                NodesIndex = Manager[Index].CurNodesIndex;
+
+                if (NodesIndex + 1 >= NodesCount)
                     return;
-                dir = (Manager[Index].Stat.NodeDir[_nodesIndex + 1] - MoveObject.transform.position).normalized;
-                rotation = (Manager[Index].Stat.NodeRot[_nodesIndex + 1] * MoveObject.transform.rotation);
-                nextDistance = Vector3.Distance(Manager[Index].Stat.NodeDir[_nodesIndex + 1], MoveObject.transform.position);
+                dir = (Manager[Index].Stat.NodeDir[NodesIndex + 1] - MoveObject.transform.position).normalized;
+                rotation = (Manager[Index].Stat.NodeRot[NodesIndex] * Manager[Index].Stat.NodeRot[NodesIndex + 1]);
+
+                nextDistance = Vector3.Distance(Manager[Index].Stat.NodeDir[NodesIndex + 1],
+                    MoveObject.transform.position);
 
             }
 
             Vector3 forward = dir - MoveObject.transform.position;
 
+            if (Manager[Index].CenterAxis != null)
+            {
+                Vector3 CentralAxis = (Manager[Index].CenterAxis.position - MoveObject.transform.position).normalized;
 
-            MoveObject.transform.rotation =
-                Quaternion.RotateTowards(
-                    MoveObject.transform.rotation,
-                    rotation,
-                    //Quaternion.LookRotation(dir),
-                    //Manager[Index].NodesRot[_nodesIndex],
-                    360.0f * Time.fixedDeltaTime);
+                MoveObject.transform.rotation =
+                    Quaternion.RotateTowards(
+                        MoveObject.transform.rotation,
+                        Quaternion.LookRotation(dir, CentralAxis),
+                        360.0f * Time.fixedDeltaTime);
 
-            MoveObject.transform.position += dir * Manager[Index].Stat.NodeSpeed[_nodesIndex] * Time.deltaTime;
+            }
+            else
+            {
+                MoveObject.transform.rotation =
+                    Quaternion.RotateTowards(
+                        MoveObject.transform.rotation,
+                        rotation,
+                        360.0f * Time.fixedDeltaTime);
+            }
+
+            MoveObject.transform.position += dir * Manager[Index].Stat.NodeSpeed[NodesIndex] * Time.deltaTime;
 
 
-            if (_nodesIndex + 1 >= NodesCount)
+            if (NodesIndex + 1 >= NodesCount)
                 return;
-            dir = (Manager[Index].Stat.NodeDir[_nodesIndex] - MoveObject.transform.position).normalized;
+            dir = (Manager[Index].Stat.NodeDir[NodesIndex] - MoveObject.transform.position).normalized;
 
         }
         else
         {
             Manager[Index].IsMoveEnd = true;
+            MovementLoop(Index);
         }
     }
 }

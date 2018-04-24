@@ -38,16 +38,21 @@ public class NodeManager : MonoBehaviour {
     public List<Quaternion> NodesRot { get { return _nodesRot; } }
     public List<float> NodesSpeed { get { return _nodesSpeed; } }
 
+    public bool IsDragonStick;
+    public bool IsMoveLoop;
+    public bool IsAxisRot;
 
-    [SerializeField]
-    private bool _isDragonStick = false;
-    public bool IsDragonStick { set { _isDragonStick = value; } get { return _isDragonStick; } }
-
-    bool _isMoveReady;
+    private bool _isMoveReady;
     public bool IsMoveReady { set { _isMoveReady = value; } get { return _isMoveReady; } }
 
-    bool _isMoveEnd;
+    private bool _isMoveEnd;
     public bool IsMoveEnd { set { _isMoveEnd = value; } get { return _isMoveEnd; } }
+
+    private int _curNodesIndex;
+    public int CurNodesIndex { set { _curNodesIndex = value; } get { return _curNodesIndex; } }
+
+    public Transform CenterAxis;
+
 
     public void Awake()
     {
