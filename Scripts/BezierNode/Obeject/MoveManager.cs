@@ -18,11 +18,6 @@ public class MoveManager : MonoBehaviour {
     private int _nodesIndex = 0;
     //private int _nodesCount = 0;
 
-    private void Awake()
-    {
-
-    }
-
     public void DragonStick(int Index)
     {
         if (Manager[Index].IsDragonStick)

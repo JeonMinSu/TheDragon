@@ -48,6 +48,7 @@ public class DragonMissile : DragonAction
             BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth);
             yield return new WaitForSeconds(1.5f);
         }
+
         //용 유도탄 후딜 애니메이션 넣는 곳
         yield return new WaitForSeconds(afterTime);
         BlackBoard.Instance.Manager.Ani.ResetTrigger("Hovering");

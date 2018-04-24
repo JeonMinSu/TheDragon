@@ -151,8 +151,7 @@ public class BlackBoard : Singleton<BlackBoard>
     /* 나중에 지워야 됨!!! */
     public float PlayerMaxHP;
     public float CurPlayerHP;
-
-
+    
     public void InitMamber()
     {
         _manager = GameObject.FindWithTag("Dragon").GetComponent<DragonManager>();

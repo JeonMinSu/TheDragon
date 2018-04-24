@@ -17,9 +17,6 @@ public class DragonBreath : DragonAction {
 
         float preTime = BlackBoard.Instance.GetFlyingTime().PreBreathTime;
         float afterTime = BlackBoard.Instance.GetFlyingTime().AfterBreathTime;
-        float RunTime = BlackBoard.Instance.GetFlyingTime().RunBreathTime;
-
-        CoroutineManager.SetWaitForSeconds(RunTime);
 
         if (IsHovering &&
             PlayerHP < PlayerMaxHp * 0.5 && 
@@ -38,16 +35,19 @@ public class DragonBreath : DragonAction {
     {
         Transform Mouth = BlackBoard.Instance.DragonMouth;
         BlackBoard.Instance.HoveringAct = true;
-        
+
+        float RunTime = BlackBoard.Instance.GetFlyingTime().RunBreathTime;
+
 
         //용 브레스 선딜 애니메이션 넣는 곳
         yield return new WaitForSeconds(preTime);
 
-        //용 브레스 실행 애니메이션 넣는 곳
         BlackBoard.Instance.Manager.Ani.ResetTrigger("Hovering");
         BlackBoard.Instance.Manager.Ani.SetTrigger("Breath");
+        //용 브레스 실행 애니메이션 넣는 곳
+
         BlackBoard.Instance.BulletManager.DragonBreathOn(Mouth);
-        yield return CoroutineManager.Seconds;
+        yield return new WaitForSeconds(RunTime);
         BlackBoard.Instance.BulletManager.DragonBreathOff();
 
         //용 브레스 후딜 애니메이션 넣는 곳
