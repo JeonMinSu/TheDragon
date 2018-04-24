@@ -2444,7 +2444,7 @@ MonoBehaviour:
   _maxTakeOffSpeed: 10
   _accTakeOffeSpeed: 0.5
   _curFlySpeed: 0
-  _maxFlySpeed: 20
+  _maxFlySpeed: 30
   _maxHP: 100
   _hp: 100
   _sight: 5

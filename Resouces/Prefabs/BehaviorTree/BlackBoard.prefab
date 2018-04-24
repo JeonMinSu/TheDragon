@@ -92,8 +92,15 @@ MonoBehaviour:
   _hpPhaseSecond: 0.5
   _hpPhaseThird: 0.15
   _rushLimitDir: 30
-  _takeOffLimitDir: 100
+  _takeOffLimitDir: 50
   _dragonFlyingRadius: 150
+  _curIceCrystalNum: 40
+  _maxIceBulletCrystalNum: 70
+  _minIceBulletCrystalNum: 30
+  _missileCrystalNum: 50
+  _breathCrystalNum: 50
+  PlayerMaxHP: 100
+  CurPlayerHP: 60
 --- !u!114 &114690818935670772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,21 +113,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landTime:
-    _maxIdleTime: 0
-    _minChangeTime: 0
-    _maxChangeTime: 0
-    _preRushDelay: 0
-    _rushRunTime: 0
-    _afterRushDelay: 0
-    _preOverLapDelay: 0
-    _afterOverLapDelay: 0
+    _idleTime: 3
+    _minChangeTime: 5
+    _maxChangeTime: 7
+    _preRushTime: 0.5
+    _rushRunTime: 1
+    _afterRushTime: 0.5
+    _preOverLapTime: 0.8
+    _overLapRunTime: 1.2
+    _afterOverLapTime: 0.7
   _flyingTime:
-    _hoveringTime: 2
+    _hoveringTime: 3
     _curHoveringTime: 0
     _flyTime: 4
     _curFlyTime: 0
-    _preBreathTime: 0
-    _afterBreathTime: 0
-    _preMissileTime: 0
-    _afterMissileTime: 0
+    _preMissileTime: 1.5
+    _afterMissileTime: 2
+    _preBreathTime: 2
+    _runBreathTime: 0
+    _afterBreathTime: 1.5
   _fallingTime: 5
