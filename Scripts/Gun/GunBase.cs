@@ -5,7 +5,9 @@ using UnityEngine;
 public class GunBase : MonoBehaviour {
 
     public GameObject FirePos;
+    public GameObject FireEffect;
     public BulletManager bulletManager;
+
     //최대 총알 갯수
     public int maxBulletCount;
     //현재 총알 갯수
@@ -27,6 +29,8 @@ public class GunBase : MonoBehaviour {
     {
         if(currentChargeCount > 0)
         {
+            FireEffect.SetActive(false);
+            FireEffect.SetActive(true);
             bulletManager.PlayerBaseBulletFire(FirePos.transform);
             currentChargeCount -= 1;
         }
