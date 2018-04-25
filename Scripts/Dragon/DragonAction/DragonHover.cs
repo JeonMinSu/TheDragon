@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragonHover : DragonAction {
+public class DragonHover : DragonAction
+{
 
     public override bool Run()
     {
@@ -20,7 +21,6 @@ public class DragonHover : DragonAction {
             Vector3 forward = (Player.position - Dragon.position).normalized;
 
             //기본값 = 기본값 + (바뀔값 - 기본값) / (2 이상의 숫자) 
-
             Debug.Log("Hovering");
 
             Quaternion rotation =

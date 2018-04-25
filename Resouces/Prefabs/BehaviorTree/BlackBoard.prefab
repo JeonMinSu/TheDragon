@@ -100,7 +100,11 @@ MonoBehaviour:
   _missileCrystalNum: 50
   _breathCrystalNum: 50
   PlayerMaxHP: 100
+<<<<<<< HEAD
   CurPlayerHP: 100
+=======
+  CurPlayerHP: 40
+>>>>>>> f4db1095cbf2ba03244415252490d95e5db83e63
 --- !u!114 &114690818935670772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,9 +127,9 @@ MonoBehaviour:
     _overLapRunTime: 1.2
     _afterOverLapTime: 0.7
   _flyingTime:
-    _hoveringTime: 3
+    _hoveringTime: 1
     _curHoveringTime: 0
-    _flyTime: 4
+    _flyTime: 2
     _curFlyTime: 0
     _preMissileTime: 1.5
     _afterMissileTime: 2

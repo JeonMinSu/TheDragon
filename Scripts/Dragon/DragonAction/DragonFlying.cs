@@ -44,7 +44,7 @@ public class DragonFlying : DragonAction
             BlackBoard.Instance.HoveringPatternChk();
 
         BlackBoard.Instance.Manager.Ani.ResetTrigger("Flying");
-
+        BlackBoard.Instance.HoveringPatternChk();
     }
 
 }

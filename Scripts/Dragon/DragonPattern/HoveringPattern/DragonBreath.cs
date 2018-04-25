@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragonBreath : DragonAction {
+public class DragonBreath : DragonAction
+{
 
     public override bool Run()
     {
@@ -19,7 +20,7 @@ public class DragonBreath : DragonAction {
         float afterTime = BlackBoard.Instance.GetFlyingTime().AfterBreathTime;
 
         if (IsHovering &&
-            PlayerHP < PlayerMaxHp * 0.5 && 
+            PlayerHP < PlayerMaxHp * 0.5 &&
             CurCrystal < MaxCrystal)
         {
             if (!HoveringAct)

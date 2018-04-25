@@ -32,6 +32,8 @@ public class DragonTakeOff : DragonAction {
 
     IEnumerator TakeOffStartCor(int Index)
     {
+        Transform Dragon = BlackBoard.Instance.Manager.transform;
+
         BlackBoard.Instance.IsTakeOffAct = true;
         BlackBoard.Instance.Clocks.InitLandTimes();
 
