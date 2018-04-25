@@ -29,7 +29,10 @@ public class DragonFlying : DragonAction
     IEnumerator FlyingStartCor(int Index)
     {
         float curTime = 0.0f;
+        float fireTime = 0.0f;
         float MaxTime = BlackBoard.Instance.GetFlyingTime().FlyTime;
+        Transform Player = BlackBoard.Instance.Manager.Player;
+        Transform Dragon = BlackBoard.Instance.Manager.transform;
 
         BlackBoard.Instance.FlyingAct = true;
 
@@ -37,6 +40,16 @@ public class DragonFlying : DragonAction
         {
             BlackBoard.Instance.FlyingMovement(Index);
             curTime += Time.deltaTime;
+            fireTime -= Time.deltaTime;
+
+            Vector3 firePos = Dragon.position + Dragon.up * 5;
+            if(fireTime <= 0.0f)
+            {
+                BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, (Player.position - firePos).normalized);
+                BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, ((Player.position + Player.right * 4) - firePos).normalized);
+                BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, ((Player.position - Player.right * 4) - firePos).normalized);
+                fireTime = 0.5f;
+            }
             yield return CoroutineManager.EndOfFrame;
         }
         if (!BlackBoard.Instance.FlyingPatternAct)

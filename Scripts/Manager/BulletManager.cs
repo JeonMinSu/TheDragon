@@ -34,7 +34,7 @@ public class BulletManager : MonoBehaviour
     public void PlayerBaseBulletFire(Transform _firepos)
     {
         GameObject bullet = Instantiate(BasePlayerBullet, _firepos.position, Quaternion.identity);
-        bullet.GetComponent<BulletBase>().SetBulletValue(_firepos, 50.0f);
+        bullet.GetComponent<BulletBase>().SetBulletValue(_firepos, 150.0f);
         bullet.GetComponent<BulletBase>().SetTag("Player");
     }
 
@@ -87,14 +87,14 @@ public class BulletManager : MonoBehaviour
     public void DragonBaseBulletFire(Transform _firePos)
     {
         GameObject bullet = Instantiate(BaseDragonBullet, _firePos.position, Quaternion.identity);
-        bullet.GetComponent<BulletBase>().SetBulletValue(_firePos, 300.0f);
+        bullet.GetComponent<BulletBase>().SetBulletValue(_firePos, 150.0f);
         bullet.GetComponent<BulletBase>().SetTag("Dragon");
     }
 
     public void DragonBaseBulletFire(Vector3 _firePos, Vector3 _fireDir)
     {
         GameObject bullet = Instantiate(BaseDragonBullet, _firePos, Quaternion.identity);
-        bullet.GetComponent<BulletBase>().SetBulletValue(_firePos,_fireDir, 300.0f);
+        bullet.GetComponent<BulletBase>().SetBulletValue(_firePos,_fireDir, 150.0f);
         bullet.GetComponent<BulletBase>().SetTag("Dragon");
     }
 
