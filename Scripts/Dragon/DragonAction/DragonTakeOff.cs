@@ -9,8 +9,6 @@ public class DragonTakeOff : DragonAction {
 
         int MoveIndex = (int)MoveManagers.TakeOff;
 
-        float curDir = BlackBoard.Instance.Stat.CurTakeOffDir;
-        float LimitDir = BlackBoard.Instance.TakeOffLimitDir;
 
         bool IsTakeOff = BlackBoard.Instance.IsTakeOff;
         bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);

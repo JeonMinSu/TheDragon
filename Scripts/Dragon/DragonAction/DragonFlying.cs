@@ -15,7 +15,6 @@ public class DragonFlying : DragonAction
         if (IsFlying)
         {
             BlackBoard.Instance.Manager.Ani.SetTrigger("Flying");
-
             if (!IsFlyingReady)
                 BlackBoard.Instance.FlyingMoveReady(MoveIndex);
 

@@ -29,7 +29,6 @@ public class DragonHover : DragonAction
                     Quaternion.LookRotation(forward),
                     CurTime / MaxTime);
 
-
             Dragon.rotation =
                 Quaternion.RotateTowards(
                     Dragon.rotation,

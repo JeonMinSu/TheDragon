@@ -9,9 +9,6 @@ public class DragonLanding : DragonAction
 
         int MoveIndex = (int)MoveManagers.Landing;
 
-        float curDir = BlackBoard.Instance.Stat.CurTakeOffDir;
-        float LimitDir = BlackBoard.Instance.TakeOffLimitDir;
-
         bool IsLanding = BlackBoard.Instance.IsLanding;
         bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
         bool IsLandEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;
@@ -23,7 +20,7 @@ public class DragonLanding : DragonAction
 
             if (!BlackBoard.Instance.IsLandingAct)
                 CoroutineManager.DoCoroutine(LandingStartCor(MoveIndex));
-        BlackBoard.Instance.IsStage = true;
+            BlackBoard.Instance.IsStage = true;
 
             return false;
         }

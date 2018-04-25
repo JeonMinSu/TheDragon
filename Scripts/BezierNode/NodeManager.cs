@@ -23,6 +23,8 @@ public class NodeManager : MonoBehaviour {
     private List<Quaternion> _nodesRot = new List<Quaternion>();
 
     private List<float> _nodesSpeed = new List<float>();
+
+    private List<float> _maxNodeDis = new List<float>();
         
     //private Vector3 _curveNodeDir;      //현재노드, 커브노드의 거리 AB
     //private Vector3 _nextNodeDir;       //커브노드, 다음노드의 거리 BC
@@ -37,6 +39,7 @@ public class NodeManager : MonoBehaviour {
     public List<Vector3> NodesDir { get { return _nodesDir; } }
     public List<Quaternion> NodesRot { get { return _nodesRot; } }
     public List<float> NodesSpeed { get { return _nodesSpeed; } }
+    public List<float> MaxNodeDis { get { return _maxNodeDis; } }
 
     public bool IsDragonStick;
     public bool IsMoveLoop;
@@ -63,9 +66,12 @@ public class NodeManager : MonoBehaviour {
     public void AllNodesCalc()  //전체 노드 거리 계산
     {
         Vector3 to = Nodes[0].transform.position;//다음좌표
+        Vector3 from = Nodes[0].transform.position;//다음좌표
 
         for (int index = 0; index + 1 < Nodes.Count; index++) //초기 노드부터 최종 노드까지 돌아가
         {
+            //float Nodedir = 0.0f;
+
             for (int div = 0; div < Nodes[index].NodeDiv; div++)    //다음좌표가 다음 노드포지션 값이랑 일치하는지
             {
                 float t = (1.0f / Nodes[index].NodeDiv) * div;
@@ -74,13 +80,17 @@ public class NodeManager : MonoBehaviour {
                 float speed = Mathf.Lerp(Nodes[index].NodeSpeed, Nodes[index + 1].NodeSpeed, t);
                 Quaternion rot = Quaternion.Lerp(Nodes[index].GetRotate, Nodes[index + 1].GetRotate, t);
 
+                //from = to;
                 to = CalcNodePos(index, index + 1, tt, t);  //현재 좌표
                 _nodesRot.Add(rot);
                 _nodesSpeed.Add(speed);
                 _nodesDir.Add(to);
 
+                //_maxNodeDis += Vector3.Distance(from, to);
+
                 t += NodeInterval; //시간 0~1
             }
+            //_maxNodeDir.Add(Nodedir);
         }
 
     }

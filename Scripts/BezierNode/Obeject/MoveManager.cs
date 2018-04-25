@@ -53,8 +53,6 @@ public class MoveManager : MonoBehaviour {
             float Theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
             Manager[Index].transform.Rotate(0.0f, Theta, 0.0f);
-
-            //Manager[Index].transform.localRotation = Quaternion.Euler(0.0f, Theta, 0.0f);
         }
     }
 

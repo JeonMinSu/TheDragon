@@ -51,6 +51,7 @@ public class DragonBreath : DragonAction
         //용 브레스 실행 애니메이션 넣는 곳
         BlackBoard.Instance.Manager.Ani.ResetTrigger("Hovering");
         BlackBoard.Instance.Manager.Ani.SetTrigger("Breath");
+
         BlackBoard.Instance.BulletManager.DragonBreathOn(Mouth.position, forward);
         //BlackBoard.Instance.BulletManager.DragonBreathOn(Mouth);
         yield return new WaitForSeconds(RunTime);
