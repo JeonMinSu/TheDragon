@@ -34,7 +34,7 @@ public class BulletManager : MonoBehaviour
     public void PlayerBaseBulletFire(Transform _firepos)
     {
         GameObject bullet = Instantiate(BasePlayerBullet, _firepos.position, Quaternion.identity);
-        bullet.GetComponent<BulletBase>().SetBulletValue(_firepos, 50.0f);
+        bullet.GetComponent<BulletBase>().SetBulletValue(_firepos, 150.0f);
         bullet.GetComponent<BulletBase>().SetTag("Player");
     }
 
