@@ -8,21 +8,18 @@ public class DragonFlying : DragonAction
     {
         int MoveIndex = (int)MoveManagers.FlyingCircle;
 
-        float curTime = BlackBoard.Instance.GetFlyingTime().CurFlyTime;
-        float MaxTime = BlackBoard.Instance.GetFlyingTime().FlyTime;
-
         bool IsFlying = BlackBoard.Instance.IsFlying;
         bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
-        bool IsTakeOffEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;
+        bool IsFlyingEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;
 
-        if (IsFlying && !IsTakeOffEnd)
+        if (IsFlying)
         {
             BlackBoard.Instance.Manager.Ani.SetTrigger("Flying");
 
             if (!IsFlyingReady)
                 BlackBoard.Instance.FlyingMoveReady(MoveIndex);
 
-            if (!BlackBoard.Instance.IsTakeOffAct)
+            if (!BlackBoard.Instance.FlyingAct)
                 CoroutineManager.DoCoroutine(FlyingStartCor(MoveIndex));
 
             return false;
@@ -32,11 +29,22 @@ public class DragonFlying : DragonAction
 
     IEnumerator FlyingStartCor(int Index)
     {
-        while (!BlackBoard.Instance.GetNodeManager(Index).IsMoveEnd)
+        float curTime = 0.0f;
+        float MaxTime = BlackBoard.Instance.GetFlyingTime().FlyTime;
+
+        BlackBoard.Instance.FlyingAct = true;
+
+        while (curTime < MaxTime)
         {
             BlackBoard.Instance.FlyingMovement(Index);
+            curTime += Time.deltaTime;
             yield return CoroutineManager.EndOfFrame;
         }
+        if (!BlackBoard.Instance.FlyingPatternAct)
+            BlackBoard.Instance.HoveringPatternChk();
+
+        BlackBoard.Instance.Manager.Ani.ResetTrigger("Flying");
+
     }
 
 }

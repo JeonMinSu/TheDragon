@@ -22,7 +22,6 @@ public class DragonTakeOffChk : DragonConTask
 
         if (CurHP % TakeOffHP == 0 && !IsTakeOffEnd && CurHP != MaxHP)
         {
-            Debug.Log("하늘날기");
             BlackBoard.Instance.Manager.Ani.SetTrigger("TakeOff");
             BlackBoard.Instance.IsStage = false;
             BlackBoard.Instance.IsTakeOff = true;

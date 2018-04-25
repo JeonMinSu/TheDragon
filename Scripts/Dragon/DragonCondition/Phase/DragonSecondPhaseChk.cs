@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DaagonSecondPhaseChk : DragonConTask {
+public class DragonSecondPhaseChk : DragonConTask {
 
     public override bool Run()
     {

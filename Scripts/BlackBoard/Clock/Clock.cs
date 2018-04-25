@@ -62,6 +62,8 @@ public class Clock : MonoBehaviour
     [System.Serializable]
     public class FlyingTimes
     {
+
+        /* 호버링 시간 */
         [SerializeField]
         private float _hoveringTime;
         public float HoveringTime { set { _hoveringTime = value; } get { return _hoveringTime; } }
@@ -70,6 +72,7 @@ public class Clock : MonoBehaviour
         private float _curHoveringTime;
         public float CurHoveringTime { set { _curHoveringTime = value; } get { return _curHoveringTime; } }
 
+        /* 나는 시간 */
         [SerializeField]
         private float _flyTime;
         public float FlyTime { get { return _flyTime; } }
@@ -78,6 +81,7 @@ public class Clock : MonoBehaviour
         private float _curFlyTime;
         public float CurFlyTime { set { _curFlyTime = value; } get { return _curFlyTime; } }
 
+        /* 유도탄 */
         [SerializeField]
         private float _preMissileTime;
         public float PreMissileTime { set { _preMissileTime = value; } get { return _preMissileTime; } }
@@ -86,6 +90,7 @@ public class Clock : MonoBehaviour
         private float _afterMissileTime;
         public float AfterMissileTime { set { _afterMissileTime = value; } get { return _afterMissileTime; } }
 
+        /* 브레스 */
         [SerializeField]
         private float _preBreathTime;
         public float PreBreathTime { set { _preBreathTime = value; } get { return _preBreathTime; } }
@@ -97,6 +102,21 @@ public class Clock : MonoBehaviour
         [SerializeField]
         private float _afterBreathTime;
         public float AfterBreathTime { set { _afterBreathTime = value; } get { return _afterBreathTime; } }
+
+
+        /* 얼음탄환  */
+        [SerializeField]
+        private float _preIceBulletTime;
+        public float PreIceBulletTime { set { _preIceBulletTime = value; } get { return _preIceBulletTime; } }
+
+        [SerializeField]
+        private float _runIceBulletTime;
+        public float RunIceBulletTime { set { _runIceBulletTime = value; } get { return _runIceBulletTime; } }
+
+        [SerializeField]
+        private float _afterIceBulletTime;
+        public float AfterIceBulletIime { set { _afterIceBulletTime = value; } get { return _afterIceBulletTime; } }
+
 
 
         public void InitTime()

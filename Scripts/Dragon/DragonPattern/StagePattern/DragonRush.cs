@@ -15,10 +15,11 @@ public class DragonRush : DragonAction {
         bool IsStage = BlackBoard.Instance.IsStage;
         bool IsStageAct = BlackBoard.Instance.IsStageAct;
 
-        if (BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) && IsStage)
+        if (!BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) && IsStage)
         {
             if (!IsStageAct)
                 CoroutineManager.DoCoroutine(DragonRushStart(preTime, afterTime));
+            Debug.Log("Rush");
 
             return false;
         }
@@ -28,9 +29,16 @@ public class DragonRush : DragonAction {
 
     IEnumerator DragonRushStart(float _preTime, float _afterTime)
     {
+        float Curtime = 0;
+        float RunTime = BlackBoard.Instance.GetLandTime().RushRunTime;
+
         yield return new WaitForSeconds(_preTime);
 
-        yield return CoroutineManager.EndOfFrame;            
+        while (Curtime < RunTime)
+        {
+            Curtime += Time.fixedDeltaTime;
+            yield return CoroutineManager.EndOfFrame;
+        }
 
         yield return new WaitForSeconds(_afterTime);
         BlackBoard.Instance.GetLandTime().CurLandWalkTime = 0.0f;

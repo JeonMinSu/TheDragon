@@ -5,7 +5,9 @@ using UnityEngine;
 public enum MoveManagers
 {
     TakeOff = 0,
-    FlyingCircle
+    FlyingCircle,
+    Landing,
+    OverLap
 }
 
 
@@ -93,10 +95,10 @@ public class BlackBoard : Singleton<BlackBoard>
     private bool _isLanding;    //착륙 중인지
     public bool IsLanding { set { _isLanding = value; } get { return _isLanding; } }
 
-    private bool _isIdle;
+    private bool _isIdle;       //아이들 중인지
     public bool IsIdle { set { _isIdle = value; } get { return _isIdle; } }
 
-    private bool _isWalk;
+    private bool _isWalk;       //걷는 중인지
     public bool IsWalk { set { _isWalk = value; }  get { return _isIdle; } }
 
     private bool _isTakeOff;    //이륙 중인지
@@ -121,8 +123,11 @@ public class BlackBoard : Singleton<BlackBoard>
     private bool _hoveringAct;  //호버링 패턴을 사용하고 있는지
     public bool HoveringAct { set { _hoveringAct = value; } get { return _hoveringAct; } }
 
-    private bool _flyingAct;    //플라잉 패턴을 사용하고 있는지
+    private bool _flyingAct;    //플라잉을 사용하고 있는지
     public bool FlyingAct { set { _flyingAct = value; } get { return _flyingAct; } }
+
+    private bool _flyingPatternAct;
+    public bool FlyingPatternAct { set { _flyingPatternAct = value; } get { return _flyingPatternAct; } }
 
 
     /* 현재 얼음결정 개수 */
@@ -284,6 +289,30 @@ public class BlackBoard : Singleton<BlackBoard>
     public void FlyingMovement(int Index)
     {
         MoveManager.NodeMovement(Index);
+    }
+
+    public void HoveringPatternChk()
+    {
+        if (CurPlayerHP >= PlayerMaxHP * 0.5f &&
+            CurIceCrystalNum < MissileCrystalNum)
+        {
+            IsFlying = false;
+            FlyingAct = false;
+            IsHovering = true;
+            GetFlyingTime().CurHoveringTime = 0.0f;
+            return;
+        }
+
+        if (CurPlayerHP < PlayerMaxHP * 0.5 &&
+            CurIceCrystalNum < BreathCrystalNum)
+        {
+            IsFlying = false;
+            FlyingAct = false;
+            IsHovering = true;
+            GetFlyingTime().CurHoveringTime = 0.0f;
+            return;
+        }
+
     }
 
 }

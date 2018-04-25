@@ -11,7 +11,6 @@ public class DragonHoverChk : DragonConTask
 
         if (isHovering)
         {
-            Debug.Log("Hovering");
             return false;
         }
         return true;

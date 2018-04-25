@@ -25,10 +25,8 @@ public class DragonMissile : DragonAction
             PlayerHP >= PlayerMaxHp * 0.5f &&
             CurCrystal < MaxCrystal)
         {
-            Debug.Log("Missile");
             if (!BlackBoard.Instance.HoveringAct)
                 CoroutineManager.DoCoroutine(MissileShot(preTime, afterTime));
-            BlackBoard.Instance.IsFlying = true;
             return false;
         }
         return true;
@@ -54,6 +52,7 @@ public class DragonMissile : DragonAction
         BlackBoard.Instance.Manager.Ani.ResetTrigger("Hovering");
         BlackBoard.Instance.IsHovering = false;
         BlackBoard.Instance.HoveringAct = false;
+        BlackBoard.Instance.IsFlying = true;
     }
 
 
