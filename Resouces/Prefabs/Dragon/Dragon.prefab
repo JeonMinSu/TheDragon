@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 4787356834057374}
   - component: {fileID: 114830681648848562}
   - component: {fileID: 114725564641127732}
+  - component: {fileID: 114670025034587504}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Dragon
@@ -2147,7 +2148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1365280722710572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -107.6, y: 1.68, z: 28.800003}
+  m_LocalPosition: {x: -107.6, y: 0.5, z: 26.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4981039872699076}
@@ -2404,7 +2405,7 @@ Animator:
   m_GameObject: {fileID: 1322394622508528}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 28454187f22e56541853325e2fd14447, type: 3}
-  m_Controller: {fileID: 9100000, guid: ae536983ee904e248b165247bc0d6456, type: 2}
+  m_Controller: {fileID: 9100000, guid: a1192227d3b64864b8472ed7d58a7e93, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2412,6 +2413,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114670025034587504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1365280722710572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968b3f1dcab3dcd4f835a8cd15c1a966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NodesManager:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114725564641127732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2435,6 +2451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 10
+  _turnSpeed: 70
   _landMoveSpeed: 2
   _landTurnSpeed: 180
   _curRushSpeed: 0
@@ -2446,7 +2463,7 @@ MonoBehaviour:
   _curFlySpeed: 0
   _maxFlySpeed: 30
   _maxHP: 100
-  _hp: 95
+  _hp: 100
   _sight: 5
   _chaseSight: 10
   _damege: 10

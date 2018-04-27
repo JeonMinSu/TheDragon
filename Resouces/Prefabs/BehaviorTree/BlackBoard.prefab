@@ -116,7 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc004bfe75cf6384e813726a43877e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveManager: {fileID: 0}
   _bulletManager: {fileID: 0}
   _dragonMouth: {fileID: 0}
   CurrentPhase: 0
