@@ -9,7 +9,6 @@ public class DragonTakeOff : DragonAction {
 
         int MoveIndex = (int)MoveManagers.TakeOff;
 
-
         bool IsTakeOff = BlackBoard.Instance.IsTakeOff;
         bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
         bool IsTakeOffEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;

@@ -9,6 +9,10 @@ public class DragonStat : MonoBehaviour {
     public float MoveSpeed { set { _moveSpeed = value; } get { return _moveSpeed; } }
 
     [SerializeField]
+    private float _turnSpeed = 70.0f;
+    public float TurnSpeed { set { _turnSpeed = value; } get { return _turnSpeed; } }
+
+    [SerializeField]
     private float _landMoveSpeed = 10.0f;
     public float LandMoveSpeed { set { _landMoveSpeed = value; } get { return _landMoveSpeed; } }
 

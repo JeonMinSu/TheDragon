@@ -10,7 +10,6 @@ public class DragonStageChk : DragonConTask {
 
         if (isStage)
         {
-            Debug.Log("stage");
             return false;
         }
         return true;

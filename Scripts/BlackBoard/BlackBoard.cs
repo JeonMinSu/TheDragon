@@ -17,8 +17,6 @@ public class BlackBoard : Singleton<BlackBoard>
     private DragonManager _manager;
     public DragonManager Manager { get { return _manager; } }
 
-    public MoveManager MoveManager;
-
     [SerializeField]
     private BulletManager _bulletManager;
     public BulletManager BulletManager { get { return _bulletManager; } }
@@ -273,7 +271,7 @@ public class BlackBoard : Singleton<BlackBoard>
 
     public NodeManager GetNodeManager(int Index)
     {
-        return MoveManager.Manager[Index];
+        return Manager.MovesManager.NodesManager[Index];
     }
 
     public bool IsMoveReady(int Index)
@@ -283,12 +281,12 @@ public class BlackBoard : Singleton<BlackBoard>
 
     public void FlyingMoveReady(int Index)
     {
-        MoveManager.MoveMentReady(Index);
+        Manager.MovesManager.MoveMentReady(Index);
     }
 
     public void FlyingMovement(int Index)
     {
-        MoveManager.NodeMovement(Index);
+        Manager.MovesManager.NodeMovement(Index);
     }
 
     public void HoveringPatternChk()

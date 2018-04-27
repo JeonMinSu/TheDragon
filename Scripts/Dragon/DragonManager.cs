@@ -11,6 +11,7 @@ public enum DragonPhases
 
 
 [RequireComponent(typeof(DragonStat))]
+[RequireComponent(typeof(MoveManager))]
 public class DragonManager : MonoBehaviour {
 
     private DragonPhases _currentPhase;
@@ -18,6 +19,9 @@ public class DragonManager : MonoBehaviour {
 
     private AIManager _aiManager;
     public AIManager AIManager { get { return _aiManager; } }
+
+    private MoveManager _movesManager;
+    public MoveManager MovesManager { get { return _movesManager; } }
 
     private DragonStat _stat;
     public DragonStat Stat { get { return _stat; } }
@@ -36,8 +40,9 @@ public class DragonManager : MonoBehaviour {
     private void Awake()
     {
         _player = GameObject.FindWithTag("Player").transform;
-        _aiManager = GetComponent<AIManager>();
+        //_aiManager = GetComponent<AIManager>();
         _stat = GetComponent<DragonStat>();
+        _movesManager = GetComponent<MoveManager>();
         _ani = GetComponentInChildren<Animator>();
 
 
@@ -87,10 +92,9 @@ public class DragonManager : MonoBehaviour {
         _currentPhase = _newPhase;
     }
 
-
-    // Update is called once per frame
-    void Update ()
+    public void FindPaths()
     {
+
     }
 
 }

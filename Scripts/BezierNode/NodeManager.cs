@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    만 든 날 : 2018-03-29 - 16:00
+    만 든 날 : 2018-03-29
     작 성 자 : 전민수
 
     노드 총 관리 Manager
@@ -20,7 +20,7 @@ public class NodeManager : MonoBehaviour {
     public List<BezierNode> Nodes = new List<BezierNode>();    //노드들
 
     private List<Vector3> _nodesDir = new List<Vector3>();
-    private List<Quaternion> _nodesRot = new List<Quaternion>();
+    private List<Vector3> _nodesRot = new List<Vector3>();
 
     private List<float> _nodesSpeed = new List<float>();
 
@@ -37,13 +37,12 @@ public class NodeManager : MonoBehaviour {
     public float NodeInterval = 0.02f; //dir / speed;
 
     public List<Vector3> NodesDir { get { return _nodesDir; } }
-    public List<Quaternion> NodesRot { get { return _nodesRot; } }
+    public List<Vector3> NodesRot { get { return _nodesRot; } }
     public List<float> NodesSpeed { get { return _nodesSpeed; } }
-    public List<float> MaxNodeDis { get { return _maxNodeDis; } }
 
     public bool IsDragonStick;
     public bool IsMoveLoop;
-    public bool IsAxisRot;
+    public bool IsRotation;
 
     private bool _isMoveReady;
     public bool IsMoveReady { set { _isMoveReady = value; } get { return _isMoveReady; } }
@@ -54,15 +53,13 @@ public class NodeManager : MonoBehaviour {
     private int _curNodesIndex;
     public int CurNodesIndex { set { _curNodesIndex = value; } get { return _curNodesIndex; } }
 
-    public Transform CenterAxis;
-
+    public Transform CenterAxisRot;
 
     public void Awake()
     {
         _stat = GetComponent<MoveStat>();
     }
-
-
+    
     public void AllNodesCalc()  //전체 노드 거리 계산
     {
         Vector3 to = Nodes[0].transform.position;//다음좌표
@@ -70,32 +67,30 @@ public class NodeManager : MonoBehaviour {
 
         for (int index = 0; index + 1 < Nodes.Count; index++) //초기 노드부터 최종 노드까지 돌아가
         {
-            //float Nodedir = 0.0f;
-
             for (int div = 0; div < Nodes[index].NodeDiv; div++)    //다음좌표가 다음 노드포지션 값이랑 일치하는지
             {
                 float t = (1.0f / Nodes[index].NodeDiv) * div;
                 float tt = (1.0f - t);
 
-                float speed = Mathf.Lerp(Nodes[index].NodeSpeed, Nodes[index + 1].NodeSpeed, t);
-                Quaternion rot = Quaternion.Lerp(Nodes[index].GetRotate, Nodes[index + 1].GetRotate, t);
+                //float speed;
+                //Vector3 rot;
 
-                //from = to;
+                float speed = Mathf.Lerp(Nodes[index].NodeSpeed, Nodes[index + 1].NodeSpeed, t);
+                Vector3 rot = Vector3.Slerp(Nodes[index].GetRotate.eulerAngles, Nodes[index + 1].GetRotate.eulerAngles, t);
+
                 to = CalcNodePos(index, index + 1, tt, t);  //현재 좌표
+
                 _nodesRot.Add(rot);
                 _nodesSpeed.Add(speed);
                 _nodesDir.Add(to);
 
-                //_maxNodeDis += Vector3.Distance(from, to);
 
                 t += NodeInterval; //시간 0~1
             }
-            //_maxNodeDir.Add(Nodedir);
         }
 
     }
-
-
+    
     public Vector3 CalcNodePos(int Current, int Next, float LostT, float NextT)   //하나 하나의 노드 거리 계산
     {
         if (Current >= Nodes.Count || Next >= Nodes.Count)
