@@ -9,6 +9,9 @@ public class DragonOverLap : DragonAction {
         Transform Dragon = BlackBoard.Instance.Manager.transform;
         Transform Player = BlackBoard.Instance.Manager.Player;
 
+        bool IsStage = BlackBoard.Instance.IsStage;
+
+        /*
         int MoveIndex = (int)MoveManagers.OverLap;
 
 
@@ -17,15 +20,15 @@ public class DragonOverLap : DragonAction {
 
         bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
 
-        bool IsStage = BlackBoard.Instance.IsStage;
         bool IsStageAct = BlackBoard.Instance.IsStageAct;
         
+        */
         if (BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) && IsStage)
         {
-            if (!IsFlyingReady)
-                BlackBoard.Instance.FlyingMoveReady(MoveIndex);
-            if (!IsStageAct)
-                CoroutineManager.DoCoroutine(OverLapCor(preTime, afterTime, MoveIndex));
+            //if (!IsFlyingReady)
+            //    //BlackBoard.Instance.FlyingMoveReady(MoveIndex);
+            //if (!IsStageAct)
+            //    //CoroutineManager.DoCoroutine(OverLapCor(preTime, afterTime, MoveIndex));
 
             Debug.Log("OverLap");
 
@@ -33,7 +36,7 @@ public class DragonOverLap : DragonAction {
         }
         return true;
     }
-
+    /*
     IEnumerator OverLapCor(float preTime, float afterTime, int moveIndex)
     {
         float Curtime = 0;
@@ -56,6 +59,6 @@ public class DragonOverLap : DragonAction {
         BlackBoard.Instance.GetLandTime().CurLandWalkTime = 0.0f;
 
     }
-
+    */
 
 }
