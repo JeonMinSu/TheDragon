@@ -16,7 +16,7 @@ public class DragonLanding : DragonAction
         if (IsLanding && !IsLandEnd)
         {
             if (!IsFlyingReady)
-                BlackBoard.Instance.FlyingMoveReady(MoveIndex);
+                BlackBoard.Instance.MoveMentReady(MoveIndex);
 
             if (!BlackBoard.Instance.IsLandingAct)
                 CoroutineManager.DoCoroutine(LandingStartCor(MoveIndex));

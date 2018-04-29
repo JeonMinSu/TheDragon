@@ -6,8 +6,7 @@ public enum MoveManagers
 {
     TakeOff = 0,
     FlyingCircle,
-    Landing,
-    OverLap
+    Landing
 }
 
 
@@ -279,7 +278,7 @@ public class BlackBoard : Singleton<BlackBoard>
         return GetNodeManager(Index).IsMoveReady;
     }
 
-    public void FlyingMoveReady(int Index)
+    public void MoveMentReady(int Index)
     {
         Manager.MovesManager.MoveMentReady(Index);
     }

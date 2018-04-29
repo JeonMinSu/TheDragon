@@ -9,39 +9,52 @@ using UnityEngine;
     베지어곡선을 이용한 노드를 사용하여 오브젝트 이동    
 */
 
-[RequireComponent(typeof(DragonManager))]
 public class MoveManager : MonoBehaviour {
 
     public List<NodeManager> NodesManager;
 
-    private DragonManager _dragon;
-    public DragonManager Dragon { get { return _dragon; } }
+    private GameObject _moveObject;
+    public GameObject MoveObject { get { return _moveObject; } }
 
     private void Awake()
     {
-        _dragon = GetComponent<DragonManager>();
+        _moveObject = this.gameObject;
     }
 
-    /* 노드위치를 용에게 */
-    public void Stick(int Index)
+    /* 노드 찾기 */
+    public bool FindNode(int Index)
     {
-        if (NodesManager[Index].IsDragonStick)
-        { 
-            Vector3 forward = Dragon.transform.position - NodesManager[Index].transform.position;
-            NodesManager[Index].transform.rotation = Quaternion.LookRotation(forward);
-            NodesManager[Index].transform.position = Dragon.transform.position;
-        }
-        else
-        {
-            Vector3 forward = (NodesManager[Index].transform.position - Dragon.transform.position).normalized;
+        if (!NodesManager[Index].IsRotation) { 
+            if (NodesManager[Index].IsStick)
+            { 
+                Vector3 forward = MoveObject.transform.position - NodesManager[Index].transform.position;
+                NodesManager[Index].transform.rotation = Quaternion.LookRotation(forward);
+                NodesManager[Index].transform.position = MoveObject.transform.position;
+                return true;
+            }
+            else
+            {
+                Vector3 forward = (NodesManager[Index].transform.position - MoveObject.transform.position).normalized;
 
-            Dragon.transform.rotation =
-                Quaternion.Lerp(
-                    Dragon.transform.rotation,
-                    Quaternion.LookRotation(forward),
-                    Dragon.Stat.TurnSpeed * Time.deltaTime);
-        }
+                if (Vector3.Distance(MoveObject.transform.position, NodesManager[Index].Nodes[0].transform.position) != 0.0f)
+                {
+                    MoveObject.transform.position =
+                        Vector3.MoveTowards(
+                            MoveObject.transform.position,
+                            NodesManager[Index].transform.position,
+                            70.0f * Time.deltaTime);
 
+                    MoveObject.transform.rotation =
+                        Quaternion.Lerp(
+                            MoveObject.transform.rotation,
+                            Quaternion.LookRotation(forward),
+                            360.0f * Time.deltaTime);
+                    return false;
+                }
+                return true;
+            }
+        }
+        return true;
     } 
 
     /* 중심축으로 회전 */
@@ -49,7 +62,7 @@ public class MoveManager : MonoBehaviour {
     {
         if (NodesManager[Index].IsRotation)
         {
-            Vector3 forward = (Dragon.transform.position - NodesManager[Index].transform.position).normalized;
+            Vector3 forward = (MoveObject.transform.position - NodesManager[Index].transform.position).normalized;
             float dot = Vector3.Dot(forward, Vector3.forward);
             float Theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
@@ -72,8 +85,11 @@ public class MoveManager : MonoBehaviour {
     //노드 포지션 및 로테이션 셋팅
     public void MoveMentReady(int Index)
     {
-        Stick(Index);
         AxisRotation(Index);
+        bool isFindNode = FindNode(Index);
+        if (!isFindNode)
+            return;
+
 
         NodesManager[Index].AllNodesCalc();
 
@@ -100,68 +116,65 @@ public class MoveManager : MonoBehaviour {
             NodesManager[Index].IsMoveEnd = false;
 
             float moveDistance = NodesManager[Index].Stat.NodeSpeed[NodesIndex] * Time.deltaTime;
-            float nextDistance = Vector3.Distance(NodesManager[Index].Stat.NodeDir[NodesIndex], Dragon.transform.position);
+            float nextDistance = Vector3.Distance(NodesManager[Index].Stat.NodeDir[NodesIndex], MoveObject.transform.position);
+            
+            Vector3 dir = (NodesManager[Index].Stat.NodeDir[NodesIndex] - MoveObject.transform.position).normalized;
+            Vector3 eulerAngle = NodesManager[Index].NodesRot[NodesIndex];
 
-            Vector3 dir = (NodesManager[Index].Stat.NodeDir[NodesIndex] - Dragon.transform.position).normalized;
-            Vector3 eulerAngle = Vector3.zero;
-
-            if (NodesIndex + 1 < NodesCount)
-            {
-                eulerAngle = (NodesManager[Index].NodesRot[NodesIndex] - NodesManager[Index].Stat.NodeRot[NodesIndex + 1]);
-            }
-
+            //if (NodesIndex + 1 < NodesCount)
+            //{
+            //    eulerAngle = (NodesManager[Index].NodesRot[NodesIndex] - NodesManager[Index].Stat.NodeRot[NodesIndex + 1]);
+            //}
+            
 
             for (; moveDistance > nextDistance;)
             {
-
-                Dragon.transform.position += dir * nextDistance;
-
+                MoveObject.transform.position += dir * nextDistance;
                 moveDistance -= nextDistance;
 
                 NodesManager[Index].CurNodesIndex++;
-
                 NodesIndex = NodesManager[Index].CurNodesIndex;
 
-                if (NodesIndex + 1 >= NodesCount)
+                if (NodesIndex >= NodesCount)
                     return;
-                dir = (NodesManager[Index].Stat.NodeDir[NodesIndex + 1] - Dragon.transform.position).normalized;
+                dir = (NodesManager[Index].Stat.NodeDir[NodesIndex] - MoveObject.transform.position).normalized;
 
-                eulerAngle = 
-                    (NodesManager[Index].Stat.NodeRot[NodesIndex + 1] - NodesManager[Index].Stat.NodeRot[NodesIndex]);
+                eulerAngle = NodesManager[Index].Stat.NodeRot[NodesIndex];
+                //(NodesManager[Index].Stat.NodeRot[NodesIndex - 1] - NodesManager[Index].Stat.NodeRot[NodesIndex]);
 
-                nextDistance = Vector3.Distance(NodesManager[Index].Stat.NodeDir[NodesIndex + 1],
-                    Dragon.transform.position);
+
+                nextDistance = Vector3.Distance(NodesManager[Index].Stat.NodeDir[NodesIndex],
+                    MoveObject.transform.position);
 
             }
 
             if (NodesManager[Index].CenterAxisRot != null)
             {
-                Vector3 CentralAxis = (NodesManager[Index].CenterAxisRot.position - Dragon.transform.position).normalized;
-                
-                Dragon.transform.rotation =
+                Vector3 CentralAxis = (NodesManager[Index].CenterAxisRot.position - MoveObject.transform.position).normalized;
+
+                MoveObject.transform.rotation =
                     Quaternion. Slerp(
-                        Dragon.transform.rotation,
+                        MoveObject.transform.rotation,
                         Quaternion.LookRotation(dir, CentralAxis),
                         45.0f * Time.fixedDeltaTime);
             }
             else
-            { 
-                Quaternion rot = (Quaternion.LookRotation(dir, Dragon.transform.up) 
+            {
+                Quaternion rot = (Quaternion.LookRotation(dir, Vector3.up)
                     * Quaternion.Euler(eulerAngle));
 
-                //Debug.Log(rot);
-
+                //Quaternion rot = (Quaternion.LookRotation(dir, Vector3.up));
                 //Quaternion rot = Quaternion.LookRotation(dir, Dragon.transform.up) 
                 //    * Quaternion.Euler(eulerAngle);
 
-                Dragon.transform.rotation = rot;
+                MoveObject.transform.rotation = rot;
             }
 
-            Dragon.transform.position += dir * NodesManager[Index].Stat.NodeSpeed[NodesIndex] * Time.deltaTime;
+            MoveObject.transform.position += dir * moveDistance;
 
             if (NodesIndex + 1 >= NodesCount)
                 return;
-            dir = (NodesManager[Index].Stat.NodeDir[NodesIndex] - Dragon.transform.position).normalized;
+            dir = (NodesManager[Index].Stat.NodeDir[NodesIndex] - MoveObject.transform.position).normalized;
 
         }
         else
@@ -170,5 +183,6 @@ public class MoveManager : MonoBehaviour {
             MovementLoop(Index);
         }
     }
+
 
 }
