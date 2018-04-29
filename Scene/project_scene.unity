@@ -2201,6 +2201,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114670025034587504, guid: 3360acf4e49b3be4fa53e91a96afd13b,
+        type: 2}
+      propertyPath: NodesManager.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4787356834057374, guid: 3360acf4e49b3be4fa53e91a96afd13b, type: 2}
       propertyPath: m_LocalPosition.x
       value: -161.2
@@ -2259,9 +2264,20 @@ Prefab:
       propertyPath: m_TagString
       value: DragonTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 114670025034587504, guid: 3360acf4e49b3be4fa53e91a96afd13b,
+        type: 2}
+      propertyPath: NodesManager.Array.data[2]
+      value: 
+      objectReference: {fileID: 889754084}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3360acf4e49b3be4fa53e91a96afd13b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &351386882 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114725564641127732, guid: 3360acf4e49b3be4fa53e91a96afd13b,
+    type: 2}
+  m_PrefabInternal: {fileID: 351386881}
+  m_Script: {fileID: 11500000, guid: 42ddf7e138d2cd74281d8f501b7c9e40, type: 3}
 --- !u!1001 &376745260
 Prefab:
   m_ObjectHideFlags: 0
@@ -8657,6 +8673,12 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a750499f527db6f46b8f45293d4f30d0, type: 3}
   m_PrefabInternal: {fileID: 1262765695}
+--- !u!114 &889754084 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114423070621582956, guid: 64cfa7b14a5bcab49b5731f32ea9ce2d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1097714427}
+  m_Script: {fileID: 11500000, guid: 50ea951e6c948e04488c7c1a3f045932, type: 3}
 --- !u!1 &890338696 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 42a9c76ee0857f84ab140bbf6d277268, type: 3}
@@ -10882,6 +10904,7 @@ MonoBehaviour:
   - {fileID: 324710371}
   - {fileID: 1622828096}
   targetDelayTime: 10
+  dragonManager: {fileID: 351386882}
   targetActiveEffect: {fileID: 796245508}
   targetDestroyEffect: {fileID: 1603570004985770, guid: 316cb3733802c5040a932a6b836be5b4,
     type: 2}
