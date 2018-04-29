@@ -27,21 +27,22 @@ public class GunManager : MonoBehaviour {
             delayTime -= Time.deltaTime;
     }
 
-    public void Fire()
+    public bool Fire()
     {
         if(delayTime <= 0)
         {
             delayTime = shotDelay;
             if (FireHand == GunFireHand.RIGHT_POS)
             {
-                GunRight.Fire();
                 FireHand = GunFireHand.LEFT_POS;
+                return GunRight.Fire();
             }
             else
             {
-                GunLeft.Fire();
                 FireHand = GunFireHand.RIGHT_POS;
+                return GunLeft.Fire();
             }
         }
+        return false;
     }
 }

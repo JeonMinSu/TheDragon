@@ -50,6 +50,7 @@ namespace PlayerCharacter
         public float _CameraDownAngleX = 60;
         public float _CameraUpAngleX = -80;
         Vector3 _CameraEventAngle;
+        Vector3 _CameraFireAngle;
 
         //순간이동 관련 값
         public float _FlashDistance = 10;

@@ -23,8 +23,6 @@ public class TargetManager : MonoBehaviour {
 	void Start ()
     {
         targetCamera = GetComponent<Camera>();
-
-
     }
 	
 	// Update is called once per frame
@@ -53,7 +51,7 @@ public class TargetManager : MonoBehaviour {
 
     void Hit()
     {
-        if(!corHit)
+        if(!corHit && targetActiveTime > 2.0f && targetActiveTime <= 8.0f)
         isHit = true;
         //Debug.Log("HitOK");
     }

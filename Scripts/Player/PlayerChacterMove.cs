@@ -75,7 +75,9 @@ namespace PlayerCharacter
             }
             if ((_PlayerUpdateState & (int)PLAYERUPDATESTATE.ATTACK) == (int)PLAYERUPDATESTATE.ATTACK)
             {
-                gunManager.Fire();
+                bool isFire = gunManager.Fire();
+                if(isFire)
+                StartCoroutine("CorCameraFireShake");
             }
             //if ((_PlayerUpdateState == PLAYERUPDATESTATE.FLASH) && corFlash == false &&  _FlashCoolTime <= 0)
             //{

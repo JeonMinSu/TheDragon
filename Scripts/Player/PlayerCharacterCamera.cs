@@ -21,7 +21,7 @@ namespace PlayerCharacter
                 CameraRot.x = _CameraUpAngleX;
 
             this.transform.rotation = Quaternion.Euler(PlayerRot);
-            headCamera.transform.rotation = Quaternion.Euler(CameraRot + _CameraEventAngle);
+            headCamera.transform.rotation = Quaternion.Euler(CameraRot + _CameraEventAngle + _CameraFireAngle);
         }
 
         //카메라 흔들리는거
@@ -95,27 +95,18 @@ namespace PlayerCharacter
             }
         }
 
-        private IEnumerator CorCameraShakeVertical()
+        private IEnumerator CorCameraFireShake()
         {
-            float time = 0;
-            while (time < ShakingPlayTime)
+            float time = 0.1f;
+            while (time > 0)
             {
-                _CameraEventAngle.x = Mathf.Sin(time * Mathf.Deg2Rad * 2000) * 1;
-                //Vector3 shakingPos = Random.insideUnitSphere * ShakingRadius;
-                //_CameraEventAngle.x -= shakingPos.x;
-                time += Time.fixedDeltaTime;
-                yield return new WaitForEndOfFrame();
-                //yield return new WaitForSeconds(ShakingWaitTime);
-            }
-
-            for (int i = 0; i < 10; i++)
-            {
-                _CameraEventAngle = Vector3.Lerp(_CameraEventAngle, Vector3.zero, (float)i / 10);
+                _CameraFireAngle.x = time / ShakingPlayTime * -1;
+                time -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
-
             _CameraEventAngle = Vector3.zero;
             yield return null;
         }
+
     }
 }

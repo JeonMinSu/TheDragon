@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class GunBase : MonoBehaviour {
 
-    public GameObject FirePos;
-    public GameObject FireEffect;
-    public BulletManager bulletManager;
+    [SerializeField] private GameObject FirePos;
+    [SerializeField] private GameObject FireEffect;
+    [SerializeField] private BulletManager bulletManager;
 
     //최대 총알 갯수
-    public int maxBulletCount;
+    [SerializeField] private int maxBulletCount;
     //현재 총알 갯수
     int currentBulletCount;
     //장전 개수
-    public int maxChargeCount;
+    [SerializeField] private int maxChargeCount;
     //현재 장탄 개수
     int currentChargeCount;
+
+    //sound
+    [SerializeField] private List<AudioClip> FireSounds;
+    private AudioSource audioSource;
+    int playCount;
 
 
 	void Start ()
@@ -23,20 +28,28 @@ public class GunBase : MonoBehaviour {
         currentBulletCount = maxBulletCount;
         currentBulletCount -= maxChargeCount;
         currentChargeCount = maxChargeCount;
-	}
+        audioSource = GetComponent<AudioSource>();
+
+    }
     //발사
-    public void Fire()
+    public bool Fire()
     {
         if(currentChargeCount > 0)
         {
             FireEffect.SetActive(false);
             FireEffect.SetActive(true);
             bulletManager.PlayerBaseBulletFire(FirePos.transform);
+            playCount = Random.Range(0, FireSounds.Count);
+            audioSource.clip = FireSounds[playCount];
+            audioSource.Play();
+            //FireSounds[playCount].Play();
             currentChargeCount -= 1;
+            return true;
         }
         else
         {
             Reload();
+            return false;
         }
     }
 
