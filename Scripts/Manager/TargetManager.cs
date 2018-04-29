@@ -7,7 +7,7 @@ public class TargetManager : MonoBehaviour {
 
 
     [SerializeField] private List<Collider> targets;     //Dragon Target Colliders
-    [SerializeField] private float targetDelayTime = 3.0f;
+    [SerializeField] private float targetDelayTime = 10.0f;
     [SerializeField] private GameObject targetActiveEffect;
     [SerializeField] private GameObject targetDestroyEffect;
     float targetActiveTime = 0.0f;
