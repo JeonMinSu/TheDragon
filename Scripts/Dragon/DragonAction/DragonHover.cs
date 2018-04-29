@@ -14,13 +14,10 @@ public class DragonHover : DragonAction
         float CurTime = BlackBoard.Instance.GetFlyingTime().CurHoveringTime;
 
         bool IsHovering = BlackBoard.Instance.IsHovering;
-        //if (CurTime < MaxTime && IsHovering)
 
         if (IsHovering && CurTime < MaxTime)
         {
             Vector3 forward = (Player.position - Dragon.position).normalized;
-
-            Debug.Log("Hovering");
 
             Dragon.rotation =
                 Quaternion.Lerp(
@@ -33,8 +30,7 @@ public class DragonHover : DragonAction
             BlackBoard.Instance.GetFlyingTime().CurHoveringTime = CurTime;
             BlackBoard.Instance.Manager.Ani.SetTrigger("Hovering");
 
-            //return false;
-            return Quaternion.Equals(Dragon.rotation, Quaternion.LookRotation(forward));
+            return false;
         }
         return true;
     }

@@ -8,8 +8,9 @@ public class DragonHoverChk : DragonConTask
     {
 
         bool isHovering = BlackBoard.Instance.IsHovering;
+        bool FlyingAct = BlackBoard.Instance.FlyingAct;
 
-        if (isHovering)
+        if (isHovering && !FlyingAct)
         {
             return false;
         }

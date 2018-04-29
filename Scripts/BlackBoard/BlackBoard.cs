@@ -49,6 +49,10 @@ public class BlackBoard : Singleton<BlackBoard>
     private float _hpLand;
     public float HpLand { set { _hpLand = value; } get { return _hpLand; } }
 
+    [SerializeField]
+    private float _changedHP;
+    public float ChangedHP { set { _changedHP = value; } get { return _changedHP; } }
+
     /* 보스몹 페이즈 관련 변수 */
     [SerializeField]
     private float _hpPhaseSecond;
@@ -164,6 +168,8 @@ public class BlackBoard : Singleton<BlackBoard>
 
         /* 스텟 초기화 */
         _stat = _manager.Stat;
+
+        _changedHP = _stat.MaxHP;
 
         _hpTakeOff = _stat.MaxHP * _maxHpTakeOffPercent;
         _hpLand = _stat.MaxHP * _maxHpLandPercent;

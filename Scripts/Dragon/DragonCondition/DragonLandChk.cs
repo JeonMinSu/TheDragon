@@ -6,14 +6,18 @@ public class DragonLandChk : DragonConTask
 {
     public override bool Run()
     {
-        float CurHP = BlackBoard.Instance.Stat.HP;          //현재HP
-        float TakeOffHP = BlackBoard.Instance.HpTakeOff; //날기 위한 HP퍼센트
+        float CurHP = BlackBoard.Instance.Stat.HP;    //현재HP
         float LandHP = BlackBoard.Instance.HpLand;    //땅으로 가기 위한 퍼센트
 
-        bool IsFlyAct = BlackBoard.Instance.FlyingAct;
-        bool IsHoveringAct = BlackBoard.Instance.HoveringAct;
+        float ChangedHP = BlackBoard.Instance.ChangedHP;
 
-        if (CurHP % LandHP == 0 && (IsFlyAct || IsHoveringAct))
+        bool IsFly = BlackBoard.Instance.IsFlying;
+        bool IsHovering = BlackBoard.Instance.IsHovering;
+
+        bool IsFlyingAct = BlackBoard.Instance.FlyingAct;
+        bool IsHoveringAct = BlackBoard.Instance.HoveringAct;
+        
+        if (ChangedHP - LandHP >= CurHP && (IsFly || IsHovering) && (!IsFlyingAct && !IsHoveringAct))
         {
             BlackBoard.Instance.IsLanding = true;
             Debug.Log("땅으로~");

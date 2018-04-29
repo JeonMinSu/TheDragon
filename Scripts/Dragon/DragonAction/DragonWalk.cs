@@ -19,7 +19,6 @@ public class DragonWalk : DragonAction
             float turnSpeed = BlackBoard.Instance.Stat.LandTurnSpeed;
 
             bool IsRadiusChk = BlackBoard.Instance.IsRadiusChk;
-            Debug.Log("Walk");
 
             if (!BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f))
             {

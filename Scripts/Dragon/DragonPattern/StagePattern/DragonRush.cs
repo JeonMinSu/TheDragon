@@ -9,16 +9,16 @@ public class DragonRush : DragonAction {
         Transform Dragon = BlackBoard.Instance.Manager.transform;
         Transform Player = BlackBoard.Instance.Manager.Player;
 
-        //float preTime = BlackBoard.Instance.GetLandTime().PreRushTime;
-        //float afterTime = BlackBoard.Instance.GetLandTime().AfterRushTime;
+        float preTime = BlackBoard.Instance.GetLandTime().PreRushTime;
+        float afterTime = BlackBoard.Instance.GetLandTime().AfterRushTime;
 
         bool IsStage = BlackBoard.Instance.IsStage;
-        //bool IsStageAct = BlackBoard.Instance.IsStageAct;
+        bool IsStageAct = BlackBoard.Instance.IsStageAct;
 
         if (!BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) && IsStage)
         {
-            //if (!IsStageAct)
-                //CoroutineManager.DoCoroutine(DragonRushStart(preTime, afterTime));
+            if (!IsStageAct)
+                CoroutineManager.DoCoroutine(DragonRushStart(preTime, afterTime));
             Debug.Log("Rush");
 
             return false;
@@ -26,14 +26,14 @@ public class DragonRush : DragonAction {
         return true;
 
     }
-    /*
     IEnumerator DragonRushStart(float _preTime, float _afterTime)
     {
         float Curtime = 0;
         float RunTime = BlackBoard.Instance.GetLandTime().RushRunTime;
 
-        yield return new WaitForSeconds(_preTime);
+        BlackBoard.Instance.IsStageAct = true;
 
+        yield return new WaitForSeconds(_preTime);
         while (Curtime < RunTime)
         {
             Curtime += Time.fixedDeltaTime;
@@ -45,7 +45,6 @@ public class DragonRush : DragonAction {
         BlackBoard.Instance.IsStageAct = false;
 
     }
-    */
 
 
 

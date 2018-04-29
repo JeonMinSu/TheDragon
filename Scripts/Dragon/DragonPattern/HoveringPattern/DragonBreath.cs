@@ -25,8 +25,6 @@ public class DragonBreath : DragonAction
         {
             if (!HoveringAct)
                 CoroutineManager.DoCoroutine(BreathShot(preTime, afterTime));
-            Debug.Log("Breath");
-
             return false;
         }
         return true;

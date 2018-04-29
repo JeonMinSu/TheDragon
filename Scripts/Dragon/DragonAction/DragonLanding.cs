@@ -9,38 +9,45 @@ public class DragonLanding : DragonAction
 
         int MoveIndex = (int)MoveManagers.Landing;
 
+        float CurHP = BlackBoard.Instance.Stat.HP;
+
         bool IsLanding = BlackBoard.Instance.IsLanding;
-        bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
+        bool IsLandingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
         bool IsLandEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;
 
         if (IsLanding && !IsLandEnd)
         {
-            if (!IsFlyingReady)
+            if (!IsLandingReady)
                 BlackBoard.Instance.MoveMentReady(MoveIndex);
             else
             {
-                if (!BlackBoard.Instance.FlyingAct)
+                if (!BlackBoard.Instance.IsLandingAct)
                     CoroutineManager.DoCoroutine(LandingStartCor(MoveIndex));
+                
+                BlackBoard.Instance.ChangedHP = CurHP;
                 BlackBoard.Instance.IsStage = true;
             }
             return false;
         }
-        return false;
+        return true;
     }
 
-    IEnumerator LandingStartCor(int moveIndex)
+    IEnumerator LandingStartCor(int Index)
     {
         BlackBoard.Instance.IsLandingAct = true;
         BlackBoard.Instance.Clocks.InitFlyingTime();
 
-        while (!BlackBoard.Instance.GetNodeManager(moveIndex).IsMoveEnd)
+        while (!BlackBoard.Instance.GetNodeManager(Index).IsMoveEnd)
         {
-            BlackBoard.Instance.FlyingMovement(moveIndex);
+            BlackBoard.Instance.FlyingMovement(Index);
             yield return CoroutineManager.EndOfFrame;
         }
         BlackBoard.Instance.Manager.Ani.ResetTrigger("Landing");
         BlackBoard.Instance.IsLanding = false;
         BlackBoard.Instance.IsLandingAct = false;
+        BlackBoard.Instance.IsHovering = false;
+        BlackBoard.Instance.IsFlying = false;
+        BlackBoard.Instance.GetNodeManager(Index).IsMoveEnd = false;
 
     }
 

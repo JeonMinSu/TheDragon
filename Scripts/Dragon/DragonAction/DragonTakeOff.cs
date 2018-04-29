@@ -9,6 +9,8 @@ public class DragonTakeOff : DragonAction {
 
         int MoveIndex = (int)MoveManagers.TakeOff;
 
+        float CurHP = BlackBoard.Instance.Stat.HP;
+
         bool IsTakeOff = BlackBoard.Instance.IsTakeOff;
         bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
         bool IsTakeOffEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;
@@ -21,6 +23,7 @@ public class DragonTakeOff : DragonAction {
             { 
                 if (!BlackBoard.Instance.IsTakeOffAct)
                     CoroutineManager.DoCoroutine(TakeOffStartCor(MoveIndex));
+                BlackBoard.Instance.ChangedHP = CurHP;
                 BlackBoard.Instance.IsHovering = true;
             }
 
@@ -31,8 +34,6 @@ public class DragonTakeOff : DragonAction {
 
     IEnumerator TakeOffStartCor(int Index)
     {
-        Transform Dragon = BlackBoard.Instance.Manager.transform;
-
         BlackBoard.Instance.IsTakeOffAct = true;
         BlackBoard.Instance.Clocks.InitLandTimes();
 
@@ -44,6 +45,9 @@ public class DragonTakeOff : DragonAction {
         BlackBoard.Instance.Manager.Ani.ResetTrigger("TakeOff");
         BlackBoard.Instance.IsTakeOff = false;
         BlackBoard.Instance.IsTakeOffAct = false;
+        BlackBoard.Instance.IsStage = false;
+        BlackBoard.Instance.GetNodeManager(Index).IsMoveEnd = false;
+
 
     }
 

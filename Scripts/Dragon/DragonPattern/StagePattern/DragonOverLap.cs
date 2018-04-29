@@ -11,24 +11,22 @@ public class DragonOverLap : DragonAction {
 
         bool IsStage = BlackBoard.Instance.IsStage;
 
-        /*
-        int MoveIndex = (int)MoveManagers.OverLap;
+        //int MoveIndex = (int)MoveManagers.OverLap;
 
 
         float preTime = BlackBoard.Instance.GetLandTime().PreOverLapTime;
         float afterTime = BlackBoard.Instance.GetLandTime().AfterOverLapTime;
 
-        bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
+        //bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
 
         bool IsStageAct = BlackBoard.Instance.IsStageAct;
         
-        */
         if (BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) && IsStage)
         {
             //if (!IsFlyingReady)
             //    //BlackBoard.Instance.FlyingMoveReady(MoveIndex);
-            //if (!IsStageAct)
-            //    //CoroutineManager.DoCoroutine(OverLapCor(preTime, afterTime, MoveIndex));
+            if (!IsStageAct)
+                CoroutineManager.DoCoroutine(OverLapCor(preTime, afterTime));
 
             Debug.Log("OverLap");
 
@@ -36,8 +34,8 @@ public class DragonOverLap : DragonAction {
         }
         return true;
     }
-    /*
-    IEnumerator OverLapCor(float preTime, float afterTime, int moveIndex)
+
+    IEnumerator OverLapCor(float preTime, float afterTime)
     {
         float Curtime = 0;
         float RunTime = BlackBoard.Instance.GetLandTime().OverLapRunTime;
@@ -48,17 +46,14 @@ public class DragonOverLap : DragonAction {
 
         while (Curtime < RunTime)
         {
-            BlackBoard.Instance.FlyingMovement(moveIndex);
             Curtime += Time.fixedDeltaTime;
             yield return CoroutineManager.EndOfFrame;
         }
 
         yield return new WaitForSeconds(afterTime);
-
-        BlackBoard.Instance.IsStageAct = false;
         BlackBoard.Instance.GetLandTime().CurLandWalkTime = 0.0f;
+        BlackBoard.Instance.IsStageAct = false;
 
     }
-    */
 
 }
