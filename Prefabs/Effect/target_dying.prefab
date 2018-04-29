@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4203421640229246}
   - component: {fileID: 198082584592973314}
   - component: {fileID: 199771071729560042}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4773906139032840}
   - component: {fileID: 198317898806369330}
   - component: {fileID: 199060144080205934}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: stardust_short
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4039158457240586}
   - component: {fileID: 198549108753774474}
   - component: {fileID: 199608115303096426}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4524742354020896}
   - component: {fileID: 198127857469639162}
   - component: {fileID: 199471368263264652}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: round
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4004280165517590}
   - component: {fileID: 198412124069562304}
   - component: {fileID: 199898750193753070}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4930628845339670}
   - component: {fileID: 198191274278886412}
   - component: {fileID: 199533289951371256}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: stardust_long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4446693023817312}
   - component: {fileID: 198039669666294614}
   - component: {fileID: 199455246073485744}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 4299254238851950}
   - component: {fileID: 198825754595969026}
   - component: {fileID: 199106438376948078}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,13 +156,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4581785745684898}
   - component: {fileID: 95744850374889468}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: target_dying
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4004280165517590
 Transform:
   m_ObjectHideFlags: 1
@@ -20528,10 +20528,10 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1560446890
+  randomSeed: -2118609500
   InitialModule:
     serializedVersion: 3
     enabled: 1

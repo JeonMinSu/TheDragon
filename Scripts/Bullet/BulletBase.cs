@@ -134,6 +134,10 @@ public class BulletBase : MonoBehaviour
                     {
                         rayhit[i].collider.gameObject.GetComponent<IceBlock>().GetDamage(10);
                     }
+                    if(rayhit[i].collider.tag == "DragonTarget")
+                    {
+                        rayhit[i].collider.SendMessage("Hit");
+                    }
                     BulletDestroy();
                 }
             }
