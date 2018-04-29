@@ -8,6 +8,7 @@ public class TargetManager : MonoBehaviour {
 
     [SerializeField] private List<Collider> targets;     //Dragon Target Colliders
     [SerializeField] private float targetDelayTime = 10.0f;
+    [SerializeField] private DragonManager dragonManager;
     [SerializeField] private GameObject targetActiveEffect;
     [SerializeField] private GameObject targetDestroyEffect;
     float targetActiveTime = 0.0f;
@@ -17,12 +18,14 @@ public class TargetManager : MonoBehaviour {
 
     bool isHit = false;
     bool corHit = false;
+
 	// Use this for initialization
 	void Start ()
     {
         targetCamera = GetComponent<Camera>();
 
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -39,6 +42,7 @@ public class TargetManager : MonoBehaviour {
         if (isHit && !corHit)
         {
             StartCoroutine("CorHitEffectOn", activeTargetCount);
+            dragonManager.Hit(10.0f);
         }
         else
         {
