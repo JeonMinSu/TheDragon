@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4635920020015546}
   - component: {fileID: 95232849534588344}
   m_Layer: 0
-  m_Name: breath_on
+  m_Name: breath_On
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

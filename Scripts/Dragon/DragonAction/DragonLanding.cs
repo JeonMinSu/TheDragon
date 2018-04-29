@@ -17,11 +17,12 @@ public class DragonLanding : DragonAction
         {
             if (!IsFlyingReady)
                 BlackBoard.Instance.MoveMentReady(MoveIndex);
-
-            if (!BlackBoard.Instance.IsLandingAct)
-                CoroutineManager.DoCoroutine(LandingStartCor(MoveIndex));
-            BlackBoard.Instance.IsStage = true;
-
+            else
+            {
+                if (!BlackBoard.Instance.FlyingAct)
+                    CoroutineManager.DoCoroutine(LandingStartCor(MoveIndex));
+                BlackBoard.Instance.IsStage = true;
+            }
             return false;
         }
         return false;

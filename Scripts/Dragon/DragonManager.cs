@@ -65,7 +65,7 @@ public class DragonManager : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.F2))
         {
-            _stat.HP = 80.0f;
+            BlackBoard.Instance.Stat.HP = 80.0f;
         }
         if (Input.GetKey(KeyCode.F3))
         {
@@ -91,10 +91,10 @@ public class DragonManager : MonoBehaviour {
         _currentPhase = _newPhase;
     }
 
-    public void FindPaths()
+    public void Hit(float Damege)
     {
-
+        Stat.HP -= Damege;
+        Debug.Log("OnHit");
     }
 
 }
-//
