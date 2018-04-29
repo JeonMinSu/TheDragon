@@ -25,17 +25,17 @@ MonoBehaviour:
         motionVectorsResolution: 24
         motionVectorsAmplitude: 64
   fog:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
-      excludeSkybox: 0
+      excludeSkybox: 1
   antialiasing:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
-      method: 0
+      method: 1
       fxaaSettings:
         preset: 2
       taaSettings:
-        jitterSpread: 0.75
+        jitterSpread: 0.786
         sharpen: 0.3
         stationaryBlending: 0.95
         motionBlending: 0.85
@@ -100,14 +100,14 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.5
-        threshold: 1.3
+        intensity: 0.74
+        threshold: 1.1
         softKnee: 0.301
         radius: 4
         antiFlicker: 1
       lensDirt:
         texture: {fileID: 0}
-        intensity: 2.36
+        intensity: 3
   colorGrading:
     m_Enabled: 1
     m_Settings:
@@ -134,9 +134,9 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 0.7659358, g: 0.8434286, b: 1, a: 0.13994169}
-          power: {r: 0.85578513, g: 0.8134732, b: 1, a: 0}
-          offset: {r: 1, g: 0.9963852, b: 0.7749454, a: 0}
+          slope: {r: 1, g: 0.88260514, b: 0.9118194, a: 0.13994169}
+          power: {r: 0.9189934, g: 0.79456943, b: 1, a: 0}
+          offset: {r: 0.83702224, g: 1, b: 0.76122695, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}
@@ -278,7 +278,7 @@ MonoBehaviour:
   userLut:
     m_Enabled: 0
     m_Settings:
-      lut: {fileID: 0}
+      lut: {fileID: 2800000, guid: fd4c22647f1b62648b21db36bc2463e0, type: 3}
       contribution: 1
   chromaticAberration:
     m_Enabled: 0
@@ -295,13 +295,13 @@ MonoBehaviour:
   vignette:
     m_Enabled: 1
     m_Settings:
-      mode: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
+      mode: 1
+      color: {r: 0.63235295, g: 0.63235295, b: 0.63235295, a: 1}
       center: {x: 0.5, y: 0.5}
       intensity: 0.294
       smoothness: 0.2
       roundness: 1
-      mask: {fileID: 0}
+      mask: {fileID: 2800000, guid: 065247d136abaa042a330ab6a7b030fc, type: 3}
       opacity: 1
       rounded: 0
   dithering:
