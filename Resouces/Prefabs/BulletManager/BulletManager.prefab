@@ -51,17 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4591d17fccc9a94e9af7d37796093b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BasePlayerBullet: {fileID: 1355565957988258, guid: 7bf4b2d415745ca4fb6b7a39cacd1138,
+  BaseBulletPrefab: {fileID: 1355565957988258, guid: 7bf4b2d415745ca4fb6b7a39cacd1138,
     type: 2}
   WaveBulletPrefab: {fileID: 1077555924291846, guid: b58c7e8563d33be468e69ad0d0fd8050,
     type: 2}
-  BaseDragonBullet: {fileID: 1064040161584500, guid: c0de91e9b4167f34686c75cdaf29f1fb,
+  RotateBulletPrefab: {fileID: 1425035866714092, guid: ffed6ed993ea47242bf74d83c144ba79,
     type: 2}
-  RotateDragonBullet: {fileID: 1836643675778412, guid: ac05a269b8174c54192e1a88db42e277,
+  HomingBulletPrefab: {fileID: 1498072268273310, guid: cf7a4f9f601513c41b60643fea9940b8,
     type: 2}
-  HomingDragonBullet: {fileID: 1498072268273310, guid: cf7a4f9f601513c41b60643fea9940b8,
-    type: 2}
-  BreathPrefab: {fileID: 1858721438772370, guid: f4f3021f7fd8f214c96bf67ec617b327,
+  BreathPrefab: {fileID: 1848765830698120, guid: f4f3021f7fd8f214c96bf67ec617b327,
     type: 2}
   IceBlockPrefab: {fileID: 1439547689633074, guid: f6cffd2770584e045a087fb494aa2945,
     type: 2}

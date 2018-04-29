@@ -14,12 +14,13 @@ public class DragonFlying : DragonAction
 
         if (IsFlying)
         {
+            BlackBoard.Instance.Manager.Ani.SetTrigger("Flying");
             if (!IsFlyingReady)
-                BlackBoard.Instance.MoveMentReady(MoveIndex);
-            else { 
-                if (!BlackBoard.Instance.FlyingAct)
-                    CoroutineManager.DoCoroutine(FlyingStartCor(MoveIndex));
-            }
+                BlackBoard.Instance.FlyingMoveReady(MoveIndex);
+
+            if (!BlackBoard.Instance.FlyingAct)
+                CoroutineManager.DoCoroutine(FlyingStartCor(MoveIndex));
+
             return false;
         }
         return true;

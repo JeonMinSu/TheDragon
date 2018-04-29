@@ -40,7 +40,7 @@ public class NodeManager : MonoBehaviour {
     public List<Vector3> NodesRot { get { return _nodesRot; } }
     public List<float> NodesSpeed { get { return _nodesSpeed; } }
 
-    public bool IsStick;
+    public bool IsDragonStick;
     public bool IsMoveLoop;
     public bool IsRotation;
 
@@ -72,9 +72,10 @@ public class NodeManager : MonoBehaviour {
                 float t = (1.0f / Nodes[index].NodeDiv) * div;
                 float tt = (1.0f - t);
 
+                //float speed;
+                //Vector3 rot;
 
                 float speed = Mathf.Lerp(Nodes[index].NodeSpeed, Nodes[index + 1].NodeSpeed, t);
-                
                 Vector3 rot = Vector3.Slerp(Nodes[index].GetRotate.eulerAngles, Nodes[index + 1].GetRotate.eulerAngles, t);
 
                 to = CalcNodePos(index, index + 1, tt, t);  //현재 좌표

@@ -93,6 +93,7 @@ namespace PlayerCharacter
                 }
                 yield return new WaitForEndOfFrame();
             }
+            yield return null;
         }
 
         private IEnumerator CorCameraShakeVertical()

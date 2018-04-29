@@ -16,13 +16,11 @@ public class DragonTakeOff : DragonAction {
         if (IsTakeOff && !IsTakeOffEnd)
         {
             if (!IsFlyingReady)
-                BlackBoard.Instance.MoveMentReady(MoveIndex);
-            else
-            { 
-                if (!BlackBoard.Instance.IsTakeOffAct)
-                    CoroutineManager.DoCoroutine(TakeOffStartCor(MoveIndex));
-                BlackBoard.Instance.IsHovering = true;
-            }
+                BlackBoard.Instance.FlyingMoveReady(MoveIndex);
+
+            if (!BlackBoard.Instance.IsTakeOffAct)
+                CoroutineManager.DoCoroutine(TakeOffStartCor(MoveIndex));
+            BlackBoard.Instance.IsHovering = true;
 
             return false;
         }
