@@ -1139,6 +1139,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 159540239}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &167625138
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4886078851909652, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886078851909652, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886078851909652, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886078851909652, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886078851909652, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886078851909652, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886078851909652, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886078851909652, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c0de91e9b4167f34686c75cdaf29f1fb, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &178661048
 GameObject:
   m_ObjectHideFlags: 0
@@ -14133,6 +14175,18 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 849899549}
+    - target: {fileID: 114924206404704498, guid: 8b3c653cf73e79a4b92ecc78735dc4bc,
+        type: 2}
+      propertyPath: BaseDragonReadySound
+      value: 
+      objectReference: {fileID: 1840333626251232, guid: 7d3f50a7d8f54d84eb6bd86a2acb7d57,
+        type: 2}
+    - target: {fileID: 114924206404704498, guid: 8b3c653cf73e79a4b92ecc78735dc4bc,
+        type: 2}
+      propertyPath: BaseDragonFireSound
+      value: 
+      objectReference: {fileID: 1424531068083570, guid: ebf4d2cb5b91eec4c875b345d52df3ce,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b3c653cf73e79a4b92ecc78735dc4bc, type: 2}
   m_IsPrefabParent: 0

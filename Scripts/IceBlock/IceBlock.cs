@@ -7,7 +7,7 @@ public class IceBlock : MonoBehaviour {
     bool isSpawn;
     public float _Hp;
     public GameObject _PrismBrokenPrefab;
-
+    public GameObject _SpawnSound;
     bool isDead = false;
 
     // Use this for initialization
@@ -37,6 +37,7 @@ public class IceBlock : MonoBehaviour {
     public void Spawn()
     {
         //StartCoroutine("CorSpawnEvent");
+        Instantiate(_SpawnSound, transform.position, Quaternion.identity);
     }
 
     IEnumerator CorSpawnEvent()

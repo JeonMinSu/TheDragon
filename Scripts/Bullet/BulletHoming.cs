@@ -8,7 +8,7 @@ public class BulletHoming : BulletBase
     Vector3 _direction;
     private Transform _target;
     private Transform Target { get { return _target; } }
-    private GameObject Player;
+
     private BulletManager manager;
   
     protected override void UpdateBulletPos()
@@ -52,10 +52,6 @@ public class BulletHoming : BulletBase
     public void SetTarget(Transform _t)
     {
         _target = _t;
-    }
-    public void SetPlayer(GameObject _player)
-    {
-        Player = _player;
     }
     public void SetBulletManager(BulletManager _manager)
     {
