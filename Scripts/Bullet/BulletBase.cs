@@ -84,7 +84,7 @@ public class BulletBase : MonoBehaviour
     //초기 시작할때 추가로 값을 넣어주고 싶은것들은 여기서 작업한다.
     public virtual void StartSettingBullet()
     {
-        this.transform.rotation = Quaternion.LookRotation(_bulletForward, Vector3.up);
+        this.transform.rotation = Quaternion.LookRotation(_bulletForward, this.transform.up);
     }
 
     public void SetBulletSpeed(float moveSpeed)

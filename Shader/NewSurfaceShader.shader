@@ -8,7 +8,7 @@
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
-		LOD 200
+		//LOD 200
 
 		CGPROGRAM
 
@@ -36,12 +36,10 @@
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
 			float rim = dot(o.Normal, IN.viewDir);
-			rim = pow(1 - rim,5 ) ;
+			rim = pow(1 - rim, 3) ;
 
 			o.Emission = rim * c.rgb * 1;
 
-
-			
 			o.Albedo = c.rgb;
 
 			o.Metallic = _Metallic;
