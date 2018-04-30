@@ -42,13 +42,13 @@ public class DragonFlying : DragonAction
             curTime += Time.deltaTime;
             fireTime -= Time.deltaTime;
 
-            Vector3 firePos = Dragon.position + Dragon.up * 5;
+            Vector3 firePos = Dragon.position + Dragon.up * Random.Range(0,5) * 5;
             if(fireTime <= 0.0f)
             {
                 BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, (Player.position - firePos).normalized);
-                BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, ((Player.position + Player.right * 4) - firePos).normalized);
-                BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, ((Player.position - Player.right * 4) - firePos).normalized);
-                fireTime = 0.5f;
+                //BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, ((Player.position + Player.right * 4) - firePos).normalized);
+                //BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, ((Player.position - Player.right * 4) - firePos).normalized);
+                fireTime = 0.15f;
             }
             yield return CoroutineManager.EndOfFrame;
         }
