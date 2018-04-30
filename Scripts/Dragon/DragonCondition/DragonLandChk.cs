@@ -19,8 +19,8 @@ public class DragonLandChk : DragonConTask
         
         if (ChangedHP - LandHP >= CurHP && (IsFly || IsHovering) && (!IsFlyingAct && !IsHoveringAct))
         {
+            Debug.Log("Landing");
             BlackBoard.Instance.IsLanding = true;
-            Debug.Log("땅으로~");
             return false;
         }
         return true;
