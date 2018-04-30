@@ -17,13 +17,13 @@ public class DragonLanding : DragonAction
 
         if (IsLanding && !IsLandEnd)
         {
+            BlackBoard.Instance.aniManager.SwicthAnimation("Landing");
             if (!IsLandingReady)
                 BlackBoard.Instance.MoveMentReady(MoveIndex);
             else
             {
                 if (!BlackBoard.Instance.IsLandingAct)
                     CoroutineManager.DoCoroutine(LandingStartCor(MoveIndex));
-                
                 BlackBoard.Instance.IsStage = true;
             }
             return false;

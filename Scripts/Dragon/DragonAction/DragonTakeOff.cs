@@ -15,15 +15,21 @@ public class DragonTakeOff : DragonAction {
         bool IsFlyingReady = BlackBoard.Instance.IsMoveReady(MoveIndex);
         bool IsTakeOffEnd = BlackBoard.Instance.GetNodeManager(MoveIndex).IsMoveEnd;
 
+        bool IsTakeOffAct = BlackBoard.Instance.IsTakeOffAct;
+        bool IstakeOffReady = BlackBoard.Instance.IsTakeOffReady;
+
         if (IsTakeOff && !IsTakeOffEnd)
         {
-            if (!IsFlyingReady)
+            BlackBoard.Instance.aniManager.SwicthAnimation("TakeOff");
+            if (!IsFlyingReady && IstakeOffReady)
                 BlackBoard.Instance.MoveMentReady(MoveIndex);
+
             else
-            { 
-                if (!BlackBoard.Instance.IsTakeOffAct)
+            {
+                if (!IsTakeOffAct && IsFlyingReady) { 
                     CoroutineManager.DoCoroutine(TakeOffStartCor(MoveIndex));
-                BlackBoard.Instance.IsHovering = true;
+                    BlackBoard.Instance.IsHovering = true;
+                }
             }
 
             return false;
@@ -46,6 +52,7 @@ public class DragonTakeOff : DragonAction {
         BlackBoard.Instance.IsTakeOff = false;
         BlackBoard.Instance.IsTakeOffAct = false;
         BlackBoard.Instance.IsStage = false;
+        BlackBoard.Instance.IsTakeOffReady = false;
         BlackBoard.Instance.GetNodeManager(Index).IsMoveEnd = false;
 
 

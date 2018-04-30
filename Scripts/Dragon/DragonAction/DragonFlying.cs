@@ -14,6 +14,7 @@ public class DragonFlying : DragonAction
 
         if (IsFlying)
         {
+            BlackBoard.Instance.aniManager.SwicthAnimation("Flying");
             if (!IsFlyingReady)
                 BlackBoard.Instance.MoveMentReady(MoveIndex);
             else { 

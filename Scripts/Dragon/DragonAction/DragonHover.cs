@@ -19,6 +19,8 @@ public class DragonHover : DragonAction
         {
             Vector3 forward = (Player.position - Dragon.position).normalized;
 
+            BlackBoard.Instance.aniManager.SwicthAnimation("Hovering");
+
             Dragon.rotation =
                 Quaternion.Lerp(
                     Dragon.rotation,
@@ -26,9 +28,7 @@ public class DragonHover : DragonAction
                     CurTime / MaxTime * 0.5f);
 
             CurTime += Time.deltaTime;
-
             BlackBoard.Instance.GetFlyingTime().CurHoveringTime = CurTime;
-            BlackBoard.Instance.Manager.Ani.SetTrigger("Hovering");
 
             return false;
         }

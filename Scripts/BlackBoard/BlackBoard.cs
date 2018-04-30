@@ -16,6 +16,9 @@ public class BlackBoard : Singleton<BlackBoard>
     private DragonManager _manager;
     public DragonManager Manager { get { return _manager; } }
 
+    private DragonAniManager _aniManager;
+    public DragonAniManager aniManager { get { return _aniManager; } }
+
     [SerializeField]
     private BulletManager _bulletManager;
     public BulletManager BulletManager { get { return _bulletManager; } }
@@ -72,6 +75,7 @@ public class BlackBoard : Singleton<BlackBoard>
     private bool _isRadiusChk;
     public bool IsRadiusChk { set { _isRadiusChk = value; } get { return _isRadiusChk; } }
 
+
     /* 보스몹 패턴 관련 변수 */
     [SerializeField]
     private float _rushLimitDir;
@@ -101,6 +105,9 @@ public class BlackBoard : Singleton<BlackBoard>
 
     private bool _isWalk;       //걷는 중인지
     public bool IsWalk { set { _isWalk = value; }  get { return _isIdle; } }
+
+    private bool _isTakeOffReady;//이륙 준비가 다 되었는지
+    public bool IsTakeOffReady { set { _isTakeOffReady = value; } get { return _isTakeOffReady; } }
 
     private bool _isTakeOff;    //이륙 중인지
     public bool IsTakeOff { set { _isTakeOff = value; } get { return _isTakeOff; } }
@@ -161,6 +168,8 @@ public class BlackBoard : Singleton<BlackBoard>
     public void InitMamber()
     {
         _manager = GameObject.FindWithTag("Dragon").GetComponent<DragonManager>();
+        _aniManager = _manager.GetComponentInChildren<DragonAniManager>();
+
         _isStage = true;;
 
         /* 시간 클래스 초기화 */

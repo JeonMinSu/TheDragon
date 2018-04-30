@@ -13,8 +13,9 @@ public class DragonIdle : DragonAction
         
         if (IsStage && Curtime < MaxTime)
         {
+            BlackBoard.Instance.aniManager.SwicthAnimation("Idle");
             BlackBoard.Instance.GetLandTime().CurIdleTime += Time.deltaTime;
-            BlackBoard.Instance.Manager.Ani.SetTrigger("Idle");
+
             return false;
         }
         return true;

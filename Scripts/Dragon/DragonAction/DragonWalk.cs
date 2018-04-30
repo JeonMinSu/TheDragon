@@ -15,6 +15,8 @@ public class DragonWalk : DragonAction
 
         if (IsStage && CurTime <  MaxTime)
         {
+            BlackBoard.Instance.aniManager.SwicthAnimation("Walk");
+
             float moveSpeed = BlackBoard.Instance.Stat.MoveSpeed;
             float turnSpeed = BlackBoard.Instance.Stat.LandTurnSpeed;
 
