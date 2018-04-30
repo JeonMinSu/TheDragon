@@ -24,7 +24,6 @@ public class DragonLanding : DragonAction
                 if (!BlackBoard.Instance.IsLandingAct)
                     CoroutineManager.DoCoroutine(LandingStartCor(MoveIndex));
                 
-                BlackBoard.Instance.ChangedHP = CurHP;
                 BlackBoard.Instance.IsStage = true;
             }
             return false;
@@ -42,7 +41,8 @@ public class DragonLanding : DragonAction
             BlackBoard.Instance.FlyingMovement(Index);
             yield return CoroutineManager.EndOfFrame;
         }
-        BlackBoard.Instance.Manager.Ani.ResetTrigger("Landing");
+        BlackBoard.Instance.Manager.Ani.ResetTrigger("Landing")
+        BlackBoard.Instance.ChangedHP = BlackBoard.Instance.Stat.HP;
         BlackBoard.Instance.IsLanding = false;
         BlackBoard.Instance.IsLandingAct = false;
         BlackBoard.Instance.IsHovering = false;

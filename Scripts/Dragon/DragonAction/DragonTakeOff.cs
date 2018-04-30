@@ -23,7 +23,6 @@ public class DragonTakeOff : DragonAction {
             { 
                 if (!BlackBoard.Instance.IsTakeOffAct)
                     CoroutineManager.DoCoroutine(TakeOffStartCor(MoveIndex));
-                BlackBoard.Instance.ChangedHP = CurHP;
                 BlackBoard.Instance.IsHovering = true;
             }
 
@@ -43,6 +42,7 @@ public class DragonTakeOff : DragonAction {
             yield return CoroutineManager.EndOfFrame;
         }
         BlackBoard.Instance.Manager.Ani.ResetTrigger("TakeOff");
+        BlackBoard.Instance.ChangedHP = BlackBoard.Instance.Stat.HP;
         BlackBoard.Instance.IsTakeOff = false;
         BlackBoard.Instance.IsTakeOffAct = false;
         BlackBoard.Instance.IsStage = false;

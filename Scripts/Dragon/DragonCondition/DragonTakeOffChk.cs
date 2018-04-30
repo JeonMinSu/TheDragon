@@ -23,6 +23,7 @@ public class DragonTakeOffChk : DragonConTask
 
         if (ChangedHP - TakeOffHP >= CurHP && !IsLandingAct && !IsStageAct && IsStage && CurHP != MaxHP)
         {
+            Debug.Log("TakeOff");
             BlackBoard.Instance.Manager.Ani.SetTrigger("TakeOff");
             BlackBoard.Instance.IsTakeOff = true;
 
