@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0aa2679e571b5424a9433f42478dd622
-timeCreated: 1525013692
+guid: fafbbcad6e8b5df49a6446772ad12c72
+timeCreated: 1525090949
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -214,7 +214,7 @@ ModelImporter:
       name: Boss_Takeoff
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 85
+      lastFrame: 105
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -234,7 +234,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.670412
+      - time: 0.46538463
         functionName: TakeOffReadyOn
         data: 
         objectReferenceParameter: {instanceID: 0}

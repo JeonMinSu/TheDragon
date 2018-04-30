@@ -41,11 +41,16 @@ public class DragonHomingBullet : DragonAction
         yield return new WaitForSeconds(preTime);
 
         //용 유도탄 실행 애니메이션 넣는 곳
+
         for (int i = 0; i < 5; i++)
         {
-            BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position,(Mouth.forward + Vector3.up*3).normalized);
-            BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position,(Mouth.forward + Mouth.right*2 + Vector3.up * 2).normalized);
-            BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position,(Mouth.forward - Mouth.right*2 + Vector3.up * 2).normalized);
+            BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position, (Mouth.forward + Vector3.up * 3).normalized);
+            BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position, (Mouth.forward + Mouth.right * 3 + Vector3.up * 2).normalized);
+            BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position, (Mouth.forward - Mouth.right * 3 + Vector3.up * 2).normalized);
+            BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position, (Mouth.forward - Vector3.down * 3).normalized);
+            //BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position, (Mouth.forward + Vector3.up * 3).normalized);
+            //BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position, (Mouth.forward + Mouth.right * 2 + Vector3.up * 2).normalized);
+            //BlackBoard.Instance.BulletManager.DragonHomingBulletFire(Mouth.position, (Mouth.forward - Mouth.right * 2 + Vector3.up * 2).normalized);
             yield return new WaitForSeconds(1.5f);
         }
 

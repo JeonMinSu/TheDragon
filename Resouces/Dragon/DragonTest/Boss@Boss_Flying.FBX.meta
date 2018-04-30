@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ccd9496f2d3979d45bcc03509030db50
-timeCreated: 1525090949
+guid: 46f7a949af35fa84e95932c9e6775ea4
+timeCreated: 1525090948
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -180,7 +180,7 @@ ModelImporter:
     2100008: 'Material #35'
     2100010: 'Material #36'
     4300000: body
-    7400000: Boss_Idle
+    7400000: Boss_Flying
     9500000: //RootNode
     13700000: body
   externalObjects: {}
@@ -211,10 +211,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Boss_Idle
+      name: Boss_Flying
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 140
+      lastFrame: 51
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

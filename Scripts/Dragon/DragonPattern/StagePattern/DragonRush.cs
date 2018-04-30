@@ -17,6 +17,7 @@ public class DragonRush : DragonAction {
 
         if (!BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) && IsStage)
         {
+            BlackBoard.Instance.aniManager.SwicthAnimation("Idle");
             if (!IsStageAct)
                 CoroutineManager.DoCoroutine(DragonRushStart(preTime, afterTime));
             Debug.Log("Rush");

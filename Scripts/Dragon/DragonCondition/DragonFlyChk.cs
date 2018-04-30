@@ -13,7 +13,6 @@ public class DragonFlyChk : DragonConTask
         if (isFlying && !HoveringAct)
         {
             Debug.Log("Flying");
-            BlackBoard.Instance.Manager.Ani.SetTrigger("Flying");
             return false;
         }
         return true;

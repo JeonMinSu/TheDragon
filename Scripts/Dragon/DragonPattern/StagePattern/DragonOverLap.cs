@@ -23,6 +23,7 @@ public class DragonOverLap : DragonAction {
         
         if (BlackBoard.Instance.DistanceCalc(Dragon, Player, 30.0f) && IsStage)
         {
+            BlackBoard.Instance.aniManager.SwicthAnimation("Idle");
             //if (!IsFlyingReady)
             //    //BlackBoard.Instance.FlyingMoveReady(MoveIndex);
             if (!IsStageAct)

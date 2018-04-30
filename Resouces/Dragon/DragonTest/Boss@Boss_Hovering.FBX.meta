@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5f837a2f3203d174ea3aa922a939770f
-timeCreated: 1525013693
+guid: cab2a56bcdcade34fa447291123c6745
+timeCreated: 1525090948
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -87,7 +87,8 @@ ModelImporter:
     100158: Bip001 Tail5
     100160: Bip001 TailNub
     100162: Bip001 Xtra02Nub
-    100164: //RootNode
+    100164: body
+    100166: //RootNode
     400000: Bip001
     400002: Bip001 Bip01_L_wingA_1
     400004: Bip001 Bip01_L_wingA_1Nub
@@ -170,9 +171,18 @@ ModelImporter:
     400158: Bip001 Tail5
     400160: Bip001 TailNub
     400162: Bip001 Xtra02Nub
-    400164: //RootNode
-    7400000: Boss_Hover
+    400164: body
+    400166: //RootNode
+    2100000: 'Material #48'
+    2100002: 'Material #49'
+    2100004: 'Material #121'
+    2100006: 'Material #122'
+    2100008: 'Material #35'
+    2100010: 'Material #36'
+    4300000: body
+    7400000: Boss_Hovering
     9500000: //RootNode
+    13700000: body
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -201,7 +211,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Boss_Hover
+      name: Boss_Hovering
       takeName: Take 001
       firstFrame: 0
       lastFrame: 58
