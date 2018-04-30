@@ -19,7 +19,7 @@ public class DragonLanding : DragonAction
         {
             BlackBoard.Instance.aniManager.SwicthAnimation("Landing");
             if (!IsLandingReady)
-                BlackBoard.Instance.MoveMentReady(MoveIndex);
+                BlackBoard.Instance.MovementReady(MoveIndex);
             else
             {
                 if (!BlackBoard.Instance.IsLandingAct)

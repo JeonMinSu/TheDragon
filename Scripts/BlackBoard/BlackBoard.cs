@@ -293,9 +293,9 @@ public class BlackBoard : Singleton<BlackBoard>
         return GetNodeManager(Index).IsMoveReady;
     }
 
-    public void MoveMentReady(int Index)
+    public void MovementReady(int Index)
     {
-        Manager.MovesManager.MoveMentReady(Index);
+        Manager.MovesManager.MovementReady(Index);
     }
 
     public void FlyingMovement(int Index)

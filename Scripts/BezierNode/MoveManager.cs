@@ -83,7 +83,7 @@ public class MoveManager : MonoBehaviour {
     }
 
     //노드 포지션 및 로테이션 셋팅
-    public void MoveMentReady(int Index)
+    public void MovementReady(int Index)
     {
         AxisRotation(Index);
         bool isFindNode = FindNode(Index);

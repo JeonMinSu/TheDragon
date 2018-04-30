@@ -22,7 +22,7 @@ public class DragonTakeOff : DragonAction {
         {
             BlackBoard.Instance.aniManager.SwicthAnimation("TakeOff");
             if (!IsFlyingReady && IstakeOffReady)
-                BlackBoard.Instance.MoveMentReady(MoveIndex);
+                BlackBoard.Instance.MovementReady(MoveIndex);
 
             else
             {

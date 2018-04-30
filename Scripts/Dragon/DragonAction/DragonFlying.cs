@@ -16,7 +16,7 @@ public class DragonFlying : DragonAction
         {
             BlackBoard.Instance.aniManager.SwicthAnimation("Flying");
             if (!IsFlyingReady)
-                BlackBoard.Instance.MoveMentReady(MoveIndex);
+                BlackBoard.Instance.MovementReady(MoveIndex);
             else { 
                 if (!BlackBoard.Instance.FlyingAct)
                     CoroutineManager.DoCoroutine(FlyingStartCor(MoveIndex));
