@@ -525,6 +525,8 @@ MonoBehaviour:
   SizeupSpeed: 0
   _Hp: 100
   _PrismBrokenPrefab: {fileID: 0}
+  _SpawnSound: {fileID: 1818109881791334, guid: 0a4d0e9004889824abe86890349ca473,
+    type: 2}
 --- !u!198 &198740210665907026
 ParticleSystem:
   m_ObjectHideFlags: 1

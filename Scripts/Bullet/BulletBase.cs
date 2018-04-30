@@ -45,6 +45,15 @@ public class BulletBase : MonoBehaviour
     private Vector3 _prevPosition;
     protected Vector3 PrevPosition { get { return _prevPosition; } set { _prevPosition = value; } }
 
+    public GameObject CollisionSound;
+
+
+    protected GameObject Player;
+    public void SetPlayer(GameObject _player)
+    {
+        Player = _player;
+    }
+
     //총 방향 설정해주는 구간
     void SetDirection(Transform _firePos)
     {
@@ -63,7 +72,7 @@ public class BulletBase : MonoBehaviour
         SetBaseValue(firePos, fireDir, moveSpeed);
     }
 
-    //기본값 넣어줌
+    //기본값 넣어주는 함수들
     protected void SetBaseValue(Transform firePos, float moveSpeed)
     {
         SetDirection(firePos);
@@ -134,7 +143,7 @@ public class BulletBase : MonoBehaviour
             {
                 if(rayhit[i].collider.tag != _tag && rayhit[i].collider.tag != "Bullet")
                 {
-                    if(rayhit[i].collider.tag == "IceBlock")
+                    if(rayhit[i].collider.tag == "IceBlock" && transform.tag != "Dragon")
                     {
                         rayhit[i].collider.gameObject.GetComponent<IceBlock>().GetDamage(10);
                     }
@@ -142,6 +151,12 @@ public class BulletBase : MonoBehaviour
                     {
                         rayhit[i].collider.SendMessage("Hit");
                     }
+
+                    if(CollisionSound != null)
+                    {
+                        Instantiate(CollisionSound, transform.position, Quaternion.identity);
+                    }
+
                     BulletDestroy();
                 }
             }

@@ -1916,8 +1916,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BreathOnEffect: {fileID: 1320546924408816}
   BreathEffect: {fileID: 1325258272842626}
-  BreathOnSound: {fileID: 8300000, guid: 04e467eaca097864ca47bcf3d29039e8, type: 3}
-  BreathFireSound: {fileID: 8300000, guid: e50a0a26a171d484ebae21c15e7594b5, type: 3}
+  BreathOnSound: {fileID: 8300000, guid: d0138453069746344a3dae268bbc2714, type: 3}
+  BreathFireSound: {fileID: 8300000, guid: f2c5c85a7d3785347b0005b7c9616c12, type: 3}
 --- !u!135 &135585227631842384
 SphereCollider:
   m_ObjectHideFlags: 1

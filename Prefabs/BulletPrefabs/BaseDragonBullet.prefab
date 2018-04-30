@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4886078851909652}
   - component: {fileID: 95579746562146928}
   - component: {fileID: 114656648275106112}
+  - component: {fileID: 114166979995946996}
   m_Layer: 0
   m_Name: BaseDragonBullet
   m_TagString: Untagged
@@ -59,7 +60,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1222903074081274
 GameObject:
   m_ObjectHideFlags: 1
@@ -438,6 +439,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114166979995946996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064040161584500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cfa46ab04c57e4aa89fdfeada96fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeTarget: {fileID: 1132912326127750}
+  delayTime: 3
+  activeValue: 1
 --- !u!114 &114656648275106112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -449,6 +464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae07a26cf777da45828941a38c51c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CollisionSound: {fileID: 1993643873080142, guid: 083e13f4a2e76f844a2abdc025081761,
+    type: 2}
 --- !u!198 &198005941267816612
 ParticleSystem:
   m_ObjectHideFlags: 1

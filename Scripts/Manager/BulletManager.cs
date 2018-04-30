@@ -25,6 +25,13 @@ public class BulletManager : MonoBehaviour
     [SerializeField]
     private GameObject Player;
 
+    [SerializeField]
+    private GameObject BaseDragonReadySound;
+
+    [SerializeField]
+    private GameObject BaseDragonFireSound;
+
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Tab))
@@ -92,7 +99,9 @@ public class BulletManager : MonoBehaviour
         bullet.GetComponent<BulletBase>().SetBulletValue(_firePos, 150.0f);
         bullet.GetComponent<BulletBase>().SetTag("Dragon");
         bullet.GetComponent<BulletBase>().SetDelayTime(4.0f);
-        GameObject effect = Instantiate(GaOBaEffect, _firePos.position, Quaternion.LookRotation(_firePos.forward,Vector3.up));
+        GameObject effect = Instantiate(GaOBaEffect, _firePos.position + _firePos.forward, Quaternion.LookRotation(_firePos.forward,Vector3.up));
+        Instantiate(BaseDragonReadySound, _firePos.position, Quaternion.identity);
+        Instantiate(BaseDragonFireSound, _firePos.position, Quaternion.identity);
     }
 
     public void DragonBaseBulletFire(Vector3 _firePos, Vector3 _fireDir)
@@ -101,7 +110,9 @@ public class BulletManager : MonoBehaviour
         bullet.GetComponent<BulletBase>().SetBulletValue(_firePos,_fireDir, 150.0f);
         bullet.GetComponent<BulletBase>().SetTag("Dragon");
         bullet.GetComponent<BulletBase>().SetDelayTime(4.0f);
-        GameObject effect = Instantiate(GaOBaEffect, _firePos, Quaternion.LookRotation(_fireDir,Vector3.up));
+        GameObject effect = Instantiate(GaOBaEffect, _firePos + _fireDir.normalized, Quaternion.LookRotation(_fireDir,Vector3.up));
+        Instantiate(BaseDragonReadySound, _firePos, Quaternion.identity);
+        Instantiate(BaseDragonFireSound, _firePos, Quaternion.identity);
     }
 
     public void DragonHomingBulletFire(Transform _firePos)

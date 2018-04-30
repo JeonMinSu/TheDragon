@@ -45,9 +45,8 @@ public class DragonFlying : DragonAction
             Vector3 firePos = Dragon.position + Dragon.up * Random.Range(0,5) * 5;
             if(fireTime <= 0.0f)
             {
-                BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, (Player.position - firePos).normalized);
-                //BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, ((Player.position + Player.right * 4) - firePos).normalized);
-                //BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, ((Player.position - Player.right * 4) - firePos).normalized);
+                BlackBoard.Instance.BulletManager.DragonBaseBulletFire(firePos, (
+                    (Player.position + new Vector3(Random.Range(-20.0f,20.0f),0.0f,Random.Range(-20.0f,20.0f))) - firePos).normalized);
                 fireTime = 0.15f;
             }
             yield return CoroutineManager.EndOfFrame;
