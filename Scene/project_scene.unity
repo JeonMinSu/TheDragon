@@ -13163,12 +13163,12 @@ Prefab:
     - target: {fileID: 114017044652162746, guid: 3a1383d3723b6854c9a0fb620bf1bb5e,
         type: 2}
       propertyPath: FireSounds.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114634192352361114, guid: 3a1383d3723b6854c9a0fb620bf1bb5e,
         type: 2}
       propertyPath: FireSounds.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4546925859907954, guid: 3a1383d3723b6854c9a0fb620bf1bb5e, type: 2}
       propertyPath: m_LocalPosition.x
@@ -13231,17 +13231,17 @@ Prefab:
         type: 2}
       propertyPath: FireSounds.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 83f211f5ae391b44c9920f7544f24cf2, type: 3}
+      objectReference: {fileID: 8300000, guid: 9659a2590df7c1e4c8f3d0c48e37327b, type: 3}
     - target: {fileID: 114017044652162746, guid: 3a1383d3723b6854c9a0fb620bf1bb5e,
         type: 2}
       propertyPath: FireSounds.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 2ea330ed5415ad448a300a9edab08837, type: 3}
+      objectReference: {fileID: 8300000, guid: 278d4bdca04da6141ae1bbdba59c4ac0, type: 3}
     - target: {fileID: 114017044652162746, guid: 3a1383d3723b6854c9a0fb620bf1bb5e,
         type: 2}
       propertyPath: FireSounds.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 0a04a6fba1c823d4ca4bdf0c68f8219a, type: 3}
+      objectReference: {fileID: 8300000, guid: e128fe3cfc3b0204db0d26abe372043d, type: 3}
     - target: {fileID: 114017044652162746, guid: 3a1383d3723b6854c9a0fb620bf1bb5e,
         type: 2}
       propertyPath: FireSounds.Array.data[3]
@@ -13251,17 +13251,17 @@ Prefab:
         type: 2}
       propertyPath: FireSounds.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 83f211f5ae391b44c9920f7544f24cf2, type: 3}
+      objectReference: {fileID: 8300000, guid: 9659a2590df7c1e4c8f3d0c48e37327b, type: 3}
     - target: {fileID: 114634192352361114, guid: 3a1383d3723b6854c9a0fb620bf1bb5e,
         type: 2}
       propertyPath: FireSounds.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 2ea330ed5415ad448a300a9edab08837, type: 3}
+      objectReference: {fileID: 8300000, guid: 278d4bdca04da6141ae1bbdba59c4ac0, type: 3}
     - target: {fileID: 114634192352361114, guid: 3a1383d3723b6854c9a0fb620bf1bb5e,
         type: 2}
       propertyPath: FireSounds.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 0a04a6fba1c823d4ca4bdf0c68f8219a, type: 3}
+      objectReference: {fileID: 8300000, guid: e128fe3cfc3b0204db0d26abe372043d, type: 3}
     - target: {fileID: 114634192352361114, guid: 3a1383d3723b6854c9a0fb620bf1bb5e,
         type: 2}
       propertyPath: FireSounds.Array.data[3]
