@@ -41,7 +41,7 @@ public class DragonLanding : DragonAction
             BlackBoard.Instance.FlyingMovement(Index);
             yield return CoroutineManager.EndOfFrame;
         }
-        BlackBoard.Instance.Manager.Ani.ResetTrigger("Landing")
+        BlackBoard.Instance.Manager.Ani.ResetTrigger("Landing");
         BlackBoard.Instance.ChangedHP = BlackBoard.Instance.Stat.HP;
         BlackBoard.Instance.IsLanding = false;
         BlackBoard.Instance.IsLandingAct = false;
