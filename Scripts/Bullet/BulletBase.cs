@@ -16,6 +16,10 @@ public class BulletBase : MonoBehaviour
     private Transform _baseTarget;
     public void SetbaseTarget(Transform target) { _baseTarget = target; }
 
+    private float _delayTime = 0.0f;
+    public void SetDelayTime(float delay) { _delayTime = delay; }
+
+
     //총알 방향
     private Vector3 _bulletForward;
     protected Vector3 BulletForward { get { return _bulletForward; } set { _bulletForward = value; } }
@@ -147,9 +151,16 @@ public class BulletBase : MonoBehaviour
     //업데이트
     private void FixedUpdate()
     {
-        //총알 이동
-        UpdateBulletPos();
-        //총알 충돌 체크
-        BulletCollisionCheck();
+        if(_delayTime > 0.0f)
+        {
+            _delayTime -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            //총알 이동
+            UpdateBulletPos();
+            //총알 충돌 체크
+            BulletCollisionCheck();
+        }
     }
 }

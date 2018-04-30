@@ -107,6 +107,5 @@ namespace PlayerCharacter
             _CameraEventAngle = Vector3.zero;
             yield return null;
         }
-
     }
 }

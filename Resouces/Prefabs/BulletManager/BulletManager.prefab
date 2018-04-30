@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1314595502990212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35.595684, y: 77.33603, z: -10.070147}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,6 +56,8 @@ MonoBehaviour:
   WaveBulletPrefab: {fileID: 1077555924291846, guid: b58c7e8563d33be468e69ad0d0fd8050,
     type: 2}
   BaseDragonBullet: {fileID: 1064040161584500, guid: c0de91e9b4167f34686c75cdaf29f1fb,
+    type: 2}
+  GaOBaEffect: {fileID: 1287421349750274, guid: e3aa2a722296f134791488ab4ecda4b9,
     type: 2}
   RotateDragonBullet: {fileID: 1836643675778412, guid: ac05a269b8174c54192e1a88db42e277,
     type: 2}
