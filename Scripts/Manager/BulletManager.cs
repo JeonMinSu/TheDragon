@@ -92,7 +92,7 @@ public class BulletManager : MonoBehaviour
         bullet.GetComponent<BulletBase>().SetBulletValue(_firePos, 150.0f);
         bullet.GetComponent<BulletBase>().SetTag("Dragon");
         bullet.GetComponent<BulletBase>().SetDelayTime(4.0f);
-        GameObject effect = Instantiate(GaOBaEffect, _firePos.position, Quaternion.LookRotation(_firePos.forward, Vector3.up));
+        GameObject effect = Instantiate(GaOBaEffect, _firePos.position, Quaternion.LookRotation(_firePos.forward,Vector3.up));
     }
 
     public void DragonBaseBulletFire(Vector3 _firePos, Vector3 _fireDir)
@@ -101,7 +101,7 @@ public class BulletManager : MonoBehaviour
         bullet.GetComponent<BulletBase>().SetBulletValue(_firePos,_fireDir, 150.0f);
         bullet.GetComponent<BulletBase>().SetTag("Dragon");
         bullet.GetComponent<BulletBase>().SetDelayTime(4.0f);
-        GameObject effect = Instantiate(GaOBaEffect, _firePos, Quaternion.LookRotation(_fireDir, Vector3.up));
+        GameObject effect = Instantiate(GaOBaEffect, _firePos, Quaternion.LookRotation(_fireDir,Vector3.up));
     }
 
     public void DragonHomingBulletFire(Transform _firePos)
