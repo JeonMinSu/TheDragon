@@ -11,6 +11,13 @@ using UnityEngine;
     베지어곡선을 이용하여 노드 만들기     
 */
 
+/*
+ *  수정한날 : 2018 - 04 - 30
+ *  작성자 : 김영민
+ *  수정내역: 업벡터 관련 추가 리스트 생성
+ */
+
+
 [RequireComponent(typeof(MoveStat))]
 public class NodeManager : MonoBehaviour {
 
@@ -21,6 +28,7 @@ public class NodeManager : MonoBehaviour {
 
     private List<Vector3> _nodesDir = new List<Vector3>();
     private List<Vector3> _nodesRot = new List<Vector3>();
+    private List<bool> _nodesUp = new List<bool>();
 
     private List<float> _nodesSpeed = new List<float>();
 
@@ -39,6 +47,7 @@ public class NodeManager : MonoBehaviour {
     public List<Vector3> NodesDir { get { return _nodesDir; } }
     public List<Vector3> NodesRot { get { return _nodesRot; } }
     public List<float> NodesSpeed { get { return _nodesSpeed; } }
+    public List<bool> NodesDragonUp { get { return _nodesUp; } }
 
     public bool IsStick;
     public bool IsMoveLoop;
@@ -82,7 +91,7 @@ public class NodeManager : MonoBehaviour {
                 _nodesRot.Add(rot);
                 _nodesSpeed.Add(speed);
                 _nodesDir.Add(to);
-
+                _nodesUp.Add(Nodes[index].DragonUp);
 
                 t += NodeInterval; //시간 0~1
             }

@@ -9,6 +9,12 @@ using UnityEngine;
     베지어곡선을 이용한 노드를 사용하여 오브젝트 이동    
 */
 
+/*
+ *  수정한날 : 2018 - 04 - 30
+ *  작성자 : 김영민
+ *  수정내역: 업벡터 확인후 드래곤 업벡터 , 월드 업벡터  사용
+ */
+
 public class MoveManager : MonoBehaviour {
 
     public List<NodeManager> NodesManager;
@@ -120,6 +126,7 @@ public class MoveManager : MonoBehaviour {
             
             Vector3 dir = (NodesManager[Index].Stat.NodeDir[NodesIndex] - MoveObject.transform.position).normalized;
             Vector3 eulerAngle = NodesManager[Index].NodesRot[NodesIndex];
+            bool dragonUp = NodesManager[Index].NodesDragonUp[NodesIndex];
 
             //if (NodesIndex + 1 < NodesCount)
             //{
@@ -160,8 +167,18 @@ public class MoveManager : MonoBehaviour {
             }
             else
             {
-                Quaternion rot = (Quaternion.LookRotation(dir, Vector3.up)
-                    * Quaternion.Euler(eulerAngle));
+                Quaternion rot;
+                if (dragonUp)
+                {
+                    rot = Quaternion.Slerp(MoveObject.transform.rotation,
+                        Quaternion.LookRotation(dir, MoveObject.transform.up) * Quaternion.Euler(eulerAngle), 0.1f);
+                }
+                else
+                {
+                    rot = Quaternion.Slerp(MoveObject.transform.rotation,
+                        Quaternion.LookRotation(dir, Vector3.up) * Quaternion.Euler(eulerAngle), 0.1f);
+                }
+      
 
                 //Quaternion rot = (Quaternion.LookRotation(dir, Vector3.up));
                 //Quaternion rot = Quaternion.LookRotation(dir, Dragon.transform.up) 

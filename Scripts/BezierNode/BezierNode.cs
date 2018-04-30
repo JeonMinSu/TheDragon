@@ -12,6 +12,18 @@ using UnityEngine;
     베지어곡선을 이용하여 노드 만들기
     
 */
+ /*
+
+    수정한날 : 20180430
+    작성자  : 김영민
+
+    수정작업
+    이동시 보간할때 사용되는 Up벡터를 오브젝트 중점으로 사용할지 월드 중점으로 사용할지
+    체크없으면 Vector3.Up 체크하면 Transform.up
+     
+*/
+
+
 
 public class BezierNode : MonoBehaviour {
 
@@ -24,6 +36,10 @@ public class BezierNode : MonoBehaviour {
     [SerializeField]
     private float _nodeDiv;
     public float NodeDiv { set { _nodeDiv = value; } get { return _nodeDiv; } }
+
+    [SerializeField]
+    private bool _dragonUp;
+    public bool DragonUp { get { return _dragonUp; } }
 
     public Quaternion GetRotate { get { return transform.rotation; } }
 
