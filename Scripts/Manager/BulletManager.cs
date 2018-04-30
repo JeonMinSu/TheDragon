@@ -118,7 +118,7 @@ public class BulletManager : MonoBehaviour
     public void DragonHomingBulletFire(Transform _firePos)
     {
         BulletHoming bullet = Instantiate(HomingDragonBullet, _firePos.position, Quaternion.identity).GetComponent<BulletHoming>();
-        bullet.SetBulletValue(_firePos, 100.0f, 1.5f,Player.transform);
+        bullet.SetBulletValue(_firePos, 100.0f + Random.Range(-30f,30f), 1.5f,Player.transform);
         bullet.SetTag("Dragon");
         bullet.SetPlayer(Player);
         bullet.SetBulletManager(this);
@@ -142,7 +142,7 @@ public class BulletManager : MonoBehaviour
     public void DragonHomingBulletFire(Vector3 _firePos, Vector3 _fireDir)
     {
         BulletHoming bullet = Instantiate(HomingDragonBullet, _firePos, Quaternion.identity).GetComponent<BulletHoming>();
-        bullet.SetBulletValue(_firePos, _fireDir, 100.0f, 1.5f, Player.transform);
+        bullet.SetBulletValue(_firePos, _fireDir, 100.0f + Random.Range(-30f,30f), 1.5f, Player.transform);
         bullet.SetTag("Dragon");
         bullet.SetPlayer(Player);
         bullet.SetBulletManager(this);

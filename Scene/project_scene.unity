@@ -21437,6 +21437,18 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 849899549}
+    - target: {fileID: 114924206404704498, guid: 8b3c653cf73e79a4b92ecc78735dc4bc,
+        type: 2}
+      propertyPath: BaseDragonReadySound
+      value: 
+      objectReference: {fileID: 1840333626251232, guid: 7d3f50a7d8f54d84eb6bd86a2acb7d57,
+        type: 2}
+    - target: {fileID: 114924206404704498, guid: 8b3c653cf73e79a4b92ecc78735dc4bc,
+        type: 2}
+      propertyPath: BaseDragonFireSound
+      value: 
+      objectReference: {fileID: 1424531068083570, guid: ebf4d2cb5b91eec4c875b345d52df3ce,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b3c653cf73e79a4b92ecc78735dc4bc, type: 2}
   m_IsPrefabParent: 0
@@ -32043,11 +32055,6 @@ Prefab:
       propertyPath: dragonManager
       value: 
       objectReference: {fileID: 1257060219}
-    - target: {fileID: 114840895284097876, guid: 0d11d4bb175c35b459f87a00faf1fb04,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d11d4bb175c35b459f87a00faf1fb04, type: 2}
   m_IsPrefabParent: 0

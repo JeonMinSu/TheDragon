@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 1644905497940438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children:
   - {fileID: 4818417646307170}
   - {fileID: 4043556269292992}
@@ -339,7 +339,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: 1
   m_CullingMask:
@@ -460,8 +460,8 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
-  randomSeed: 343971535
+  scalingMode: 0
+  randomSeed: -683199147
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3821,8 +3821,8 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
-  randomSeed: 897052353
+  scalingMode: 0
+  randomSeed: 1031274604
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7182,7 +7182,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: -567221311
   InitialModule:
     serializedVersion: 3
@@ -10543,8 +10543,8 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
-  randomSeed: 2008850073
+  scalingMode: 0
+  randomSeed: 851215453
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13904,8 +13904,8 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
-  randomSeed: -1560446890
+  scalingMode: 0
+  randomSeed: -1640384215
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -17265,8 +17265,8 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
-  randomSeed: 1263298531
+  scalingMode: 0
+  randomSeed: 2036478001
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20626,8 +20626,8 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
-  randomSeed: 1308053877
+  scalingMode: 0
+  randomSeed: -1747059173
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -23987,8 +23987,8 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
-  randomSeed: 1247078269
+  scalingMode: 0
+  randomSeed: -11093384
   InitialModule:
     serializedVersion: 3
     enabled: 1
