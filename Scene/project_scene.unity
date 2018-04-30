@@ -11198,27 +11198,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 24
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    - target: {fileID: 4597999239370638, guid: 64cfa7b14a5bcab49b5731f32ea9ce2d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 13.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 4597999239370638, guid: 64cfa7b14a5bcab49b5731f32ea9ce2d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 55.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 4597999239370638, guid: 64cfa7b14a5bcab49b5731f32ea9ce2d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -104.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 4055326658118306, guid: 64cfa7b14a5bcab49b5731f32ea9ce2d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -82.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4073191198211302, guid: 64cfa7b14a5bcab49b5731f32ea9ce2d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -76.2
-=======
     - target: {fileID: 4949999351396916, guid: 64cfa7b14a5bcab49b5731f32ea9ce2d, type: 2}
       propertyPath: m_LocalPosition.y
       value: 80.5
@@ -11294,7 +11273,6 @@ Prefab:
         type: 2}
       propertyPath: _nodeSpeed
       value: 70
->>>>>>> ae4fecbc78a6b723a46ddab2daf0246b525d4e78
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64cfa7b14a5bcab49b5731f32ea9ce2d, type: 2}
@@ -12801,7 +12779,7 @@ Prefab:
     - target: {fileID: 114253559659765446, guid: 19db4bc3c1af9534eb1b58ca9e610535,
         type: 2}
       propertyPath: _moveSpeed
-      value: 12
+      value: 9.7
       objectReference: {fileID: 0}
     - target: {fileID: 4411323429177398, guid: 19db4bc3c1af9534eb1b58ca9e610535, type: 2}
       propertyPath: m_LocalRotation.y
@@ -12820,12 +12798,6 @@ Prefab:
       propertyPath: m_Materials.Array.data[5]
       value: 
       objectReference: {fileID: 2100000, guid: 9eaab6345d1653d468bd5c04f4cc5f3e, type: 2}
-<<<<<<< HEAD
-    - target: {fileID: 95335912712727522, guid: 19db4bc3c1af9534eb1b58ca9e610535,
-        type: 2}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-=======
     - target: {fileID: 1796184164278710, guid: 19db4bc3c1af9534eb1b58ca9e610535, type: 2}
       propertyPath: m_TagString
       value: DragonTarget
@@ -12841,7 +12813,6 @@ Prefab:
     - target: {fileID: 1925534153896764, guid: 19db4bc3c1af9534eb1b58ca9e610535, type: 2}
       propertyPath: m_TagString
       value: DragonTarget
->>>>>>> ae4fecbc78a6b723a46ddab2daf0246b525d4e78
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19db4bc3c1af9534eb1b58ca9e610535, type: 2}
