@@ -11,6 +11,8 @@ public class AIManager : MonoBehaviour
 
     private void Awake()
     {
+        _tree = Resources.Load("DragonAI/DragonAI(BTs)", typeof(ScriptableObject)) as BehaviorTree;
+        Debug.Log(_tree);
     }
 
     // Use this for initialization

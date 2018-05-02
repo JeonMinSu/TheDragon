@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [CreateAssetMenu(menuName = "BehaviorTree/Tree")]
 public class BehaviorTree : ScriptableObject {
@@ -9,8 +11,6 @@ public class BehaviorTree : ScriptableObject {
     [SerializeField]
     private TreeNode _root;
     public TreeNode Root { get { return _root; } }
-
-    private Selection test;
 
     public void OnEnable()
     {
@@ -33,13 +33,14 @@ public class BehaviorTree : ScriptableObject {
             SerializeNodes(ChildNodes[n]);
         }
     }
-
     public static BehaviorTree Create()
     {
         BehaviorTree asset = CreateInstance<BehaviorTree>();
-        
+
+#if UNITY_EDITOR
         AssetDatabase.CreateAsset(asset, "Assets/BehaviroTree.asset");
         AssetDatabase.SaveAssets();
+#endif
 
         return asset;
     }
